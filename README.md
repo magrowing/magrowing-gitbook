@@ -6,8 +6,7 @@
 
 ## 목차 
 
-*1주차
-
+* <code>1주차</code>
    - 개발 환경
    - TypeScript
    - React
