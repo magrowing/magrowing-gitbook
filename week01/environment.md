@@ -69,7 +69,7 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 ## TypeScript + React + Jest + ESLint + Parcel 개발 환경 세팅
 
-### 1.작업 폴더 준비
+### 1. 작업 폴더 준비
   * CLI로 작업 폴더를 생성하는 방법
 
     ```
@@ -85,15 +85,13 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 <br/>
 
-### 2.npm 패키지를 준비 
+### 2. npm 패키지를 준비 
 
 * __[npm(Node Package Manager)](https://docs.npmjs.com/, 'npm docs link')__
-
   * Node.js의 패키지 관리 도구
   * Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공한다.   
 
 * __package.json / package-lock.json__
-
   * __package.json__
     * 현재 프로젝트에 관한 정보와 패키지 매니저(npm, yarn)을 통해 설치한 모듈들의 의존성을 관리하는 파일
     * __⇒ `node_modules` 폴더의 정보룰 담고 있는 파일__
@@ -187,7 +185,8 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
   // 2.eslint 실행해 초기화 하면 
   npx eslint --init
 
-  // 3.아래 이미지와 동일한 질문들이 노출되어 선택하면 됨.
+  // 3.아래 이미지처럼 질문들이 노출되어 선택하면 된다.
+  // eslint 버전마다 설정마다 질문은 달라지는 듯함
 
   // 4. .eslintrc.js 파일 수정 
   env:{ ... just:true} 추가   
@@ -218,7 +217,33 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
     jest-environment-jsdom \
     @testing-library/react @testing-library/jest-dom@5.16.4
   
-  //jest.config.js 파일을 작성해서 테스트에 SWC를 사용하자.
+  // 2.jest.config.js 파일을 작성해서 테스트에 SWC를 사용하자.   
+  module.exports = {
+    testEnvironment: 'jsdom',
+    setupFilesAfterEnv: [
+      '@testing-library/jest-dom/extend-expect',
+    ],
+    transform: {
+      '^.+\\.(t|j)sx?$': ['@swc/jest', {
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            jsx: true,
+            decorators: true,
+          },
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+      }],
+    },
+    testPathIgnorePatterns: [
+      '<rootDir>/node_modules/',
+      '<rootDir>/dist/',
+    ],
+  };
   ```
   <br/>
 
