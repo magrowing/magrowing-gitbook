@@ -4,10 +4,14 @@
 
 - REPL
 - TypeScript
-  - Interface vs Type
+  - `타입 정의하기(Defining Types)`
   - 타입 추론
+    - `Tuple`
+  - Interface vs Type
   - Union Type vs Intersection Type
   - Optional Parameter
+  - `Generics` ~~추후작성~~
+  - `Utility Types` ~~추후작성~~
 
 <br/>
 
@@ -51,7 +55,7 @@
 
 ### ✍🏻 REPL / ts-node 에 대한 나의 생각 
 
-- typescript 기초적인 문법 공부시 typescript playground를 통해 학습했는데,vscode에서 위와 같은 방식을 사용해서 공식문서의 예제들을 테스트 해보면서 문법을 익힐 수 있다. 
+- TypeScript 기초적인 문법 공부시 TypeScript playground를 통해 학습했는데 vscode에서 위와 같은 방식을 사용해서 공식문서의 예제들을 테스트 하면서 되겠다.
 
 
 <br/>
@@ -102,9 +106,175 @@
 <br/>
 
 
-### 🤖 TypeScript은 어떻게 사용하는가? (feat.문법)
+### 🤖 TypeScript은 어떻게 사용하는가? (feat.기본 개념)
 
-#### 1. Interface vs Type
+#### 1. 타입 정의하기(Defining Types)
+
+-   ` : ` 사용해서 type을 정의한다.
+```
+
+/* 원시타입 */ 
+let name: string = '홍길동';
+let age: number = 13;
+let bool : boolean = true; 
+
+/* 배열 */ 
+let numberArr:number[] = [1,2,3]; 
+let numberArr:Array<string> = ['a','b','c'];
+
+/* 객체 */ 
+const human: {name: string; age: number;} = { name: '홍길동', age: 13 };
+
+/* 함수 */
+function(a:number,b:number) : number{
+  return a + b; // 함수의 return 값은 number 타입이다.
+}
+
+```
+<br/>
+
+#### 2. 타입 추론 
+
+- 명시적으로 선언하지 않아도  TypeScript는 타입을 추론한다.
+  ```
+  // 명시 하지 않아도 humanLangue 변수는 string Type이라고 인지한다.
+  let humanLangue = '인간의 언어 한글이군요!' 
+
+  // 정해진 값으로 지정 Union Type 유용하게 사용 가능 
+  let category: 'food';
+  category = 'food';
+
+  ```
+
+##### 2-1. Tuple 
+
+- 배열을 더 상세하게 타입으로 관리하고 싶다면 사용 
+
+  ```
+    let pair: [string, number];
+    pair = ['hp', 256];
+    ```
+
+
+#### 3. Interface vs Type
+
+- Interface와 Type은 매우 유사하다. 둘 중 자유롭게 선택해서 사용하면 된다. 
+- 둘 다 `복잡한 오브젝트의 타입을 재사용`하기 위해 사용하는 것이다 
+- `핵심적인 차이` Type은 새 프로퍼티를 추가하도록 개방될 수 없는 반면, Interface의 경우 항상 확장될 수 있다는 점
+
+  ```
+  /* interface 아래 같은 방식으로 프로퍼티 확장 가능 */
+  interface Person {
+   name:string; 
+   age:number;
+   gender:'male'|'female';
+  }
+
+  interface Person{
+    year:number; //extends 방식으로 확장하는 걸 추천 
+  }
+
+  const Kim :Person = {name:'김토끼', age:14, gender:'female',year:2002}
+  const Hong :Person = {name:'홍길동', age:18, gender:'male', year:2003}
+  ```
+
+  ```
+  /* type 아래 같은 방식으로 프로퍼티 확장 불가능 */
+  type Human = {
+   name:string,
+   age:number,
+  }
+
+  type Human = {
+    gender:'male'|'female';
+  }
+
+  // Error: Duplicate identifier 'Human'.
+
+  /*type 아래 같은 방식으로 프로퍼티 확장*/
+  type Human = {
+   name:string,
+   age:number,
+  }
+
+  type Gender = Human & {
+    gender:'male'|'female';
+  }
+
+  const Lee:Gender = {name:'이용', age:22, gender:'male'}
+  ```
+
+#### 3-1. Type 
+
+- 객체를 생성하는 방식처럼 타입을 선언해준다. 
+
+  ```
+  type Human = {
+    name: string,
+    age :number, 
+    gender : male | female,
+  }
+
+  const Hong:Human = {name:'홍길동',age:15, gender:male}
+  ```
+
+
+#### 3-2. Interface
+
+- class 생성하는 방식처럼 타입을 선언해준다. 
+
+  ```
+    interface Person {
+      name: string;
+      age: number;
+      gender: 'male' | 'female';
+    }
+
+    const Kim:Person = {name:'김토끼',age:19, gender:female}
+  ```
+
+<br/>
+
+#### 4. Union Type
+
+- `|`
+- 여러 타입 중 하나 (`합집합`)
+- 매개변수를 제한 할 때 매우 유용
+- 레거시 환경 또는 코드에서 사용(?) ~~이해하지못함~~
+
+  ```
+  type Category = 'food' | 'bag' | 'toy';
+
+  function fetchProducts( {category} : { category: Category }) {
+    console.log(`Fetch ${category}`);
+  }
+
+  fetchProducts({category:'food'});
+  ```
+
+#### 5. Intersection Type
+
+- `&`
+- `교집합`
+- 타입을 확장하기 위해 사용  
+
+  ```
+  ```
+
+#### 6. Optional Parameter
+- `?` 사용해서 파라미터를 선택적으로 사용 가능하게 한다. 
+
+  ```
+  function greeting(name?: string): string {
+    return `Hello, ${name || 'world'}`;
+  }
+
+  greeting();
+  // 'Hello, world' 파라미터에 아무값도 넣어주지 않으면 name undefined 이기 때문에 
+  // || 'world'가 출력 되는 것이다. 
+
+  greeting(); // 'Hello, kim'
+  ```
 
 <br/>
 
@@ -112,3 +282,4 @@
 
 - [TypeScript란 참고 블로그]("https://hymndev.tistory.com/79")
 - [TypeScript장단점 참고 블로그]("https://imraccoon-developer.tistory.com/11")
+- [타입 별칭과 인터페이스의 차이점]("https://www.typescriptlang.org/ko/docs/handbook/2/everyday-types.html#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD%EA%B3%BC-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90")
