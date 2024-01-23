@@ -1,10 +1,10 @@
 # Table of contents
 
-## 주차별 학습
+## CATEGORY
 
-* [📒 megatera-frontend-survival](README.md)
-* [1. 개발 환경](./week01/README.md)
-  * [1. 개발 환경](./week01/environment.md)
-  * [2. TypeScript](./week01/typescript.md)
-  * [3. React](./week01/react.md)
+* [📒 Magrowing Gitbook Rule](README.md)
+* [1. 개발 환경](./enviroment/README.md)
+  * [1. 개발 환경](./enviroment/environment.md)
+  * [2. TypeScript](./enviroment/typescript.md)
+  * [3. React](./enviroment/react.md)
  

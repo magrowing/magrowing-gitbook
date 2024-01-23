@@ -137,6 +137,7 @@ function(a:number,b:number) : number{
 
 - 명시적으로 선언하지 않아도  TypeScript는 타입을 추론한다.
 
+
   ```
   // 명시 하지 않아도 humanLangue 변수는 string Type이라고 인지한다.
   let humanLangue = '인간의 언어 한글이군요!' 
