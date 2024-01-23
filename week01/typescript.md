@@ -69,7 +69,7 @@
 
 ## TypeScript
 
-### 📌 TypeScript은 무엇인가?
+### 📌 [TypeScript]("https://www.typescriptlang.org/ko/docs/handbook/typescript-in-5-minutes.html") 무엇인가?
 
 - __JavaScript에 타입을 부여한 언어__ __⇒JavaScript의 확장된 언어__
 - Microsoft에 의해서 개발 및 관리되고 있는 오픈소스 프로그래밍 언어
@@ -78,7 +78,7 @@
 
 <br/>
 
-### 💡 TypeScript은 왜 사용하는가? (장점 vs 단점 )
+### 💡 TypeScript 왜 사용하는가? (장점 vs 단점 )
 
   -  정적 타입 언어 `에러 사전 방지`, `안전성`, `협업용이성`
   - 실행 속도 
@@ -106,7 +106,7 @@
 <br/>
 
 
-### 🤖 TypeScript은 어떻게 사용하는가? (feat.기본 개념)
+### 🤖 TypeScript 어떻게 사용하는가? (feat.기본 개념)
 
 #### 1. 타입 정의하기(Defining Types)
 
@@ -136,6 +136,7 @@ function(a:number,b:number) : number{
 #### 2. 타입 추론 
 
 - 명시적으로 선언하지 않아도  TypeScript는 타입을 추론한다.
+
   ```
   // 명시 하지 않아도 humanLangue 변수는 string Type이라고 인지한다.
   let humanLangue = '인간의 언어 한글이군요!' 
@@ -161,6 +162,7 @@ function(a:number,b:number) : number{
 - Interface와 Type은 매우 유사하다. 둘 중 자유롭게 선택해서 사용하면 된다. 
 - 둘 다 `복잡한 오브젝트의 타입을 재사용`하기 위해 사용하는 것이다 
 - `핵심적인 차이` Type은 새 프로퍼티를 추가하도록 개방될 수 없는 반면, Interface의 경우 항상 확장될 수 있다는 점
+- [타입 별칭과 인터페이스의 차이점]("https://www.typescriptlang.org/ko/docs/handbook/2/everyday-types.html#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD%EA%B3%BC-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90")
 
   ```
   /* interface 아래 같은 방식으로 프로퍼티 확장 가능 */
@@ -259,10 +261,29 @@ function(a:number,b:number) : number{
 - 타입을 확장하기 위해 사용  
 
   ```
+  type Color = { color:string}
+  type Background = {backgroundColor:string}
+
+  const css : Color & Background = {color:'red', backgroundColor:'white'}; 
+  ```
+
+  ```
+  interface Box {
+   width: number; 
+   height : number; 
+  }
+
+  interface Shape {
+    shape : string; 
+  }
+
+  const boxModel : Box & Shape = {width:2000, height:2000, shape:'square'}
   ```
 
 #### 6. Optional Parameter
+
 - `?` 사용해서 파라미터를 선택적으로 사용 가능하게 한다. 
+- 매개변수가 오브젝트일 때 많이 활용
 
   ```
   function greeting(name?: string): string {
@@ -278,8 +299,16 @@ function(a:number,b:number) : number{
 
 <br/>
 
+### ✍🏻 TypeScirpt에 대한 나의 생각 
+
+- 기본 개념을 이해했지만 실제 프로젝트를 진행해서 한다면 내가 과연 잘 사용 할 수 있을까 싶다. 
+- TypeScript를 왜 사용하는지는 알겠다. 그러나 왜 사용해야 하는지는 와닿지 않는다. 프로젝트를 하다보면 필요성에 대해 인지 할 수 있을거다.(?)
+  - 해당 개념들은 아직 숙지 하지 못함  `Generics` / `Utility Types` 추가 공부가 필요해보인다. 
+
+
+<br/>
+
 ### 🔗 참고
 
 - [TypeScript란 참고 블로그]("https://hymndev.tistory.com/79")
-- [TypeScript장단점 참고 블로그]("https://imraccoon-developer.tistory.com/11")
-- [타입 별칭과 인터페이스의 차이점]("https://www.typescriptlang.org/ko/docs/handbook/2/everyday-types.html#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD%EA%B3%BC-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90")
+- [TypeScript 장단점 참고 블로그]("https://imraccoon-developer.tistory.com/11")
