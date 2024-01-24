@@ -17,7 +17,7 @@
 
 ## REPL 
 
-### 📌 REPL은 무엇인가?
+### 📖 REPL은 무엇인가?
    - Read-Eval-Print-Loop의 약자 
    - 애플리케이션에서 사용자가 입력한 명령어(소스코드)를 읽고(Read) 명령어를 평가하고(Eval) 결과를 출력(Print)한 다음 다시 입력한 상태를 기다리는 상태로 돌아가는 과정을 반복(Loop)한다.
 
@@ -33,7 +33,8 @@
 
 ### 🤖 REPL은 어떻게 사용하는가? (with ts-node)
 
-#### 📌 ts-node는 무엇인가? 
+#### 📖 ts-node는 무엇인가? 
+
   - TypeScript 실행기이면서 Node.js용 __REPL__
   
 #### 💡 ts-node은 왜 사용하는가?
@@ -69,7 +70,7 @@
 
 ## TypeScript
 
-### 📌 [TypeScript]("https://www.typescriptlang.org/ko/docs/handbook/typescript-in-5-minutes.html") 무엇인가?
+### 📖 [TypeScript]("https://www.typescriptlang.org/ko/docs/handbook/typescript-in-5-minutes.html") 무엇인가?
 
 - __JavaScript에 타입을 부여한 언어__ __⇒JavaScript의 확장된 언어__
 - Microsoft에 의해서 개발 및 관리되고 있는 오픈소스 프로그래밍 언어
