@@ -25,7 +25,7 @@
 
 ### 💡 REPL은 왜 사용하는가? 
 
-   - 주로 개발 진행시 소스코드를 빠르게 실행하여 결과를 즉각적으로 확인 하기 위한 용도 사용 __⇒ 테스트 용도__
+   - 주로 개발 진행시 소스코드를 빠르게 실행하여 결과를 즉각적으로 확인하기 위한 용도 사용 __⇒ 테스트 용도__
    - 프로그래밍언어를 입문한 경우에 유용하게 사용
    > [ex]  C#을 배우기 위해 컴퓨터에 VisualStudio를 설치하거나 Java를 배우기 위해 Eclipse 또는 Intelij를 설치하는 과정은 입문자에게는 어려울 수 있으며, 설치 후 환경설정, 프로젝트를 관리하는 것도 굉장히 번거롭다. 이때 REPL을 사용해 언어를 익힐 수 있다. 
 
@@ -80,10 +80,10 @@
 
 ### 💡 TypeScript 왜 사용하는가? (장점 vs 단점 )
 
-  -  정적 타입 언어 `에러 사전 방지`, `안전성`, `협업용이성`
+  -  정적 타입 언어 `에러 사전 방지`, `안정성`, `협업용이성`
   - 실행 속도 
 
-  > JavaScript은 런타임 이후에 에러를 확인 할 수 있다. 브라우저의 개발자 도구인   `console`을 통해 에러를 확인 할 수 있다. 그러나 브라우저는 TypeScript를 실행 할 수 없다. TypeScript는 컴파일 언어이기 때문에 JavaScript로 변환하여 사용한다. 변환하는 과정 === 즉, 컴파일 하는 단계에서 에러를 확인 할 수 있다.   에러가 노출되면 Javascript 변환 되지 않아 `에러를 사전 방지 할 수 있기에 안정적이다.`
+  > JavaScript은 RunTime 이후 브라우저의 개발자 도구인 `console`을 통해 에러를 확인 할 수 있다. 그러나  TypeScript는 브라우저에서 실행 할 수 없다. TypeScript는 컴파일 언어이기 때문에 JavaScript로 변환하여 사용한다. 변환하는 과정 === 즉, 컴파일 하는 단계에서 에러를 확인 할 수 있다. 에러가 노출되면 Javascript 변환 되지 않아 `에러를 사전 방지 할 수 있기에 안정적이다.`
 
   ```
     function sum(a:number, b:number) : number{
@@ -101,7 +101,7 @@
 - 타입을 기재 하지 않으면 TypeError로 인한 빨간 줄 `생산성 저하`
 - interface or class 등의 이름 때문에 오류 직면 `협업시 네이밍 컨벤션 필요 `
 - 가독성이 상대적으로 떨어진다. `코드 길어지는 점` 
-- JavaScript 에서 생기는 오류를 다 TypeScript 해결 할 순 없다. `언어 | 도구 `
+- JavaScript 에서 생기는 오류를 다 TypeScript 해결 할 순 없다. `언어 이자 도구 `
 
 <br/>
 
@@ -135,7 +135,7 @@ function(a:number,b:number) : number{
 
 #### 2. 타입 추론 
 
-- 명시적으로 선언하지 않아도  TypeScript는 타입을 추론한다.
+- 명시적으로 선언하지 않아도 TypeScript는 타입을 추론한다.
 
 
   ```
@@ -145,7 +145,6 @@ function(a:number,b:number) : number{
   // 정해진 값으로 지정 Union Type 유용하게 사용 가능 
   let category: 'food';
   category = 'food';
-
   ```
 
 ##### 2-1. Tuple 
@@ -162,7 +161,7 @@ function(a:number,b:number) : number{
 
 - Interface와 Type은 매우 유사하다. 둘 중 자유롭게 선택해서 사용하면 된다. 
 - 둘 다 `복잡한 오브젝트의 타입을 재사용`하기 위해 사용하는 것이다 
-- `핵심적인 차이` Type은 새 프로퍼티를 추가하도록 개방될 수 없는 반면, Interface의 경우 항상 확장될 수 있다는 점
+- `핵심적인 차이`Type은 새 프로퍼티를 추가하도록 개방될 수 없는 반면, Interface의 경우 항상 확장될 수 있다는 점
 - [타입 별칭과 인터페이스의 차이점]("https://www.typescriptlang.org/ko/docs/handbook/2/everyday-types.html#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD%EA%B3%BC-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90")
 
   ```
@@ -303,8 +302,8 @@ function(a:number,b:number) : number{
 ### ✍🏻 TypeScirpt에 대한 나의 생각 
 
 - 기본 개념을 이해했지만 실제 프로젝트를 진행해서 한다면 내가 과연 잘 사용 할 수 있을까 싶다. 
-- TypeScript를 왜 사용하는지는 알겠다. 그러나 왜 사용해야 하는지는 와닿지 않는다. 프로젝트를 하다보면 필요성에 대해 인지 할 수 있을거다.(?)
-  - 해당 개념들은 아직 숙지 하지 못함  `Generics` / `Utility Types` 추가 공부가 필요해보인다. 
+- TypeScript를 왜 사용하는지는 알겠다. 그러나 왜 사용해야 하는지는 와닿지 않는다. 사용하다보면 필요성을 느끼게 되겠지?
+- 해당 개념들은 아직 숙지 하지 못함  `Generics` / `Utility Types` 추가 공부가 필요해보인다. 
 
 
 <br/>
