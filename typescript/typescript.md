@@ -90,7 +90,7 @@
 
 ```tsx
   function sum(a:number, b:number) : number{
-    return a + b:
+    return a + b;
   }
 
   sum('10','20') // ERROE 
@@ -98,13 +98,13 @@
 
   > TypeScript 타입을 부여하는 언어이기에 매개변수와 반환값에 타입을 지정한다.명시적인 정적 타입 지정은 개발자의 의도를 명확하게 코드로 기술 할 수 있게 한다. 코드의 가독성을 높이기 때문에 `협업하는 과정에 유용하다.`
 
-  > JavaScript는 RunTime 시 타입을 결정해서 적용 된다. 이때 오류가 있는지 확인하는 작업이 추가 되어 실행 속도가 오래 걸린다. 하지만, TypeScripts는 코드 작성 할 때 `타입을 미리 결정하기 떄문에` 오류를 확인 하는 과정을 줄여 `실행 속도가 빠르다.`
+  > JavaScript는 RunTime 시 타입을 결정해서 적용 된다. 이때 오류가 있는지 확인하는 작업이 추가 되어 실행 속도가 오래 걸린다. 하지만, TypeScripts는 코드 작성 할 때 `타입을 미리 결정하기 때문에` 오류를 확인 하는 과정을 줄여 `실행 속도가 빠르다.`
 
 ***
 
-- 초반 환경 세팅이 불편하다. `컴파일 하기 위한 환경 세팅 어려움`
-- 타입을 기재 하지 않으면 TypeError로 인한 빨간 줄 `생산성 저하`
-- interface or class 등의 이름 때문에 오류 직면 `협업시 네이밍 컨벤션 필요`
+- 초반 환경 세팅이 불편하다. `컴파일 하기 위한 환경 세팅`
+- 타입을 기재 하지 않으면 TypeError로 인한 빨간 줄
+- interface or class 등의 이름 때문에 오류 직면
 - 가독성이 상대적으로 떨어진다. `코드 길어지는 점`
 - JavaScript 에서 생기는 오류를 다 TypeScript 해결 할 순 없다. `언어 이자 도구`
 
@@ -133,7 +133,6 @@ const human: {name: string; age: number;} = { name: '홍길동', age: 13 };
 function(a:number,b:number) : number{
   return a + b; // 함수의 return 값은 number 타입이다.
 }
-
 ```
 
 <br/>
@@ -176,7 +175,7 @@ interface Person {
 }
 
 interface Person{
-  year:number; //extends 방식으로 확장하는 걸 추천 
+  year:number; //extends 방식으로 확장하는 방법도 있다.
 }
 
 const Kim :Person = {name:'김토끼', age:14, gender:'female',year:2002}
@@ -185,6 +184,7 @@ const Hong :Person = {name:'홍길동', age:18, gender:'male', year:2003}
 
 ```tsx
 /* type 아래 같은 방식으로 프로퍼티 확장 불가능 */
+
 type Human = {
   name:string,
   age:number,
@@ -193,10 +193,10 @@ type Human = {
 type Human = {
   gender:'male'|'female';
 }
-
 // Error: Duplicate identifier 'Human'.
 
 /*type 아래 같은 방식으로 프로퍼티 확장*/
+
 type Human = {
   name:string,
   age:number,
