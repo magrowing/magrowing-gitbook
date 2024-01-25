@@ -1,6 +1,5 @@
 # TypeScript
 
-
 ## 목차
 
-1. TypeScript 
+1. TypeScript
