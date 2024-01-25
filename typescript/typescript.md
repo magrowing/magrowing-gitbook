@@ -29,7 +29,7 @@
 - 주로 개발 진행시 소스코드를 빠르게 실행하여 결과를 즉각적으로 확인하기 위한 용도 사용 __⇒ 테스트 용도__
 - 프로그래밍언어를 입문한 경우에 유용하게 사용
 
-   > [ex]  C#을 배우기 위해 컴퓨터에 VisualStudio를 설치하거나 Java를 배우기 위해 Eclipse 또는 Intelij를 설치하는 과정은 입문자에게는 어려울 수 있으며, 설치 후 환경설정, 프로젝트를 관리하는 것도 굉장히 번거롭다. 이때 REPL을 사용해 언어를 익힐 수 있다.
+> [ex]  C#을 배우기 위해 컴퓨터에 VisualStudio를 설치하거나 Java를 배우기 위해 Eclipse 또는 Intelij를 설치하는 과정은 입문자에게는 어려울 수 있으며, 설치 후 환경설정, 프로젝트를 관리하는 것도 굉장히 번거롭다. 이때 REPL을 사용해 언어를 익힐 수 있다.
 
 <br/>
 
@@ -156,8 +156,8 @@ category = 'food';
 - 배열을 더 상세하게 타입으로 관리하고 싶다면 사용
 
 ```tsx
-  let pair: [string, number];
-  pair = ['hp', 256];
+let pair: [string, number];
+pair = ['hp', 256];
 ```
 
 #### 3. Interface vs Type
@@ -217,7 +217,7 @@ const Lee:Gender = {name:'이용', age:22, gender:'male'}
 type Human = {
   name: string,
   age :number, 
-  gender : male | female,
+  gender : 'male' | 'female';
 }
 
 const Hong:Human = {name:'홍길동',age:15, gender:male}
@@ -296,7 +296,7 @@ greeting();
 // 'Hello, world' 파라미터에 아무값도 넣어주지 않으면 name undefined 이기 때문에 
 // || 'world'가 출력 되는 것이다. 
 
-greeting(); // 'Hello, kim'
+greeting('kim'); // 'Hello, kim'
 ```
 
 <br/>
