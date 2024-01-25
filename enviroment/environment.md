@@ -231,7 +231,7 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 ### 8. `Parcel` 설치
 
-```
+  ```
   // 1.parcel 설치 (웹서버 띄우기 용으로)
   npm i -D parcel
   ```
