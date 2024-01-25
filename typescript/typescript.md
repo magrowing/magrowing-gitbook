@@ -88,17 +88,19 @@
 
   > JavaScript은 RunTime 이후 브라우저의 개발자 도구인 `console`을 통해 에러를 확인 할 수 있다. 그러나  TypeScript는 브라우저에서 실행 할 수 없다. TypeScript는 컴파일 언어이기 때문에 JavaScript로 변환하여 사용한다. 변환하는 과정 === 즉, 컴파일 하는 단계에서 에러를 확인 할 수 있다. 에러가 노출되면 Javascript 변환 되지 않아 `에러를 사전 방지 할 수 있기에 안정적이다.`
 
-  ```
-    function sum(a:number, b:number) : number{
-      return a + b:
-    }
+```
+  function sum(a:number, b:number) : number{
+    return a + b:
+  }
 
-    sum('10','20') // ERROE 
-  ```
+  sum('10','20') // ERROE 
+```
 
   > TypeScript 타입을 부여하는 언어이기에 매개변수와 반환값에 타입을 지정한다.명시적인 정적 타입 지정은 개발자의 의도를 명확하게 코드로 기술 할 수 있게 한다. 코드의 가독성을 높이기 때문에 `협업하는 과정에 유용하다.`
 
   > JavaScript는 RunTime 시 타입을 결정해서 적용 된다. 이때 오류가 있는지 확인하는 작업이 추가 되어 실행 속도가 오래 걸린다. 하지만, TypeScripts는 코드 작성 할 때 `타입을 미리 결정하기 떄문에` 오류를 확인 하는 과정을 줄여 `실행 속도가 빠르다.`
+
+***
 
 - 초반 환경 세팅이 불편하다. `컴파일 하기 위한 환경 세팅 어려움`
 - 타입을 기재 하지 않으면 TypeError로 인한 빨간 줄 `생산성 저하`
@@ -141,23 +143,23 @@ function(a:number,b:number) : number{
 
 - 명시적으로 선언하지 않아도 TypeScript는 타입을 추론한다.
 
-  ```
-  // 명시 하지 않아도 humanLangue 변수는 string Type이라고 인지한다.
-  let humanLangue = '인간의 언어 한글이군요!' 
+```
+// 명시 하지 않아도 humanLangue 변수는 string Type이라고 인지한다.
+let humanLangue = '인간의 언어 한글이군요!' 
 
-  // 정해진 값으로 지정 Union Type 유용하게 사용 가능 
-  let category: 'food';
-  category = 'food';
-  ```
+// 정해진 값으로 지정 Union Type 유용하게 사용 가능 
+let category: 'food';
+category = 'food';
+```
 
 ##### 2-1. Tuple
 
 - 배열을 더 상세하게 타입으로 관리하고 싶다면 사용
 
-  ```
-    let pair: [string, number];
-    pair = ['hp', 256];
-    ```
+```
+  let pair: [string, number];
+  pair = ['hp', 256];
+```
 
 #### 3. Interface vs Type
 
@@ -166,75 +168,75 @@ function(a:number,b:number) : number{
 - `핵심적인 차이`Type은 새 프로퍼티를 추가하도록 개방될 수 없는 반면, Interface의 경우 항상 확장될 수 있다는 점
 - [타입 별칭과 인터페이스의 차이점]("https://www.typescriptlang.org/ko/docs/handbook/2/everyday-types.html#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD%EA%B3%BC-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90")
 
-  ```
-  /* interface 아래 같은 방식으로 프로퍼티 확장 가능 */
-  interface Person {
-   name:string; 
-   age:number;
-   gender:'male'|'female';
-  }
+```
+/* interface 아래 같은 방식으로 프로퍼티 확장 가능 */
+interface Person {
+  name:string; 
+  age:number;
+  gender:'male'|'female';
+}
 
-  interface Person{
-    year:number; //extends 방식으로 확장하는 걸 추천 
-  }
+interface Person{
+  year:number; //extends 방식으로 확장하는 걸 추천 
+}
 
-  const Kim :Person = {name:'김토끼', age:14, gender:'female',year:2002}
-  const Hong :Person = {name:'홍길동', age:18, gender:'male', year:2003}
-  ```
+const Kim :Person = {name:'김토끼', age:14, gender:'female',year:2002}
+const Hong :Person = {name:'홍길동', age:18, gender:'male', year:2003}
+```
 
-  ```
-  /* type 아래 같은 방식으로 프로퍼티 확장 불가능 */
-  type Human = {
-   name:string,
-   age:number,
-  }
+```
+/* type 아래 같은 방식으로 프로퍼티 확장 불가능 */
+type Human = {
+  name:string,
+  age:number,
+}
 
-  type Human = {
-    gender:'male'|'female';
-  }
+type Human = {
+  gender:'male'|'female';
+}
 
-  // Error: Duplicate identifier 'Human'.
+// Error: Duplicate identifier 'Human'.
 
-  /*type 아래 같은 방식으로 프로퍼티 확장*/
-  type Human = {
-   name:string,
-   age:number,
-  }
+/*type 아래 같은 방식으로 프로퍼티 확장*/
+type Human = {
+  name:string,
+  age:number,
+}
 
-  type Gender = Human & {
-    gender:'male'|'female';
-  }
+type Gender = Human & {
+  gender:'male'|'female';
+}
 
-  const Lee:Gender = {name:'이용', age:22, gender:'male'}
-  ```
+const Lee:Gender = {name:'이용', age:22, gender:'male'}
+```
 
 #### 3-1. Type
 
 - 객체를 생성하는 방식처럼 타입을 선언해준다.
 
-  ```
-  type Human = {
-    name: string,
-    age :number, 
-    gender : male | female,
-  }
+```
+type Human = {
+  name: string,
+  age :number, 
+  gender : male | female,
+}
 
-  const Hong:Human = {name:'홍길동',age:15, gender:male}
-  ```
+const Hong:Human = {name:'홍길동',age:15, gender:male}
+```
 
 #### 3-2. Interface
 
 - class 생성하는 방식처럼 타입을 선언해준다.
 
-  ```
-    interface Person {
-      name: string;
-      age: number;
-      gender: 'male' | 'female';
-    }
+```
+  interface Person {
+    name: string;
+    age: number;
+    gender: 'male' | 'female';
+  }
 
-    const Kim:Person = {name:'김토끼',age:19, gender:female}
-  ```
+  const Kim:Person = {name:'김토끼',age:19, gender:female}
+```
 
 <br/>
 
@@ -245,15 +247,15 @@ function(a:number,b:number) : number{
 - 매개변수를 제한 할 때 매우 유용
 - 레거시 환경 또는 코드에서 사용(?) ~~이해하지못함~~
 
-  ```
-  type Category = 'food' | 'bag' | 'toy';
+```
+type Category = 'food' | 'bag' | 'toy';
 
-  function fetchProducts( {category} : { category: Category }) {
-    console.log(`Fetch ${category}`);
-  }
+function fetchProducts( {category} : { category: Category }) {
+  console.log(`Fetch ${category}`);
+}
 
-  fetchProducts({category:'food'});
-  ```
+fetchProducts({category:'food'});
+```
 
 #### 5. Intersection Type
 
@@ -261,42 +263,42 @@ function(a:number,b:number) : number{
 - `교집합`
 - 타입을 확장하기 위해 사용  
 
-  ```
-  type Color = { color:string}
-  type Background = {backgroundColor:string}
+```
+type Color = { color:string}
+type Background = {backgroundColor:string}
 
-  const css : Color & Background = {color:'red', backgroundColor:'white'}; 
-  ```
+const css : Color & Background = {color:'red', backgroundColor:'white'}; 
+```
 
-  ```
-  interface Box {
-   width: number; 
-   height : number; 
-  }
+```
+interface Box {
+  width: number; 
+  height : number; 
+}
 
-  interface Shape {
-    shape : string; 
-  }
+interface Shape {
+  shape : string; 
+}
 
-  const boxModel : Box & Shape = {width:2000, height:2000, shape:'square'}
-  ```
+const boxModel : Box & Shape = {width:2000, height:2000, shape:'square'}
+```
 
 #### 6. Optional Parameter
 
 - `?` 사용해서 파라미터를 선택적으로 사용 가능하게 한다.
 - 매개변수가 오브젝트일 때 많이 활용
 
-  ```
-  function greeting(name?: string): string {
-    return `Hello, ${name || 'world'}`;
-  }
+```
+function greeting(name?: string): string {
+  return `Hello, ${name || 'world'}`;
+}
 
-  greeting();
-  // 'Hello, world' 파라미터에 아무값도 넣어주지 않으면 name undefined 이기 때문에 
-  // || 'world'가 출력 되는 것이다. 
+greeting();
+// 'Hello, world' 파라미터에 아무값도 넣어주지 않으면 name undefined 이기 때문에 
+// || 'world'가 출력 되는 것이다. 
 
-  greeting(); // 'Hello, kim'
-  ```
+greeting(); // 'Hello, kim'
+```
 
 <br/>
 

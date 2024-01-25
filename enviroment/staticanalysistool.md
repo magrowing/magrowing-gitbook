@@ -27,7 +27,7 @@
 - 사용되지 않는 코드
 - 잠재적인 보안 취약점
 
-    __⇒ 코드 스멜(code smell)이라고 불리는 문제들 발견하기 위해 사용한다__
+__⇒ 코드 스멜(code smell)이라고 불리는 문제들 발견하기 위해 사용한다__
 
 <br/>
 
@@ -36,16 +36,16 @@
 - 코딩 컨벤션에 위배되는 코드나 안티 패턴을 자동 검출하는 도구
 - `.vscode/settings.json` 파일을 추가해 JS/TS 파일을 저장할 때마다 ESLint를 실행하고 문제점을 고치게 설정 가능
 
-  ```
-  {
-      "editor.rulers": [
-          80
-      ],
-      "editor.codeActionsOnSave": {
-          "source.fixAll.eslint": true
-      },
-      "trailing-spaces.trimOnSave": true
-  }
+```
+{
+    "editor.rulers": [
+        80
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "trailing-spaces.trimOnSave": true
+}
   ```
 
 ### 🛠️ Prettier
