@@ -47,11 +47,11 @@
 
 #### 🤖 ts-node은 어떻게 사용하는가?  
 
-   ```
-   // 설치 없이 실행 
+   ```shell
+   # 설치 없이 실행 
    npx ts-node
 
-   // 종료 
+   # 종료 
    Ctrl + C or .exit
    ```
 
@@ -86,9 +86,9 @@
 - 정적 타입 언어 `에러 사전 방지`, `안정성`, `협업용이성`
 - 실행 속도
 
-  > JavaScript은 RunTime 이후 브라우저의 개발자 도구인 `console`을 통해 에러를 확인 할 수 있다. 그러나  TypeScript는 브라우저에서 실행 할 수 없다. TypeScript는 컴파일 언어이기 때문에 JavaScript로 변환하여 사용한다. 변환하는 과정 === 즉, 컴파일 하는 단계에서 에러를 확인 할 수 있다. 에러가 노출되면 Javascript 변환 되지 않아 `에러를 사전 방지 할 수 있기에 안정적이다.`
+> JavaScript은 RunTime 이후 브라우저의 개발자 도구인 `console`을 통해 에러를 확인 할 수 있다. 그러나  TypeScript는 브라우저에서 실행 할 수 없다. TypeScript는 컴파일 언어이기 때문에 JavaScript로 변환하여 사용한다. 변환하는 과정 === 즉, 컴파일 하는 단계에서 에러를 확인 할 수 있다. 에러가 노출되면 Javascript 변환 되지 않아 `에러를 사전 방지 할 수 있기에 안정적이다.`
 
-```
+```tsx
   function sum(a:number, b:number) : number{
     return a + b:
   }
@@ -116,8 +116,7 @@
 
 - ` : ` 사용해서 type을 정의한다.
 
-```
-
+```tsx
 /* 원시타입 */ 
 let name: string = '홍길동';
 let age: number = 13;
@@ -143,7 +142,7 @@ function(a:number,b:number) : number{
 
 - 명시적으로 선언하지 않아도 TypeScript는 타입을 추론한다.
 
-```
+```tsx
 // 명시 하지 않아도 humanLangue 변수는 string Type이라고 인지한다.
 let humanLangue = '인간의 언어 한글이군요!' 
 
@@ -156,7 +155,7 @@ category = 'food';
 
 - 배열을 더 상세하게 타입으로 관리하고 싶다면 사용
 
-```
+```tsx
   let pair: [string, number];
   pair = ['hp', 256];
 ```
@@ -168,7 +167,7 @@ category = 'food';
 - `핵심적인 차이`Type은 새 프로퍼티를 추가하도록 개방될 수 없는 반면, Interface의 경우 항상 확장될 수 있다는 점
 - [타입 별칭과 인터페이스의 차이점]("https://www.typescriptlang.org/ko/docs/handbook/2/everyday-types.html#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD%EA%B3%BC-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90")
 
-```
+```tsx
 /* interface 아래 같은 방식으로 프로퍼티 확장 가능 */
 interface Person {
   name:string; 
@@ -184,7 +183,7 @@ const Kim :Person = {name:'김토끼', age:14, gender:'female',year:2002}
 const Hong :Person = {name:'홍길동', age:18, gender:'male', year:2003}
 ```
 
-```
+```tsx
 /* type 아래 같은 방식으로 프로퍼티 확장 불가능 */
 type Human = {
   name:string,
@@ -214,7 +213,7 @@ const Lee:Gender = {name:'이용', age:22, gender:'male'}
 
 - 객체를 생성하는 방식처럼 타입을 선언해준다.
 
-```
+```tsx
 type Human = {
   name: string,
   age :number, 
@@ -228,7 +227,7 @@ const Hong:Human = {name:'홍길동',age:15, gender:male}
 
 - class 생성하는 방식처럼 타입을 선언해준다.
 
-```
+```tsx
   interface Person {
     name: string;
     age: number;
@@ -247,7 +246,7 @@ const Hong:Human = {name:'홍길동',age:15, gender:male}
 - 매개변수를 제한 할 때 매우 유용
 - 레거시 환경 또는 코드에서 사용(?) ~~이해하지못함~~
 
-```
+```tsx
 type Category = 'food' | 'bag' | 'toy';
 
 function fetchProducts( {category} : { category: Category }) {
@@ -263,14 +262,14 @@ fetchProducts({category:'food'});
 - `교집합`
 - 타입을 확장하기 위해 사용  
 
-```
+```tsx
 type Color = { color:string}
 type Background = {backgroundColor:string}
 
 const css : Color & Background = {color:'red', backgroundColor:'white'}; 
 ```
 
-```
+```tsx
 interface Box {
   width: number; 
   height : number; 
@@ -288,7 +287,7 @@ const boxModel : Box & Shape = {width:2000, height:2000, shape:'square'}
 - `?` 사용해서 파라미터를 선택적으로 사용 가능하게 한다.
 - 매개변수가 오브젝트일 때 많이 활용
 
-```
+```tsx
 function greeting(name?: string): string {
   return `Hello, ${name || 'world'}`;
 }

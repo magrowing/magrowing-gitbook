@@ -50,14 +50,14 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 * CLI로 작업 폴더를 생성하는 방법
 
-    ```
-    // 작업 폴더 생성 
+    ```shell
+    # 작업 폴더 생성 
     mkdir my-app 
 
-    // 생성한 폴더로 이동 
+    # 생성한 폴더로 이동 
     cd my-app
 
-    //IDE 실행
+    # IDE 실행
     code . 
     ```
 
@@ -74,7 +74,7 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
     * 현재 프로젝트에 관한 정보와 패키지 매니저(npm, yarn)을 통해 설치한 모듈들의 의존성을 관리하는 파일
     * __⇒ `node_modules` 폴더의 정보룰 담고 있는 파일__
 
-    ```
+    ```json
       // JSON 포맷 형식으로 이루어짐 .json 
       {
         "name": "my-app",     // 프로젝트 이름 (소문자-이름 형태)
@@ -92,13 +92,13 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
     }
     ```
 
-    ```
-    // package.json 파일 생성
-    // 프로젝트명, 설명 등 작성할 내용이 있을 경우
+    ```shell
+    # package.json 파일 생성
+    # 프로젝트명, 설명 등 작성할 내용이 있을 경우
     npm init 
 
-    // package.json 파일 생성시 무조건 yes로 대답한다는 옵션
-    // 입력할 내용없이 package.json 생성 
+    # package.json 파일 생성시 무조건 yes로 대답한다는 옵션
+    # 입력할 내용없이 package.json 생성 
     npm init -y 
     ```
 
@@ -111,12 +111,12 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
   * npm install (npm i) 명령어로 설치한 모듈과 라이브러리가 `node_modules` 폴더 안에 위치 하게 된다.
 
-    ```
-    // -D 없이 패키지를 설치한 경우 
+    ```shell
+    # -D 없이 패키지를 설치한 경우 
     npm install react
     npm i react
 
-    // -D 붙여서 패키지를 설치한 경우 
+    # -D 붙여서 패키지를 설치한 경우 
     npm i --save-dev typescript 
     npm i -D typescript 
     ```
@@ -143,15 +143,17 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 ### 4. `Typescript` 설치 및 설정
 
-  ```
-  // 1.타입스크립트 설치
+  ```shell
+  # 1.타입스크립트 설치
   npm i -D typescript
 
-  // 2.타입스크립트 컴파일러(tsc)를 실행해 초기화 ⇒ tsconfig.json 파일 생성 
+  # 2.타입스크립트 컴파일러(tsc)를 실행해 초기화 ⇒ tsconfig.json 파일 생성 
   npx tsc --init
+  ```
 
+  ```json
   // 3.tsconfig.json 
-  // react를 사용 할 예정이므로 주석 제거 및 jsx 이름 변경 
+  //react를 사용 할 예정이므로 주석 제거 및 jsx 이름 변경 
   "jsx": "react-jsx", 
   ```
 
@@ -159,32 +161,34 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 ### 5. `ESLint` 설치 및 설정
 
-  ```
-  // 1.eslint 설치
+  ```shell
+  # 1. eslint 설치
   npm i -D eslint
 
-  // 2.eslint 실행해 초기화 하면 
+  # 2. eslint 실행해 초기화 하면 
   npx eslint --init
 
-  // 3.아래 이미지처럼 질문들이 노출되어 선택하면 된다.
+  # 3. 아래 이미지처럼 질문들이 노출되어 선택하면 된다.
   // eslint 버전마다 설정마다 질문은 달라지는 듯함
+  ```
 
+  ```json
   // 4. .eslintrc.js 파일 수정 
-  env:{ ... just:true} 추가   
+  env:{ ... just:true} //추가   
 
   // 5. .eslintignore 파일 생성 
-  .gitignore 파일 내용과 동일하게 적용하면 된다. 
+  //.gitignore 파일 내용과 동일하게 적용하면 된다. 
   ```
 
   <br/>
 
 ### 6. `React` 설치 및 설정
 
-  ```
-  // 1.react 설치
+  ``` shell
+  # 1.react 설치
   npm i react react-dom 
 
-  // 2.typescript 사용할거라서 해당 패키지 설치  
+  # 2.typescript 사용할거라서 해당 패키지 설치  
   npm i -D @types/react @types/react-dom
   ```
 
@@ -192,12 +196,14 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 ### 7. 테스트 도구 설치 (`Jest`)
 
- ```
-  // 1.Jest 설치
+ ```shell
+  # 1.Jest 설치
   npm i -D jest @types/jest @swc/core @swc/jest \
     jest-environment-jsdom \
     @testing-library/react @testing-library/jest-dom@5.16.4
-  
+  ```
+
+ ```javascript
   // 2.jest.config.js 파일을 작성해서 테스트에 SWC를 사용하자.   
   module.exports = {
     testEnvironment: 'jsdom',
@@ -231,8 +237,8 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 ### 8. `Parcel` 설치
 
-  ```
-  // 1.parcel 설치 (웹서버 띄우기 용으로)
+  ```shell
+  # 1.parcel 설치 (웹서버 띄우기 용으로)
   npm i -D parcel
   ```
 
@@ -242,7 +248,7 @@ Node.js를 설치하고, 프로젝트를 진행할 수 있는 Node.js 패키지�
 
 * 설치된 패키지의 실행 명령어 설정
 
-    ```
+    ```json
     "scripts": {
       "start": "parcel --port 8080",
       "build": "parcel build",

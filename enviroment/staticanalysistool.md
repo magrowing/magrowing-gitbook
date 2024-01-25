@@ -36,7 +36,7 @@
 - 코딩 컨벤션에 위배되는 코드나 안티 패턴을 자동 검출하는 도구
 - `.vscode/settings.json` 파일을 추가해 JS/TS 파일을 저장할 때마다 ESLint를 실행하고 문제점을 고치게 설정 가능
 
-```
+```json
 {
     "editor.rulers": [
         80
