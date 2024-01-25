@@ -1,8 +1,9 @@
 # Table of contents
 
+* [📒 Magrowing Gitbook Rule](README.md)
+
 ## CATEGORY
 
-* [📒 Magrowing Gitbook Rule](README.md)
 * [개발 환경](./enviroment/README.md)
   * [1. 개발 환경](./enviroment/environment.md)
   * [2. Testing Tools](./enviroment/testingtools.md)
