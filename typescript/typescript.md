@@ -162,7 +162,7 @@ pair = ['hp', 256];
 #### 3. Interface vs Type
 
 - Interface와 Type은 매우 유사하다. 둘 중 자유롭게 선택해서 사용하면 된다.
-- 둘 다 `복잡한 오브젝트의 타입을 재사용`하기 위해 사용하는 것이다
+- 둘 다 `복잡한 오브젝트의 타입을 재사용`하기 위해 사용하는 것이다.
 - `핵심적인 차이`Type은 새 프로퍼티를 추가하도록 개방될 수 없는 반면, Interface의 경우 항상 확장될 수 있다는 점
 - [타입 별칭과 인터페이스의 차이점]("https://www.typescriptlang.org/ko/docs/handbook/2/everyday-types.html#%ED%83%80%EC%9E%85-%EB%B3%84%EC%B9%AD%EA%B3%BC-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90")
 
@@ -294,7 +294,7 @@ function greeting(name?: string): string {
 
 greeting();
 // 'Hello, world' 파라미터에 아무값도 넣어주지 않으면 name undefined 이기 때문에 
-// || 'world'가 출력 되는 것이다. 
+// false || 'world' 출력 
 
 greeting('kim'); // 'Hello, kim'
 ```

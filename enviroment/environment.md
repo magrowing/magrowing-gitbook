@@ -41,7 +41,7 @@ __⇒ JavaScript를 브라우저 외부에서 실행해주는 환경이다.__
 
 <br/>
 
-## TypeScript + React + Jest + ESLint + Parcel 개발 환경 세팅
+## TypeScript + ESLint + React + Jest + Parcel 개발 환경 세팅
 
 ### 1. 작업 폴더 준비
 
@@ -83,26 +83,26 @@ code .
     ```
 
     ```json
-      // JSON 포맷 형식으로 이루어짐 .json 
-      {
-        "name": "my-app",     // 프로젝트 이름 (소문자-이름 형태)
-        "version": "1.0.0",   // 시맨틱 버전(Semantic Versioning)
-        "description": "React Application Demo",
-        "main": "index.js",   // npm start 실행시 해당 파일 실행 
-        "scripts": {          // 실행할 수 있는 명령어, 직접 커스텀 가능
-          "test": "echo \"Error: no test specified\" && exit 1" 
-        },
-        "author": "",
-        "license": "ISC",
-        "dependencies":{
-          "react": "^17.0.2", // 모듈의 버전과 이름이 추가 되는 영역
-        },
+    // JSON 포맷 형식으로 이루어짐 .json 
+    {
+      "name": "my-app",     // 프로젝트 이름 (소문자-이름 형태)
+      "version": "1.0.0",   // 시맨틱 버전(Semantic Versioning)
+      "description": "React Application Demo",
+      "main": "index.js",   // npm start 실행시 해당 파일 실행 
+      "scripts": {          // 실행할 수 있는 명령어, 직접 커스텀 가능
+        "test": "echo \"Error: no test specified\" && exit 1" 
+      },
+      "author": "",
+      "license": "ISC",
+      "dependencies":{
+        "react": "^17.0.2", // 모듈의 버전과 이름이 추가 되는 영역
+      },
     }
     ```
 
   * __[package-lock.json](https://jihyundev.tistory.com/21, 'reference link')__  
     * 패키지의 정확한 버전을 추적하기 위한 용도의 파일
-    * package.json 패키지모듈의 정확한 버전 정보들이 담겨있는 파일
+    * package.json 패키지 모듈의 정확한 버전 정보들이 담겨있는 파일
     * 프로젝트의 규모가 커질수록 package.json 파일로 버전의 정보를 관리하기에는 한계가 있어 사용된다.
     * 해당 폴더를 생성하고 관리 해야 더 많은 개발자와 협업이 가능하다.(Git 관리)
 
@@ -164,17 +164,17 @@ code .
 # 1. eslint 설치
 npm i -D eslint
 
-# 2. eslint 실행해 초기화 하면 
+# 2. eslint 실행해 초기화
+# eslint 조금씩 질문은 달라진다.
 npx eslint --init
 
-# 3. 아래 이미지처럼 질문들이 노출되어 선택하면 된다.
-// eslint 버전마다 설정마다 질문은 달라지는 듯함
+Ok to proceed? (y)
 ```
 
 ```json
 // 4. .eslintrc.js 파일 수정 
 env:{ // ...(전략)...
-      just:true // 추가 
+      jest:true // 추가 
 }    
 
 // 5. .eslintignore 파일 생성 
@@ -236,7 +236,7 @@ module.exports = {
 
   <br/>
 
-### 8. `Parcel` 설치
+### 8. 번들러 도구 설치 (`Parcel`)
 
 ```shell
 # 1.parcel 설치 (웹서버 띄우기 용으로)
