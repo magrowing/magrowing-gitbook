@@ -12,5 +12,6 @@
 * [React](./react/README.md)
   * [1. React](./react/react.md)
   * [2. JSX](./react/jsx.md)
+  * [3. VirtualDOM](./react/virturaldom.md)
 * [TypeScript](./typescript/README.md)
   * [1. TypeScript](./typescript/typescript.md)
