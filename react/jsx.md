@@ -7,9 +7,10 @@
   - React에서 JSX를 사용하는 목적
 - React.createElement
   - React Element
-- React StrictMode
 
 <br/>
+
+## JSX
 
 ### 📖 JSX란 무엇인가?
 
@@ -110,31 +111,6 @@ _jsx(Button, {
   children:"Send"
 });
 ```
-
-<br/>
-
-### 📖 React StrictMode란 무엇인가?
-
-- [React docs Strict Mode](https://ko.legacy.reactjs.org/docs/strict-mode.html)
-
-> 자바스크립트에서는 엄격 모드가 있다. 코드 파일 상단에 "use strict"를 써 놓으면 자바스크립트를 실행할 때 조금 더 엄격하게 코드를 검사한다. 리액트에도 이와 유사한 목적으로 사용하는  `<StrictMode />`라는 컴포넌트가 있다.
-
-- 애플리케이션 내의 잠재적인 문제를 알아내기 위한 도구
-- Fragment와 같이 UI를 렌더링하지 않으며, 자손들에 대한 부가적인 검사와 경고를 활성화한다.
-- Strict 모드는 개발 모드에서만 활성화되기 때문에, 프로덕션 빌드에는 영향을 끼치지 않는다.
-- StrictMode는 아래와 같은 부분에서 도움이 된다.
-  - 안전하지 않은 생명주기를 사용하는 컴포넌트 발견
-  - 레거시 문자열 ref 사용에 대한 경고
-  - 권장되지 않는 findDOMNode 사용에 대한 경고
-  - 예상치 못한 부작용 검사
-  - 레거시 context API 검사
-  - Ensuring reusable state
-
-> Strict 모드를 사용하면 리액트가 자식 컴포넌트를 검사하고 잘못 사용된 부분을 우리에게 알려준다. <br/> 이런 경고 메세지들은 어플리케이션에 잠재된 문제를 해결 할 수 있도록 도와준다.
-
-### ✍🏻 React StrictMode에 대한 나의 생각
-
-- 개발단계에서 사용하면 좋지 않을까싶다. 배포 했을 경우 해당 모드가 영향을 끼지지는 않는다고 했으니, 개발하는 과정에서 문제를 미리 발견하면 좋은거니깐 앞으로 개발단계에서 사용해보자!
 
 <br/>
 
