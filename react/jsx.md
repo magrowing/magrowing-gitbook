@@ -61,12 +61,12 @@ __Example #1__
 <p>Hello, world!</p>
 ```
 
-```JavaScript
+```Javascript
 // JSX을 변환한 JavaScript
 React.createElement("p", null, "Hello, world!");
 ```
 
-```JavaScript
+```Javascript
 //the New JSX Transform
 import { jsx as _jsx } from "react/jsx-runtime";
 
@@ -81,11 +81,11 @@ __Example #2__
 <Greeting name="world" />
 ```
 
-```JavaScript
+```Javascript
 React.createElement(Greeting, {name:"world"});
 ```
 
-```JavaScript
+```Javascript
 import { jsx as _jsx } from "react/jsx-runtime";
 
 _jsx(Greeting, {
@@ -99,11 +99,11 @@ __Example #3__
 <Button type="submit">Send</Button>
 ```
 
-```JavaScript
+```Javascript
 React.createElement(Button, {type:"submit"}), "Send";
 ```
 
-```JavaScript
+```Javascript
 import { jsx as _jsx } from "react/jsx-runtime";
 
 _jsx(Button, {
@@ -118,4 +118,3 @@ _jsx(Button, {
 
 - [React docs JSX 소개](https://ko.legacy.reactjs.org/docs/introducing-jsx.html)
 - [Syntactic Sugar](https://www.zerocho.com/category/JavaScript/post/5816c858ca15d50015d924ae)
-- [리액트 StrictMode](https://jeonghwan-kim.github.io/2022/05/20/react-strict-mode)

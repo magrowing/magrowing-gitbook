@@ -4,11 +4,10 @@
 ## 학습 키워드
 
 - Virtual Dom 란?
-  - 웹 브라우저의 렌더링 과정
-    - `파싱`, `렌더링`,`DOM`,`CSSOM`, `Render Tree`, `HTTP/2`, `리렌더링`, `자바스크립트 파싱`,
-  - 웹 브라우저가 화면을 업데이트 하는 과정
   - DOM이란?
-  - DOM과 Virtual DOM의 차이
+  - 웹 브라우저의 렌더링 과정
+    - `파싱`, `렌더링`,`DOM`,`CSSOM`, `Render Tree`, `리렌더링`, `자바스크립트 파싱`,
+  - 웹 브라우저가 화면을 업데이트 하는 과정
   - Reconciliation(재조정) 과정은 무엇인가?
 - React Developer Tools
   - React StrictMode
@@ -19,7 +18,15 @@
 
 ### 🌎 Virtual DOM의 탄생 배경
 
-#### 1. 웹 브라우저의 렌더링 과정
+#### 1.DOM이란?
+
+- Document Object Model
+- 브라우저는 문자열 형식의 HTML을 곧바로 이해할 수 없기 때문에, 브라우저가 이해하고 활용할 수 있는 구조로의 변환이 필요하다.
+DOM(Document Object Model)은 브라우저 렌더링 엔진의 HTML parser에 의해 생성된 __'트리' 구조의 Node 객체 모델__ 이다.
+
+![DOM](./image/dom.png)
+
+#### 2. 웹 브라우저의 렌더링 과정
 
 - __렌더링 엔진__ 이 URI를 통해 요청을 받아 해당하는 데이터를 렌더링 하는 역활을 수행.
 
@@ -31,7 +38,7 @@
 
 > 3번 과정에 의해서 4번에서 다시 레이아웃을 재계산 하는 상황을 Reflow라고 부른다.
 
-#### 2. 웹 브라우저가 화면을 업데이트 하는 과정
+#### 3. 웹 브라우저가 화면을 업데이트 하는 과정
 
 ![브라우저 업데이트 하는 과정](./image/javascrpt_update.png)
 
@@ -50,18 +57,25 @@ HTML 요소들이 위치와 크기를 다시 계산해야 하기 때문에, 리�
 재결합된 Render Tree를 기반으로 다시 화면에 페인트 하는 것을 말한다.
 
 ![VirtualDOM](./image/virtualdom.png)
-> DOM을 수정하는 일은 수반되는 비용이 크기 때문에, 성능저하를 최소화하기 위해서는 결국 DOM을 최소한으로 수정해야한다. 이러한 문제점을 해결하기 위해 Virtual DOM이 등장하게 되었다.
+> 자바스크립트로 DOM조작시 변화된 상태를 반영하기 위해 브라우저는 렌더링 하는 과정을 수행한다. 변화된 상태를 반영하기 위해 렌더링하는 과정에서 Layout을 계산하는 과정은 수행하게 되는데 이과정은 재계산하는 과정으로 연산이 오래 걸리는 작업에 속한다.
+ 초기의 웹페이지에서는 DOM 조작이 적게 일어난다. 그러나 오늘날의 동적인 웹페이지는 사용자와의 상호관계가 활발하게 일어나기 때문에 DOM조작이 빈번하게 발생하게 된다. 그렇기에 웹페이지가  리렌더링하는 작업이 활발하게 수행하게 된다. 이과정에서 Reflow 발생하게 되면 연산작업을 계속 수행해야 하기 때문에 성능저하의 원인이 된다. 이러한 문제점을 개선하기 위해 React의 Virtual DOM이 탄생하게 되었다.
 
 <br/>
 
 ### 📖 Virtual DOM란?
 
 - 실제 DOM의 구조와 비슷한, React 객체의 트리이다.
-- 직접 DOM을 수정하지 않고 Virtual DOM을 제어하게 된다.
-  - 웹은 점점 더 복잡해져 가는데 수백, 수천개의 DOM을 직접 관리, 조작하는 과정은 복잡하고, 실수가 발생할 가능성도 높아지게 된다.
-- Virtual DOM은 이러한 복잡한 과정들을 `자동화`,`추상화`해 준다는 장점이 있다.
-- DOM의 update를 Batch 처리로 실제 DOM의 리렌더링 연산을 최소화 할수 있다는 점이다.
-  - 즉, 연쇄적으로 Reflow,Repaint가 발생하는 것을 줄이고, 필요한 연산을 한번에 묶어서 처리하게 전달하게 된다.
+- 데이터가 변경이 되면 전체 UI는 Virtual DOM에 렌더링 되어져 이전 virtual DOM에 있던 내용과 업데이트 후에 내용을 비교하여 바뀐 부분만 실제 DOM에 적용시킨다.
+
+> Virtual DOM을 사용하면 실제 DOM에 접근하며 조작하는 대신, 이를 추상화한 자바스크립트 객체를 구성하여 사용한다. DOM의 상태를 메모리에 저장하고, 변경 전과 변경 후의 상태를 비교 한뒤 최소한의 내용만 반영하여 성능 향상을 이끌어낸다. DOM의 상태를 메모리 위에 계속 올려두고, DOM에 변경 있을 경우 해당 변경 사항만 반영하는 것이다.
+
+#### Virtual DOM의 동작 원리
+
+- Virtual DOM에 변경 내역을 한 번에 모으고(버퍼링) 실제 DOM과 변경된 Virtual DOM의 차이를 판단한 후, 구성요소의 변경이 부분만 찾아 변경하고 그에 따른 렌더링을 한 번만 하는 것으로 렌더링 문제를 개선했다.
+
+#### Reconciliation(재조정)과정은 무엇인가?
+
+ > UI의 가상적인 표현을 메모리에 저장하고 React DOM과 같은 라이브러리에 의해 실제 DOM과 동기화하는 프로그래인 개념
 
 <br/>
 
@@ -70,7 +84,10 @@ HTML 요소들이 위치와 크기를 다시 계산해야 하기 때문에, 리�
 - [웹 브라우저의 렌더링 과정](https://oliviakim.tistory.com/80)
 - ⭐️ [브라우저의 렌더링 과정](https://velog.io/@whow1101/38.-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%A0%8C%EB%8D%94%EB%A7%81-%EA%B3%BC%EC%A0%95)
 - [Reflow란](https://velog.io/@heelieben/JavaScript-Reflow-%EB%9E%80-feat.-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EB%A0%8C%EB%8D%94%EB%A7%81)
+- [DOM과 Virtual Dom이란?](https://www.howdy-mj.me/dom/what-is-dom)
 - [React Virtual DOM](https://velog.io/@1nthek/React-Virtual-DOM%EA%B3%BC-%EB%A0%8C%EB%8D%94%EB%A7%81)
+- [DOM이란? Virtual DOM을 사용하는 이유?](https://velog.io/@ctdlog/React-DOM%EC%9D%B4%EB%9E%80-Virtual-DOM%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)
+- [Virtual DOM 동작 원리와 이해](https://jeong-pro.tistory.com/210)
 
 <br/>
 
