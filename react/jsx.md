@@ -15,7 +15,7 @@
 ### 📖 JSX란 무엇인가?
 
 - JSX is an XML-like syntax extension to ECMAScript
-- __JavaScript에 XML을 추가한 확장한 문법__
+- __JavaScript에 XML을 추가하여 확장된 문법__
 - JavaScript XML의 줄임말
 - 공식적인 자바스크립트 문법은 아니다.
 - JSX 하나의 파일에 자바스크립트와 HTML을 동시에 작성 할 수 있다.

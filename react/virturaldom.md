@@ -9,6 +9,7 @@
     - `파싱`, `렌더링`,`DOM`,`CSSOM`, `Render Tree`, `리렌더링`, `자바스크립트 파싱`,
   - 웹 브라우저가 화면을 업데이트 하는 과정
   - Reconciliation(재조정) 과정은 무엇인가?
+- React 성능 최적화 방법
 - React Developer Tools
   - React StrictMode
 
@@ -71,7 +72,15 @@ HTML 요소들이 위치와 크기를 다시 계산해야 하기 때문에, 리�
 
 > UI의 가상적인 표현을 메모리에 저장하고 React DOM과 같은 라이브러리에 의해 실제 DOM과 동기화하는 프로그래임 개념
 
-> Virtual DOM을 사용하면 실제 DOM에 접근하며 조작하는 대신, 이를 추상화한 자바스크립트 객체를 구성하여 사용한다. DOM의 상태를 메모리에 저장하고, 변경 전과 변경 후의 상태를 비교 한뒤 최소한의 내용만 반영하여 성능 향상을 이끌어낸다. DOM의 상태를 메모리 위에 계속 올려두고, DOM에 변경 있을 경우 해당 변경 사항만 반영하는 것이다.
+Virtual DOM을 사용하면 실제 DOM에 접근하며 조작하는 대신, 이를 __추상화한 자바스크립트 객체를 구성하여__ 사용한다. DOM의 상태를 메모리에 저장하고, 변경 전과 변경 후의 상태를 비교 한뒤 __최소한의 내용만 반영하여 성능 향상을 이끌어낸다.__ DOM의 상태를 메모리 위에 계속 올려두고, DOM에 변경 있을 경우 해당 변경 사항만 반영하는 것이다.
+
+#### ✍🏻 VirtualDOM에 대한 정리
+
+- [리액트에 대해서 그 누구도 제대로 설명하기 어려운것 - 왜 Virtual DOM인가](https://velopert.com/3236)
+- React의 VirtualDOM은 실제 DOM 렌더링 과정을 최소한으로 연산하게 하여 브라우저의 성능을 향상 해준다.
+  - Virtual DOM은 비교(DIFF)를 통해 변경된 부분만 일부분을 실제 DOM에 반영하여 렌더링하게 한다.
+- VirtualDOM은 추상화하기 때문에 직관적으로 확인 할 순 없지만, DOM이 변화된 부분을 감지하고 실제 DOM에 동기화 해줌으로서 유지보수가 가능한 어플리케이션을 만드는것을 도와주고 충분히 빠르게 해준다.
+- 리액트의 생산성(자동화및추상화)을 극대화 하기 위해선 최적화 하는 작업이 필요하디.
 
 <br/>
 
@@ -84,10 +93,62 @@ HTML 요소들이 위치와 크기를 다시 계산해야 하기 때문에, 리�
 - [React Virtual DOM](https://velog.io/@1nthek/React-Virtual-DOM%EA%B3%BC-%EB%A0%8C%EB%8D%94%EB%A7%81)
 - [DOM이란? Virtual DOM을 사용하는 이유?](https://velog.io/@ctdlog/React-DOM%EC%9D%B4%EB%9E%80-Virtual-DOM%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)
 - [Virtual DOM 동작 원리와 이해](https://jeong-pro.tistory.com/210)
+- [프로젝트로 배우는 React.js & Next.js 마스터리 클래스](https://www.udemy.com/course/react-next-master/)
+
+<br/>
+
+### 📈 React 성능 최적화
+
+React의 VirtualDOM이 렌더링을 성능을 개선하기 위한 도구이지만, 도구를 잘못 사용하게 된다면 오히려 역효과가 날 수 있다. 또한 애플리케이션의 크기가 커질 수록 성능문제는 발생되게 된다. 그렇기에 최적화를 하기 위한 전략들이 존재한다.
+
+1. 불필요한 리렌더링 피하기
+
+- `shouldComponentUpdate`라이프 사이클 메소드,`React.memo` 사용해서 불필요한 리렌더링 방지
+
+2. list 렌더링 시 key 속성 사용
+
+- key를 사용하면 변경된 항목, 새로운 항목 또는 삭제된 항목을 빠르게 식별 할 수 있다.
+
+3. 컴포넌트의 지연 로딩
+
+- 필요하지 않은 컴포넌트가 있는 경우 React.lazy()를 사용하여 지연 로딩 초기로드해야 하는 코드양을 줄어들어 더 빠른 로드 시간을 얻을 수 있다.
+
+4. 배포 시 프로덕션 빌등 사용
+
+- 개발용 React 빌드에는 개발 중에 도움이 되는 추가 경고가 포함되어 있지만, 실제로 앱을 사용할 때는 불필요하며 앱 성능을 저하시킴
+
+5. 앱의 성능 프로파일링
+
+- React DevTools의 Profiler 탭을 사용하여 앱의 렌더링 "비용"을 측정하고 최적화가 필요한 부분을 식별
+
+#### 🔥 성능 최적화를 위한 전략
+
+- __병목 현상 식별 및 수정__
+  - React Developer Tools의 `Profiler` 사용하여 불필요한 리렌더링이나 메모리 누수 등의 병목 현상을 식별한다.
+- __메모이제이션__
+  - 동일한 props를 가진 함수 컴포넌트의 불필요한 다시 렌더링을 방지하기 위해  `React.memo`를 사용한다.
+- __useCallback__
+  - 의존성 중 하나가 변경될 때만 변경되는 메모이제이션된 콜백 함수를 반환하기 위해  `useCallback`을 사용한다.
+- __useMemo__
+  - 의존성 중 하나가 변경될 때만 다시 계산되는 메모이제이션된 값을 반환하기 위해 `useMemo`을 사용한다.
+- __지연 로딩과 코드 분할__
+  - React.lazy와 Suspense를 사용하여 코드 분할과 지연 로딩을 구현하여 초기 번들 크기를 줄이고 성능을 향상시킵니다.
+<br/>
+
+### 🔗 참고
+
+- [React 개발을 위한 모범 사례](https://wikidocs.net/197621)
+- [리액트 성능 최적화](https://wikidocs.net/197788)
 
 <br/>
 
 ## React Developer Tools
+
+### 🛠️ React Developer Tools
+
+- 확장프로그램을 통해 React 컴포넌트의 구조를 확인 할 수 있는 profiler를 통해 성능 체크를 할 수 있는 도구이다.
+
+![React Devloper Tools](./image/react_developer_tools.png)
 
 ### 📖 React StrictMode란 무엇인가?
 
