@@ -19,7 +19,7 @@
   * [실습 Thinking in React](./react/thinking_in_react.md)
 * [TypeScript](./typescript/README.md)
   * [1. TypeScript](./typescript/typescript.md)
-* [Data](./typescript/README.md)
+* [Data](./data/README.md)
   * [1. JSON](./data/json.md)
   * [2. API](./data/api.md)
 * [Programming](./programming/README.md)
