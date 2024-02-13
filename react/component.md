@@ -6,8 +6,8 @@
   - `클래스형 컴포넌트 vs 함수형 컴포넌트`
 - Component 계층 구조
   - SRP(단일 책임 원칙)
-  - 추출하는 방식 : Extract Function / Inline Function
-  - Atomic Design
+  - 함수 추출하는 방식 : Extract Function / Inline Function
+  - 디자인 시스템 : Atomic Design
 
 <br/>
 
