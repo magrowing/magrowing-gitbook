@@ -4,6 +4,8 @@
 
 ## CATEGORY
 
+* [Programming](./programming/README.md)
+  * [1. Programming](./programming/programming.md)
 * [개발 환경](./enviroment/README.md)
   * [1. 개발 환경](./enviroment/environment.md)
   * [2. Testing Tools](./enviroment/testingtools.md)
@@ -16,11 +18,9 @@
   * [4. Component](./react/component.md)
   * [5. Props](./react/props.md)
   * [6. State](./react/state.md)
-  * [실습 Thinking in React](./react/thinking_in_react.md)
+  * [Thinking in React](./react/thinking_in_react.md)
 * [TypeScript](./typescript/README.md)
   * [1. TypeScript](./typescript/typescript.md)
 * [Data](./data/README.md)
   * [1. JSON](./data/json.md)
   * [2. API](./data/api.md)
-* [Programming](./programming/README.md)
-  * [1. Programming](./programming/programming.md)

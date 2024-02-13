@@ -4,6 +4,10 @@
 
    리액트 공식 문서에 소개된 🔗 [Thinking in React](https://ko.legacy.reactjs.org/docs/introducing-jsx.html) 예제를 통한 코드 실습
 
+<br/>
+
+## Thinking in React 
+
 ### `step 0` Start with the mockup
 
 - 개발 환경 세팅
