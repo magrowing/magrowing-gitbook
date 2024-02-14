@@ -15,10 +15,10 @@
 
 ### 📖 `Component` 란?
 
-- 작은 단위의 조각, 하나의 블록
-- 화면에서 보이는 인터페이스를 설계할 때 `컴포넌트`라는 단위로 설계
-- `컴포넌트`는 UI의 일부를 제어하는 `재사용`이 가능하도록 한다.
-- 함수형, 클래스형 컴포넌트 존재
+- 리액트에서 앱을 이루는 가장 작은 단위
+- Component 설계하고 만든 Component 조합해서 사용자 인터페이스(UI)를 설계한다.
+- Component 자바스크립트의 함수처럼 작동해서 react elements를 반환한다.
+- 함수형, 클래스형 컴포넌트 존재한다.
 - 컴포넌트의 구성요소 : props, state, context
 
 ### 클래스(Class) 컴포넌트 vs 함수(Function) 컴포넌트
@@ -30,7 +30,7 @@
 - React.Component 상속
   - React의 ComponentClass를 상속받아 Component 상속 필수
 - render() 메서드 필수 사용
-- this 키워드 사용
+- this 키워드로 프로퍼티를 참조하여 사용한다.
 
 ```jsx
 import React, { Component } from 'react'; 
@@ -50,8 +50,8 @@ class MyComponent2 extends Component {
 
 - 자바스크립트의 `함수(function)` 기반 컴포넌트
 - 자바스크립트 함수를 선언하듯이 function으로 컴포넌트를 정의하고 return 문에 JSX 코드를 반환
-- 함수 선언, 화살표 함수
-- 직관적인 코드, 메모리 자원을 적게 사용
+- 함수 선언, 화살표 함수를 사용해서 생성한다.
+- 직관적인 코드 작성이 가능하고, 메모리 자원을 적게 사용된다.
 
 ```jsx
 function FunctionComponent(){
@@ -71,14 +71,15 @@ const FunctionComponent = () => {
 }
 ```
 
-> __함수형 컴포넌트를 사용 해야 하는 이유__  
-과거에는 함수형 컴포넌트가 state, LifeCycle을 지원하지 않았기 때문에 클래스(Class)기반 컴포넌트를 많이 사용했지만, React v16.8 이후 `Hooks`를 통한 state 및 LifeCycle 관리가 가능하므로 공식적으로 __함수형 컴포넌트 사용을__ 권장한다.  
+> ✍🏻 __함수형 컴포넌트를 사용 해야 하는 이유__  
+과거에는 함수형 컴포넌트가 state, LifeCycle 제어 할 수 있는 기능을 지원하지 않았기 때문에 클래스(Class)기반 컴포넌트를 많이 사용했지만, React v16.8 이후 `Hooks`를 통한 state 및 LifeCycle 관리가 가능하므로 공식적으로 __함수형 컴포넌트 사용을__ 권장한다.  
 
 <br/>
 
 ### 🔗 참고
 
 - [React 컴포넌트란? React 앱을 구성하는 요소](https://life-with-coding.tistory.com/508)
+- [React 컴포넌트와 props 개념 이해하기](https://www.snugarchive.com/blog/react-components-and-props/)
 
 <br/>
 
@@ -94,7 +95,7 @@ Component를 어떻게 나눌 것인가? 다양한 방식으로 분리 기준점
 - 하나의 컴포넌트는 한가지 일을 하는게 이상적이다.
 - 모든 함수, 컴포넌트 등은 정확히 한가지 작업을 수행 해야하는 책임에 따라 컴포넌트 분리
 
-  - 너무 많은 작업을 수행하는 컴포넌트를 분리
+  - 너무 많은 작업을 수행하는 컴포넌트를 다른 컴포넌트로 분리
   - 주요 컴포넌트 기능과 관련 없는 함수는 별도의 until로 추출
   - 연결된 기능은 custom hook 등으로 캡슐화
 
@@ -129,7 +130,7 @@ Component를 어떻게 나눌 것인가? 다양한 방식으로 분리 기준점
 
 ### Information Architecture ( 정보 구조도 )
 
-> 웹/엡 구축 시 필요한 화면과 메뉴의 정보 구조를 설계 및 정의하는 문서 <br/> 정보의 구호화를 통해 사용자가 화면을 마주하기까지 필요한 화면들의 흐름을 시각화하여 나타낸다.
+> 웹/앱 구축 시 필요한 화면과 메뉴의 정보 구조를 설계 및 정의하는 문서 <br/> 정보의 구호화를 통해 사용자가 화면을 마주하기까지 필요한 화면들의 흐름을 시각화하여 나타낸다.
 
 - JSON Schema의 영향으로 화면 설계의 기준으로 컴포넌트 분리
 

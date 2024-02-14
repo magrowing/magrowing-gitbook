@@ -6,30 +6,65 @@
 
 <br/>
 
-## Thinking in React 
+## Thinking in React
 
-### `step 0` Start with the mockup
+### 1. `step 0` Start with the mockup
 
-- 개발 환경 세팅
-- Thinking in React 예제 Static Version UI 구현 (퍼블리싱 작업)
+- 개발 환경 세팅 (vite)
+
+  ```shell
+   npm create vite@latest 
+  ```
+
+- Thinking in React 예제의 전제 조건 및 Mockup 파악
+  - Mockup 과 JSON 형식의 API 확인 후 ⇒ 사용자가 볼 수 있도록 UI 설계
 
 ![UI](./image/thinking-in-react_ui.png)
 
-### `step 1` Break the UI into a component hierarchy
+### 2. `step 1` Build a static version in React
+
+1. Static Version UI 구현 (퍼블리싱 작업)
+2. JSON 에서 카테고리의 value 값을 추출  ⇒ reduce 메서드를 통해
+
+  ``` json
+    [
+      { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+      { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+      { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+      { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+      { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+      { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
+    ]
+  ```
+
+  ```tsx
+    const categories = products.reduce(
+      (acc: string[], product: Product) =>
+        acc.includes(product.category) ? acc : [...acc, product.category],
+      []
+    );
+  ```
+
+### 3. `step 1` Break the UI into a component hierarchy
 
 - UI를 구성 요소 계층 구조로 나누기 (컴포넌트 구성)
 
-- `FilterableProductTable`
-  - `SearchBar`
-  - `ProductTable`
-    - `ProductCategoryRow`
-    - `ProductRow`
+1. JSON API 기반으로 UI 구현하니, 반복적인 요소가 보여지고 코드가 길어짐 ⇒ table tbody 영역 컴포넌트로 분리 `ProductsInCategory`
+2. `ProductInCategory`컴포넌트를 분리하고 보니, 반복적인 요소 발견 ⇒ `ProductRow` `ProductCategoryRow` 컴포넌트 분리
+3. `ProductTable` 컴포넌트를 생성해서 table 영역 전체 맵핑
+4. 검색 영역 `SearchBar` 컴포넌트로 분리
+5. `FilterableProductTable` table 과 검색 영역 전체 맵핑
+6. `SearchBar` 분리하고 field `CheckBoxField` 영역 추가 분리
+
+- `5.FilterableProductTable`
+  - `4.SearchBar`
+    - `6.CheckBoxField`
+  - `3.ProductTable`
+    - `1.ProductsInCategory`
+      - `2.ProductCategoryRow`
+      - `2.ProductRow`
 
 ![Component](./image/thinking-in-react_ui_component.png)
-
-### `step 2` Build a static version in React
-
-- UI를 렌더링 하는 버전을 구축 (props 선언 및 전달)
 
 ### `step 3` Find the minimal but complete representation of UI state
 
