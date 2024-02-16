@@ -5,6 +5,7 @@
 - state (상태)
   - 소프트웨어 개발 3대 원칙 - DRY 원칙
 - Lifting State Up
+  - Inverse Data Flow
   - SSOT(Single Source of Truth)
 - useState
   - 1급 객체(first-class object)란?
@@ -19,7 +20,7 @@
 - 컴포넌트 렌더링에 영향을 주는 객체
 - 컴포넌트의 내부에서 변경 가능한 데이터를 관리 해야 할 때 사용한다.
 
-#### 컴포넌트가 Re-render 하는 조건
+#### 🔄 컴포넌트가 Re-render 하는 조건
 
 - 상태값이 변경 되었을 때 ( useState, Redux 등을 통한 상태값 변경시)
 - Props의 값이 변경 되었을 떄
@@ -30,7 +31,7 @@
 > 데이터라고 해서 모두 state 아니다!
 
 1. 변경되지 않는 건 state로 다룰 가치가 없다. ⇒ 변경되는 값이어야 한다.
-2. 부모 컴포넌트가 props를 통해 전달한다면 state가 아니다. ⇒ props로 전달되는 값은 state가 아니다.
+2. 부모 컴포넌트가 props를 통해 전달한다면 state가 아니다.
 3. 다른 state나 props를 이용해 계산이 가능하다면 state가 아니다.
 
 <br/>
@@ -47,9 +48,9 @@
   - 단일 책임 원칙(SRP) , 인터페이스 분리 원칙
   - 간단한 코드가 가독성이 좋고, 버그를 유발하는것도 줄어든다.
 
-- [YAGNI (You Ain't Gonna Need It)](https://en.wikipedia.org/wiki/KISS_principle) : 불필요하게 확장을 고려한 개발은 하지 말아라
+- [YAGNI (You Ain't Gonna Need It)](https://en.wikipedia.org/wiki/KISS_principle) : 불필요하게 확장을 고려한 개발은 하지 말아라.
 
-  - 불피룡하게 확장에 치충한 코드가 생기거나 지금 당장 필요로 않은 로직을 만들지 말자는 원칙
+  - 불필요하게 확장에 치충한 코드가 생기거나 지금 당장 필요로 않은 로직을 만들지 말자는 원칙
 
 <br/>
 
@@ -77,9 +78,61 @@ state가 하나의 컴포넌트에만 영향을 준다면 해당 컴포넌트에
 
 <br/>
 
+### 🪝 useState
+
+- React Hook이며 상태를 관리하기 위한 용도로 사용
+- setState함수를 이용해서 state값을 변경하면 해당 컴포넌트는 화면에 다시 렌더링이 된다.
+- 상태를 변화시는 setState 함수는 __비동기적으로__ 동작한다.
+
+  ```jsx
+  export default function Index() {
+    const [state, setState] = useState(0);
+    const onClick = () => {
+      setCount(count + 1) // 0 + 1
+      setCount(count + 1) // 0 + 1
+      setCount(count + 1) // 0 + 1   <- 이 코드만 적용됨
+      console.log(count) // 0
+    };
+    return (
+      <div>
+        <p> 현재 state : {state}</p>
+        <button type="button" onClick={onClick}>
+          +3
+        </button>
+      </div>
+    );
+  }
+  ```
+
+  위의 코드를 실행 보면 `console.log(state)` 값은 이전의 상태값인 0이 출력되고, state 값은 1이다.<br>
+  ⇒ 이렇게 동작하는 이유는 setState 함수가 비동기적으로 동작하고 __React가 하나의 이벤트 핸들러 함수 내의 로직을 모두 읽을 때까지 기다린 다음에 일괄 처리(Batch)해 한번에 렌더링하기 때문이다.__
+
+  🤔 __왜 React는 상태 값을 비동기적으로 처리하게 만들었을까?__
+  > React 애플리케이션은 수 많은 컴포넌트와 상태값으로 이루어져있다. 이런 상황에서 단 하나의 상태가 변화할 때마다 관련된 뷰를 매번 리렌더링하는 것은 비효율과 함께 성능상의 문제를 야기한다.
+
+  🤔 __연속된 setState를 처리하는 방법은?__
+  - setState함수의 인자로 함수를 전달
+  - useEffect 사용해서 setState 함수 다음에 실행 되어야 하는 코드를 동기적으로 실행되도록 처리 해줘야 한다.
+
+<br/>
+
+#### 📖 1급 객체(first-class object)란?
+
+- 1급 시민의 조건을 충족하는 객체(Object)
+- Javascript 에서는 객체는 1급 시민을 충족하기 때문에 1급객체 라고 부른다.
+
+> 함수지향 언어가 되기 위해서는 1급 객체 즉, 1급 함수 개념을 만족해야되며, JS에서는 이를 보장하기 때문에 함수형 패러다임을 갖춘 언어라 볼 수 있다.
+
+⇒ props로 함수를 넘겨 줄 수 있는건 1급 객체이기에 가능하다. 그래서 어떤 함수를 다른 함수에 인자로 넘겨주거나, 어떤 함수를 리턴값으로 사용할 수 있는 것이라고 이해했다.
+
+<br/>
+
 ### 🔗 참고
 
 - [소프트웨어 개발의 3개의 KEY 원칙 : KISS,YAGNI,DRY](https://hongjinhyeon.tistory.com/136)
 - [Sharing State Between Components(컴포넌트 간의 state 공유)](https://hoonding.medium.com/react-공식문서-managing-state-sharing-state-between-components-컴포넌트-간의-state-공유-f5b7f8639203)
 - [데이터흐름& state끌어올리기](https://doyu-l.tistory.com/303)
+- [비동기로 동작하는 setState와 Batch](https://leo-xee.github.io/React/react-setstate/)
 - [왜 state를 직접 변경하지 않고, useState를 사용해야 하나요?](https://velog.io/@daydreamplace/React-왜.-state를.-직접-변경하지-않고.-setState를.-사용하나요)
+- [Javascript 1급 객체](https://0xd00d00.github.io/2021/11/27/js_first_object.html)
+- [Javascript에서 왜 함수가 1급 객체일까요?](https://soeunlee.medium.com/javascript에서-왜-함수가-1급-객체일까요-cc6bd2a9ecac)
