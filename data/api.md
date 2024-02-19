@@ -4,6 +4,7 @@
 
 - API
 - REST API
+  - HTTP Method(CRUD)
 - GraphQL
 
 <br/>
