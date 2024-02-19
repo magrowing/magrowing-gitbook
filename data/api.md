@@ -232,7 +232,7 @@ const data = await response.json()
 
 <br/>
 
-### 📖 [Promoise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)란?
+#### 📖 [Promoise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)란?
 
 - 비동기 연산이 종료된 이후에 결과 값과 실패 사유를 처리하기 위한 처리기를 연결할 수 있다.
 - 프로미스를 사용하면 비동기 메서드에서 마치 __동기 메서드처럼__ 값을 반환할 수 있다.
@@ -240,6 +240,33 @@ const data = await response.json()
 
 <br/>
 
+### 📖 CORS(Cross-Origin Resource Sharing)
+
+- 교차 출처 리소스 공유
+- 출처는 '오리진origin'의 번역의 표현으로 URL에서 도메인만 뜻하는게 아니라 프로토콜과포트까지 포함하는 개념
+- __출처를 구성하는 세 요소 프로토콜/도메인(호스트이름)/포트로 이중 하나라도 다르면 CORS 에러를 만나게 된다.__
+- CORS는 서로 다른 출처라도 리소스 요청,응답을 허용할 수 있도록 하는 정책을 의미
+
+> 즉, '출처가 교차한다'라는 의미는 리소스를 주고받으려는 '두 출처가 다르다는 의미'<br/>
+__CORS를 설정한다는 건 '출처가 다른 서버간의 리소스 공유'를 허용한다는 의미이다.__
+
+⭐️ 여기서 중요한 사실!!
+
+- 이렇게 출처를 비교하는 로직이 서버에 구현된 스펙이 아니라 __브라우저에 구현되어 있는 스펙이라는 것이다.__
+
+만약 우리가 CORS 정책을 위협하는 리소스 요청을 하더도 해당 서버가 같은 출처에서 보낸 요청만 받겠다는 로직을 가지고 있는 경우가 아니라면 서버는 정상적으로 응답을 하고, 이후 브라우저가 이 응답을 분석해 CORS 정책 위반이라고 판단되면 그 응답을 사용하지 않는다.
+
+> 즉, CORS는 브라우저의 구현 스펙에 포함되는 정책이기 때문에, 브라우저를 통하지 않고 서버간 통신을 할 떄는 이 정책이 적용되지 않는다. CORS 정책을 위반하는 리소스 요청 떄문에 에러가 발생했다고 해도 서버 쪽 로그에는 정상적으로 응답을 했다는 로그가 남기 떄문에 CORS의 동작방식을 알고 있어야 한다.
+
+🤔 __CORS를 해결할 수 있는 방법은?__ <br/>
+
+1. 근본적으로는 백엔드 개발자가 어플리케이션의 응답 헤더에 올바른 `Acccess-Control-Allow-Origin`이 내려올 수 있도록 세팅해줘야 한다.
+2. 프록시 서버 사용하기
+
+<br/>
+
 ### 🔗 참고
 
 - [fetch 함수 쓰는 법, fetch 함수로 HTTP 요청하는 법](https://velog.io/@eunjin/JavaScript-fetch-함수-쓰는-법-fetch-함수로-HTTP-요청하는-법)
+- [CORS(교차 출처 리소스 공유)](https://docs.tosspayments.com/resources/glossary/cors)
+- [CORS는 왜 이렇게 우리를 힘들게 하는걸까?)](https://evan-moon.github.io/2020/05/21/about-cors/)
