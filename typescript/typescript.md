@@ -1,4 +1,4 @@
-# 1.TypeScript
+# TypeScript
 
 ## 학습 키워드
 

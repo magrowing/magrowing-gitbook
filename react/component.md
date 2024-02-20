@@ -1,4 +1,4 @@
-# 4. React Component
+# React Component
 
 ## 학습 키워드
 

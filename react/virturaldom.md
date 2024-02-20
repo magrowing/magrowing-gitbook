@@ -1,5 +1,5 @@
 
-# 3. VirtualDOM
+# VirtualDOM
 
 ## 학습 키워드
 

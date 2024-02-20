@@ -1,4 +1,4 @@
-# 1.Programming
+# Programming
 
 ## 학습 키워드
 
