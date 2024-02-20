@@ -27,7 +27,7 @@
 ⇒ 리액트 컴포넌트를 인자로 받아서 새로운 리액트 컴포넌트를 리턴하는 함수
 
 하지만 HOC을 사용했을 때, wrapper hell이라는 또 다른 문제가 발생 했다.
-"wrapper hell"이란 중첩되는 component가 많아져 depth가 깊어지는 지게 되어 코드 추적을 어렵게 만들고 컴포넌트의 재구성을 강요하게 했다.
+"wrapper hell"이란 중첩되는 component가 많아져 depth가 깊어지게 되어 코드 추적을 어렵게 만들고 컴포넌트의 재구성을 강요하게 했다.
 
 #### HOC 고차 컴포넌트를 사용한 코드
 
@@ -51,7 +51,7 @@ const HocHell = () => {
 
 #### Custom Hook을 사용한 코드
 
-Custom Hook을 통해 모듈화하여 SomeComponent 전달하기 때문에 계층 구조 가 단순해지며 재사용이 가능해진다.
+Custom Hook을 통해 모듈화하여 SomeComponent 전달하기 때문에 계층구조가 단순해지며 재사용이 가능해진다.
 
 ```jsx
 const WithHook = () => {
@@ -121,7 +121,7 @@ class Home extends React.Component {
 
 #### 함수형 컴포넌트의 LifeCycle 관리하는 Hook을 사용한 코드
 
-useState, useEffect 의 Hook을 사용하면 코드는 간결해지고 반복적이고 불필요한 코드들이 제거 되었다.
+useState, useEffect의 Hook을 사용하면 코드는 간결해지고 반복적이고 불필요한 코드들이 제거된다.
 
 ```jsx
 const HomeWithHook = ({ pathName }) => {
@@ -143,7 +143,7 @@ const HomeWithHook = ({ pathName }) => {
 
 #### 🚨 Confusing Classes (사람과 기계를 혼동시키는 Class)
 
-React 에서의 Class 사용을 위해서는 JavaScript의 this 키워드가 어떻게 작동하는지 한다. JavaScript의 this키워드는 대부분의 다른 언어에서와는 다르게 작동함으로 혼란을 유발하고 코드의 재사용성과 구성을 어렵게 만든다.
+React 에서의 Class 사용을 위해서는 JavaScript의 this 키워드가 어떻게 작동하는지 알아야 한다. JavaScript의 this키워드는 대부분의 다른 언어에서와는 다르게 작동함으로 혼란을 유발하고 코드의 재사용성과 구성을 어렵게 만든다.
 
 > __✅ Hook은 Class없이 React 기능들을 사용하는 방법을 제시한다.__
 
