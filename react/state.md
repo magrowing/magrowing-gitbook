@@ -113,8 +113,8 @@ export default function Index() {
 
 #### 🤔 연속된 setState를 처리하는 방법은?
 
-- setState함수의 인자로 함수를 전달
-- useEffect 사용해서 setState 함수 다음에 실행 되어야 하는 코드를 동기적으로 실행되도록 처리 해줘야 한다.
+- setState함수의 인자로 함수를 전달한다.
+- useEffect의 의존성 배열을 활용하면 된다.
 
 <br/>
 
