@@ -165,3 +165,4 @@ React 에서의 Class 사용을 위해서는 JavaScript의 this 키워드가 어
 - [React 공식문서](https://ko.legacy.reactjs.org/docs/hooks-intro.html#motivation)
 - [React Hook의 등장 배경](https://doqtqu.tistory.com/340)
 - [React-hook 이 나온 이유와 사용 해야 하는 이유](https://surviveasdev.tistory.com/entry/React-hook%EC%9D%B4-%EB%82%98%EC%98%A8-%EC%9D%B4%EC%9C%A0%EC%99%80-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)
+- [Hook 개념 알아보기](https://hyeon-joo.tistory.com/2)
