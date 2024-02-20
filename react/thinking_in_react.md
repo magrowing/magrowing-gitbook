@@ -54,10 +54,12 @@
 3. `ProductTable` 컴포넌트를 생성해서 table 영역 전체 맵핑
 4. 검색 영역 `SearchBar` 컴포넌트로 분리
 5. `FilterableProductTable` table 과 검색 영역 전체 맵핑
-6. `SearchBar` 분리하고 field `CheckBoxField` 영역 추가 분리
+6. `SearchBar` 분리하고 체크박스 field `CheckBoxField` 컴포넌트 분리
+7. `SearchBar` 컴포넌트에서 추가로 input field `TextField` 컴포넌트 분리
 
 - `5.FilterableProductTable`
   - `4.SearchBar`
+    - `7.TextField`
     - `6.CheckBoxField`
   - `3.ProductTable`
     - `1.ProductsInCategory`
@@ -66,20 +68,25 @@
 
 ![Component](./image/thinking-in-react_ui_component.png)
 
-### `step 3` Find the minimal but complete representation of UI state
+### 4. `step 3` Find the minimal but complete representation of UI state
 
 - state(상태)가 필요한 부분을 식별
   - 원래 제품 목록 (props)
-  - 사용자가 입력한 검색어 (state) `SearchBar`
-  - 체크박스의 값 (state) `SearchBar`
+  - 사용자가 입력한 검색어 (state) `TextField`
+  - 체크박스의 값 (state) `CheckBoxField`
   - 필터링된 제품 목록 (props)
 
-### `step 4` Identify where your state should live
+### 5. `step 4` Identify where your state should live
 
 - state(상태)를 식별 한 후 state(상태)의 공통 상위 요소를 찾아 state(상태)의 위치 결정
+  - state(상태)가 공유 되어야 하는 공통 상위 컴포넌트 `FilterableProductTable`
 
-### `step 5` Add inverse data flow
+### 6. `step 5` Add inverse data flow
 
 - state(상태)를 업데이트 하기 위한 콜백함수를 역방향으로 끌어올리기
+  - 사용자가 입력한 검색어 (state) `TextField`
+  - 체크박스의 값 (state) `CheckBoxField`
+
+  > 컴포넌트에서 useState로 생성한 state 끌어올려 공유 컴포넌트에 위치 시키고, props를 통해 하위 컴포넌트에게 state와 state 변경하기 위함 함수를 전달
 
 <br/>
