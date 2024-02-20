@@ -23,7 +23,7 @@
 #### 🔄 컴포넌트가 Re-render 하는 조건
 
 - 상태값이 변경 되었을 때 ( useState, Redux 등을 통한 상태값 변경시)
-- Props의 값이 변경 되었을 떄
+- Props의 값이 변경 되었을 때
 - 상위 컴포넌트의 state 변경되어 렌더링 하게되면 하위 컴포넌트도 다시 렌더링하게 된다.  
 
 #### State가 되기 위한 조건
@@ -73,7 +73,7 @@ state가 하나의 컴포넌트에만 영향을 준다면 해당 컴포넌트에
 - 단일 진실 공급원
 - 모든 비즈니스 데이터를 하나의 공간에 저장하는 것을 말한다.
 
-> React에서는 모든 state가 한곳에 있다는 뜻이 아니라, 각 state 마다 해당 정보를 소유하는 특정 컴포넌트가 있다는 의미 <br/>
+> React에서는 모든 state가 한곳에 있다는 뜻이 아니라, 각 state 마다 해당 정보를 소유하는 특정 컴포넌트가 있다는 의미
 컴포넌트마다 공유하는 state들을 각자 생성하는 것이 아닌, __부모컴포넌트(단일책임)에서 state를 생성해, 자식에게 전달하는것을 의미__
 
 <br/>
@@ -84,35 +84,37 @@ state가 하나의 컴포넌트에만 영향을 준다면 해당 컴포넌트에
 - setState함수를 이용해서 state값을 변경하면 해당 컴포넌트는 화면에 다시 렌더링이 된다.
 - 상태를 변화시는 setState 함수는 __비동기적으로__ 동작한다.
 
-  ```jsx
-  export default function Index() {
-    const [state, setState] = useState(0);
-    const onClick = () => {
-      setCount(count + 1) // 0 + 1
-      setCount(count + 1) // 0 + 1
-      setCount(count + 1) // 0 + 1   <- 이 코드만 적용됨
-      console.log(count) // 0
-    };
-    return (
-      <div>
-        <p> 현재 state : {state}</p>
-        <button type="button" onClick={onClick}>
-          +3
-        </button>
-      </div>
-    );
-  }
-  ```
+```jsx
+export default function Index() {
+  const [state, setState] = useState(0);
+  const onClick = () => {
+    setCount(count + 1) // 0 + 1
+    setCount(count + 1) // 0 + 1
+    setCount(count + 1) // 0 + 1   <- 이 코드만 적용됨
+    console.log(count) // 0
+  };
+  return (
+    <div>
+      <p> 현재 state : {state}</p>
+      <button type="button" onClick={onClick}>
+        +3
+      </button>
+    </div>
+  );
+}
+```
 
-  위의 코드를 실행 보면 `console.log(state)` 값은 이전의 상태값인 0이 출력되고, state 값은 1이다.<br>
+  위의 코드를 실행 보면 `console.log(state)` 값은 이전의 상태값인 0이 출력되고, state 값은 1이다. <br>
   ⇒ 이렇게 동작하는 이유는 setState 함수가 비동기적으로 동작하고 __React가 하나의 이벤트 핸들러 함수 내의 로직을 모두 읽을 때까지 기다린 다음에 일괄 처리(Batch)해 한번에 렌더링하기 때문이다.__
 
-  🤔 __왜 React는 상태 값을 비동기적으로 처리하게 만들었을까?__
+#### 🤔 왜 React는 상태 값을 비동기적으로 처리하게 만들었을까?
+
   > React 애플리케이션은 수 많은 컴포넌트와 상태값으로 이루어져있다. 이런 상황에서 단 하나의 상태가 변화할 때마다 관련된 뷰를 매번 리렌더링하는 것은 비효율과 함께 성능상의 문제를 야기한다.
 
-  🤔 __연속된 setState를 처리하는 방법은?__
-  - setState함수의 인자로 함수를 전달
-  - useEffect 사용해서 setState 함수 다음에 실행 되어야 하는 코드를 동기적으로 실행되도록 처리 해줘야 한다.
+#### 🤔 연속된 setState를 처리하는 방법은?
+
+- setState함수의 인자로 함수를 전달
+- useEffect 사용해서 setState 함수 다음에 실행 되어야 하는 코드를 동기적으로 실행되도록 처리 해줘야 한다.
 
 <br/>
 
