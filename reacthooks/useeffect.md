@@ -6,6 +6,7 @@
   - Side Effect?
   - Clean-up
   - Effect가 두 번 실행되는 문제
+- useLayoutEffect
   
 <br/>
 
@@ -105,6 +106,8 @@ export default function TimerControl() {
 이전 예제와 동일하지만, useEffect 부분에 두번째 인자가 생겼다. 두번째 인자를 빈 배열로 전달하게 되면, __컴포넌트가 최초 렌더링될 때만 useEffect를 실행한다.__
 
 ⇒ useEffect 컴포넌트가 렌더링 된 후 매번 콜백함수를 실행한다. 그러나 의존성 배열의 값이 빈 배열로 전달되게 되면 변경되는 값이 없기 때문에 최초 렌더링 될 때만 실행되는 것이다.
+
+> 주로 API를 호출해서 데이터를 얻을 때 사용한다.
 
 ```jsx
 import { useEffect, useState } from 'react';
@@ -261,9 +264,47 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 <br/>
 
+## 📖 [useLayoutEffect](https://react-ko.dev/reference/react/useLayoutEffect)란?
+
+- 브라우저가 화면을 다시 채우기 전에 실행되는 버전의 useEffect
+- 렌더링힐 상태가 effect 내에서 초기화 되어야 할 경우, 사용자 경험을 위해 사용된다.
+
+### useEffect vs useLayoutEffect
+
+- 이벤트의 호출 시점의 차이
+
+`useEffect`의 경우 DOM의 레이아웃 배치와 페인트가 끝난 후 이펙트 함수를 호출한다.
+useEffect 내부에 dom 에 영향을 주는 코드가 있을 경우 사용자 입장에서는 화면의 깜빡임을 경험하게 된다. `useLayoutEffect`의 경우 DOM의 레이아웃 배치가 끝난 후 이펙트 함수를 호출하고 페인트를 실행하게 된다. paint 가 되기전에 실행되기 때문에 Dom을 조작하는 코드가 존재하더라도 사용자는 깜빡임을 경험하지 않는다.
+
+```jsx
+import { useEffect, useState } from "react";
+
+function App() {
+  const [age, setAge] = useState(0);
+  const [name, setName] = useState("");
+  
+  useEffect(() => { // useLayoutEffect 변경해보면 차이를 느낄 수 있다.
+    setAge(25);
+    setName("찬민");
+  }, []);
+  
+  return (
+    <>
+      <div className="App">{`그의 이름은 ${name} 이며, 나이는 ${age}살 입니다.`}</div>
+    </>
+  );
+}
+
+export default App;
+```
+
+<br/>
+
 ### 🔗 참고
 
 - [useEffect 완벽 가이드](https://overreacted.io/a-complete-guide-to-useeffect/)
 - [useEffect()와 Side-Effect](https://points.tistory.com/86)
 - [그래서 useEffect는 언제 쓰는건데요?](https://velog.io/@sucream/그래서-useEffect는-언제-쓰는건데요)
 - [useEffect 실행시점 짚고 가기](https://choyeon-dev.tistory.com/10)
+- [useLayoutEffect 훅에 대하여](https://merrily-code.tistory.com/46)
+- [useEffect 와 useLayoutEffect 의 차이는 무엇일까?](https://medium.com/@jnso5072/react-useeffect-%EC%99%80-uselayouteffect-%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C-e1a13adf1cd5)

@@ -24,7 +24,6 @@
   * [useState](./reacthooks/usestate.md)
   * [useEffect](./reacthooks/useeffect.md)
   * [useRef](./reacthooks/useref.md)
-  * [useLayoutEffect](./reacthooks/uselayouteffect.md)
   * [Custom Hook](./reacthooks/customhook.md)
   * [usehooks-ts](./reacthooks/usehooks_ts.md)
 * [TypeScript](./typescript/README.md)
