@@ -1,5 +1,16 @@
 # useState
 
+## 학습 키워드
+
+- useState
+  - initialState
+  - state
+  - setState
+    - 비동기와 일괄처리(batch)
+    - 클로져와 큐
+
+<br/>
+
 ## 📖 [useState](https://react.dev/reference/react/useState#avoiding-recreating-the-initial-state)란?
 
 - React hook
@@ -35,8 +46,7 @@ function MyComponent() {
 - 매개변수 initialState 은 상태의 초기값을 지정한다.
 - 매개변수로 콜백함수도 선언이 가능하다.
   - 대규모 배열을 생성하거나 비용이 많이 드는 계산을 수행하는 경우
-
-[useEffct 사용없이 useState 초기값으로 재생성 방지](https://velog.io/@hjthgus777/다시-한번-useState-를-파헤쳐보자)
+  - [useEffct 사용없이 useState 초기값으로 재생성 방지](https://velog.io/@hjthgus777/다시-한번-useState-를-파헤쳐보자)
 
 ### state
 
@@ -129,3 +139,4 @@ export default function Index() {
 - [비동기로 동작하는 setState와 Batch](https://leo-xee.github.io/React/react-setstate/)
 - [useState는 동기 비동기? (동기적 처리)](https://velog.io/@alstnsrl98/useState는-동기-비동기-동기적-처리)
 - [useState 의 setState는 비동적으로 동작](https://velog.io/@jhplus13/위스타그램-개발노트React)
+- [useState와 useEffect 좀 더 깊게 알아보기](https://gml9812.github.io/frontend/useState-and-useEffect/)
