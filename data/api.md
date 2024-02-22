@@ -12,6 +12,7 @@
   - ReableStream
   - Unicode
 - CORS
+  - 동일 출처 정책
 
 <br/>
 
@@ -270,3 +271,4 @@ __CORS를 설정한다는 건 '출처가 다른 서버간의 리소스 공유'�
 - [fetch 함수 쓰는 법, fetch 함수로 HTTP 요청하는 법](https://velog.io/@eunjin/JavaScript-fetch-함수-쓰는-법-fetch-함수로-HTTP-요청하는-법)
 - [CORS(교차 출처 리소스 공유)](https://docs.tosspayments.com/resources/glossary/cors)
 - [CORS는 왜 이렇게 우리를 힘들게 하는걸까?)](https://evan-moon.github.io/2020/05/21/about-cors/)
+- [⭐️ 강의내용이 잘 정리된 벨로그 : Fetch API에 대해 알아보자 그리고 사용하며 발생하는 문제(CORS)를 해결해보자](https://velog.io/@jeong_lululala/react-hooks-fetch-api-cors)

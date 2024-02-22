@@ -12,9 +12,7 @@
 
 ## 📖 [useEffect](https://react.dev/reference/react/useEffect)란?
 
-[useEffect 공식문서](https://ko.legacy.reactjs.org/docs/hooks-effect.html)
-
-> Effect Hook을 사용하면 함수 컴포넌트에서 side effect를 수행할 수 있습니다.
+> Effect Hook을 사용하면 함수 컴포넌트에서 side effect를 수행할 수 있습니다. by. 구버전 [useEffect 공식문서](<https://ko.legacy.reactjs.org/docs/hooks-effect.html>)
 
 - __컴포넌트가 렌더링 이후에__ side effect(특정작업)를 수행 할 수 있도록 해주는 기능
 - Side-Effect 처리하기 위해 사용하는 hook
@@ -302,6 +300,7 @@ export default App;
 
 ### 🔗 참고
 
+- [React 공식문서 스터디 useEffect](https://react-ko.dev/reference/react/useEffect)
 - [useEffect 완벽 가이드](https://overreacted.io/a-complete-guide-to-useeffect/)
 - [useEffect()와 Side-Effect](https://points.tistory.com/86)
 - [그래서 useEffect는 언제 쓰는건데요?](https://velog.io/@sucream/그래서-useEffect는-언제-쓰는건데요)

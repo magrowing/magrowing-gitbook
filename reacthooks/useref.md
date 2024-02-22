@@ -6,7 +6,7 @@
 
 <br/>
 
-## 📖 [useRef](https://react-ko.dev/reference/react/useRef)란?
+## 📖 [useRef](https://react.dev/reference/react/useRef)란?
 
 - 렌더링에 필요하지 않는 값을 참조 할 수 있는 React hook
 
@@ -148,5 +148,6 @@ export default function UseRef() {
 
 ### 🔗 참고
 
+- [React 공식문서 스터디 useRef](https://react-ko.dev/reference/react/useRef)
 - [useRef는 처음이라 :: 개념부터 활용 예시까지](https://overreacted.io/a-complete-guide-to-useeffect/)
 - [useRef 훅 누구보다 쉽게 설명해드림 | 지금 까지 useState만 썼다면 꼭 봐라](https://youtu.be/kllWOdnU1Fg?si=pylKUSUYmhzpME4u)
