@@ -25,7 +25,6 @@
   * [useEffect](./reacthooks/useeffect.md)
   * [useRef](./reacthooks/useref.md)
   * [Custom Hook](./reacthooks/customhook.md)
-  * [usehooks-ts](./reacthooks/usehooks_ts.md)
 * [TypeScript](./typescript/README.md)
   * [TypeScript](./typescript/typescript.md)
 * [Data](./data/README.md)
