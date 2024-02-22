@@ -11,7 +11,7 @@
 
 <br/>
 
-## 📖 [useState](https://react.dev/reference/react/useState#avoiding-recreating-the-initial-state)란?
+## 📖 [useState](https://react.dev/reference/react/useState#avoiding-recreating-the-initial-state)
 
 - React hook
 - state(상태)를 생성하고 업데이트(setState)를 통해 화면(UI)을 (리)렌더링하는 기능을 제공한다.

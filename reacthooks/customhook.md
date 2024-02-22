@@ -18,7 +18,7 @@
 
 <br/>
 
-## 📖 [Custom Hook](https://react-ko.dev/reference/react/useRef)란?
+## 📖 [Custom Hook](https://react-ko.dev/reference/react/useRef)
 
 - 자신만의 Hook을 만들면 __컴포넌트 로직을 함수로 뽑아내어 재사용할 수 있는 방법__ (컴포넌트간의 로직 공유)
 - React의 State와 Lifecycle 관리 로직을 공통화 할 수 있도록 도와주는 역활

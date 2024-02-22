@@ -6,7 +6,7 @@
 
 <br/>
 
-## 📖 [useContext](https://react.dev/reference/react/useContext)란?
+## 📖 [useContext](https://react.dev/reference/react/useContext)
 
 <br/>
 

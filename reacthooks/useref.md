@@ -6,7 +6,7 @@
 
 <br/>
 
-## 📖 [useRef](https://react.dev/reference/react/useRef)란?
+## 📖 [useRef](https://react.dev/reference/react/useRef)
 
 - 렌더링에 필요하지 않는 값을 참조 할 수 있는 React hook
 
