@@ -14,24 +14,24 @@
 
 ### 🌎 React Hook의 등장 배경
 
-> 리액트 컴포넌트는 클래스형 컴포넌트(Class component)와 함수형 컴포넌트(Functional component)로 나뉜다. 기존의 개발방식은 일반적으로 함수형 컴포넌트를 주로 사용하되 state이나 Life Cycle Method를 사용해야 할 때에만 클래스형 컴포넌트를 사용하는 방식이었다.
+> 리액트 컴포넌트는 클래스형 컴포넌트(Class Component)와 함수형 컴포넌트(Functional Component)로 나뉜다. 기존의 개발방식은 일반적으로 함수형 컴포넌트를 주로 사용하되 state이나 Life Cycle Method를 사용해야 할 때에만 클래스형 컴포넌트를 사용하는 방식이었다.
 
 위와 같은 방식으로 사용하니 몇가지 문제점들이 있었다.
 
 #### 🚨 Wrapper Hell (상태로직의 재사용성 어려움)
 
-리액트를 쓰다 보면 자주 쓰는 로직을 따로 빼내서 사용할 필요가 있는데 HOC(High order component)를 이용해서 문제를 해결했다.
+리액트를 쓰다 보면 자주 쓰는 로직을 따로 빼내서 사용할 필요가 있는데 HOC(High Order Component)를 이용해서 문제를 해결했다.
 
-> 📖 HOC(High order component) 고차 컴포넌트 <br/>
-화면에서 재사용 가능한 로직만을 분리해서 component로 만들고, 재사용 불가능한 UI와 같은 다른 부분은 parameter로 받아서 처리하도록 하는 패턴
+> 📖 HOC(High Order Component) 고차 컴포넌트 <br/>
+화면에서 재사용 가능한 로직만을 분리해서 component로 만들고, 재사용 불가능한 UI와 같은 다른 부분은 Parameter로 받아서 처리하도록 하는 패턴
 ⇒ 리액트 컴포넌트를 인자로 받아서 새로운 리액트 컴포넌트를 리턴하는 함수
 
-하지만 HOC을 사용했을 때, wrapper hell이라는 또 다른 문제가 발생 했다.
-"wrapper hell"이란 중첩되는 component가 많아져 depth가 깊어지게 되어 코드 추적을 어렵게 만들고 컴포넌트의 재구성을 강요하게 했다.
+하지만 HOC을 사용했을 때, __Wrapper hell이라는__ 또 다른 문제가 발생 했다.
+__"Wrapper hell"__ 은 중첩되는 Component가 많아져 depth가 깊어지게 되어 코드 추적을 어렵게 만들고 컴포넌트의 재구성을 강요하게 했다.
 
 #### HOC 고차 컴포넌트를 사용한 코드
 
-SomeComponent가 마우스 포지션, window 크기, 유저 위치 등의 정보가 필요하다면 아래와 같이 HOC 구조가 발생한다. 이런 구조는 가독성도 좋지않고 element를 찾기 힘들어진다.
+SomeComponent가 마우스 포지션, window 크기, 유저 위치 등의 정보가 필요하다면 아래와 같이 HOC구조가 발생한다. 이런 구조는 가독성도 좋지않고 element를 찾기 힘들어진다.
 
 ```jsx
 const HocHell = () => {
@@ -73,7 +73,7 @@ const WithHook = () => {
 
 #### 🚨 Huge Components (이해하기 어려운 복잡한 컴포넌트)
 
-> 🤔 만약 홈 컴포넌트는 컴포넌트가 마운트 됐을 때 그리고 pathName prop이 변경됐을 때 lookups 데이터를 api에서 받아와야 한다고 했을 때?
+> 🤔 만약 홈 컴포넌트는 컴포넌트가 마운트 됐을 때 그리고 PathName Prop이 변경됐을 때 lookups 데이터를 API에서 받아와야 한다고 했을 때?
 
 #### Class형 컴포넌트의 LifeCycle 메서드를 사용한 코드
 
@@ -143,20 +143,20 @@ const HomeWithHook = ({ pathName }) => {
 
 #### 🚨 Confusing Classes (사람과 기계를 혼동시키는 Class)
 
-React 에서의 Class 사용을 위해서는 JavaScript의 this 키워드가 어떻게 작동하는지 알아야 한다. JavaScript의 this키워드는 대부분의 다른 언어에서와는 다르게 작동함으로 혼란을 유발하고 코드의 재사용성과 구성을 어렵게 만든다.
+React에서의 ClassComponent를 사용하기 위해서는 JavaScript의 `this` 키워드가 어떻게 작동하는지 알아야 한다. JavaScript의 `this` 키워드는 대부분의 다른 언어에서와는 다르게 작동함으로 혼란을 유발하고 코드의 재사용성과 구성을 어렵게 만든다.
 
-> __✅ Hook은 Class없이 React 기능들을 사용하는 방법을 제시한다.__
+> __✅ Hook은 Class없이 React기능들을 사용하는 방법을 제시한다.__
 
 <br/>
 
 ### ✍🏻 React Hook 정리
 
 - React hook 16.8 버전 이후 도입된 기능이다.
-- 기존에 React가 가지고 있던 문제점들을 해결하기 위해 hook이 탄생하였다.
-  - Class 컴포넌트의 문제 (this 키워드, extends 키워드를 통한 상속으로 반복적인 코드 작성)
-  - 상태 관리 로직(컴포넌트)의 재사용 어려움 (컴포넌트의 모듈화)
-  - 컴포넌트의 LifeCycle(생명주기)와 관련된 메서드로 인한 복잡한 컴포넌트
-- Hook을 통해 코드가 간결하고 가독성 있게 하며, 재사용의 효율을 극대화 시키기 위한 기능
+- 기존에 React가 가지고 있던 문제점들을 해결하기 위해 hook이 탄생하였다.⇒ 함수형 컴포넌트의 Update
+  - Class 컴포넌트의 문제 ⇒ this 키워드, extends 키워드를 통한 상속으로 반복적인 코드 작성
+  - 상태 관리 로직(컴포넌트)의 재사용 어려움 ⇒ Custom hook 컴포넌트의 모듈화
+  - Class 컴포넌트의 LifeCycle(생명주기)와 관련된 메서드로 인한 복잡한 컴포넌트
+- Hook을 통해 코드가 간결하고 가독성 있게 하며, 재사용의 효율을 극대화 시키기 위한 기능을 제공
 
 <br/>
 
