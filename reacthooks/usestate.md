@@ -7,13 +7,12 @@
   - state
   - setState
     - 비동기와 일괄처리(batch)
-    - 클로져와 큐
+    - 클로저와 큐
 
 <br/>
 
 ## 📖 [useState](https://react.dev/reference/react/useState#avoiding-recreating-the-initial-state)
 
-- React hook
 - state(상태)를 생성하고 업데이트(setState)를 통해 화면(UI)을 (리)렌더링하는 기능을 제공한다.
 
 <br/>
@@ -99,7 +98,7 @@ export default function Index() {
   위의 코드를 실행 보면 `console.log(state)` 값은 이전의 상태값인 0이 출력되고, state 값은 1이다. <br>
   ⇒ 이렇게 동작하는 이유는 setState 함수가 비동기적으로 동작하고 __React가 하나의 이벤트 핸들러 함수 내의 로직을 모두 읽을 때까지 기다린 다음에 일괄 처리(Batch)해 한번에 렌더링하기 때문이다.__
 
-#### 🤔 왜 React는 상태 값을 비동기적으로 처리하게 만들었을까?
+#### 🤔 왜 React는 상태값을 변경하는 함수를 비동기적으로 처리하게 만들었을까?
 
   > React 애플리케이션은 수 많은 컴포넌트와 상태값으로 이루어져있다. 이런 상황에서 단 하나의 상태가 변화할 때마다 관련된 뷰를 매번 리렌더링하는 것은 비효율과 함께 성능상의 문제를 야기한다.
 
@@ -140,3 +139,5 @@ export default function Index() {
 - [useState는 동기 비동기? (동기적 처리)](https://velog.io/@alstnsrl98/useState는-동기-비동기-동기적-처리)
 - [useState 의 setState는 비동적으로 동작](https://velog.io/@jhplus13/위스타그램-개발노트React)
 - [useState와 useEffect 좀 더 깊게 알아보기](https://gml9812.github.io/frontend/useState-and-useEffect/)
+- [JavaScript의 클로저(Closure)란? (feat. React의 useState)](https://enjoydev.life/blog/javascript/6-closure)
+- [useState의 동작 원리와 클로저](https://seokzin.tistory.com/entry/React-useState%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%80)
