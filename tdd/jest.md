@@ -9,8 +9,6 @@
 
 <br/>
 
-## Jest
-
 ### 🤖 테스트 케이스 정의 하는 방법
 
 #### 1. test 함수로 개별 테스트를 나열하는 방식
@@ -31,7 +29,15 @@ describe('add', () => {
 });
 ```
 
+### 🤔 BDD 스타일?
+
+- BDD(Behavior-driven development)
+- 소프트웨어 개발 방법론
+- 비즈니스 요구사항에 집중하여 테스트 케이스를 개발한다는 것
+
 <br/>
+
+## Jest
 
 ### 🛠️ [Jest](https://jestjs.io/)
 
@@ -90,7 +96,7 @@ npx jest --watchAll
 
 ### Jest를 이용한 간단한 TDD 예제
 
-#### 📄 파일명 생성
+#### 📄 파일명
 
 - sample.test.ts
 - sample.spec.ts (주로 BDD 스타일로 사용 시)
@@ -233,11 +239,12 @@ describe('add', () => {
   });
  });
 });
-
 ```
 
 <br/>
 
 ### 🔗 참고
 
+- [BDD와 TDD의 차이](https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/)
+- [jest](https://woonjangahn.gitbook.io/logs/typescript/testing/jest-and-matchers)
 - [Jest 활용 경험: 테스팅에 대한 고민과 통찰](https://blog.imqa.io/testing-framework-jest/)
