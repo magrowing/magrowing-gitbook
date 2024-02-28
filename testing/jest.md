@@ -39,14 +39,10 @@ describe('add', () => { // 주체 : add 함수
 
 <br/>
 
-## Jest
-
-### 🛠️ [Jest](https://jestjs.io/)
+## [Jest](https://jestjs.io/)
 
 - Facebook이 개발하여 오픈 소스로 공개한 __JavaScript 테스팅 프레임워크__
 - 설정이 거의 필요 없는 테스트 프레임워크
-
-<br/>
 
 ### 🛠️ Jest 설치 및 실행 방법
 
@@ -133,7 +129,7 @@ test('object assignment', () => {
 
 `toEqual`은 배열 또는 객체의 값(주소 말고!)이 같은지 확인한다.
 
-> 이외에도 다양한 Matchers로 들이 존재한다.
+> 이외에도 다양한 Matchers들이 존재한다.
 
 ### 🧩 Describe-Context-It (Describe-It) 패턴
 
