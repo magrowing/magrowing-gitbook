@@ -126,7 +126,7 @@ describe('TextField', () => {
 
 
     // 3.Then 
-    // 화면 Dom에서 input의 label, value, placeholder 확인
+    // 화면 Dom에서 label, value, placeholder 속성을 가지고 있는 요소를 찾는다.
     screen.getByLabelText(label); 
     screen.getByDisplayValue(text);
     screen.getByPlaceholderText('식당이름');
@@ -143,9 +143,56 @@ describe('TextField', () => {
 
 __⇒ 단위 테스트를 작성할 때, 해당 코드가 의존하는 부분을 가짜(mock)로 대체하는 기법__
 
-### 🤔 왜 가짜로 대체하는가?
+#### 🤔 왜 가짜로 대체하는가?
 >
 > 테스트 하고 싶은 기능이 다른 기능들과 엮어있을 경우(의존) 정확한 테스트가 힘들기 때문에
+
+#### 🤔 그럼 Mocking이 필요한 경우는?
+
+- 외부 의존성이 큰 코드(API 요청 등)를 작성할 경우, 해당 부분만 가짜로 구현  
+
+매번 서버를 띄우기 어렵고, 실서버를 사용하기 어려운 문제를 방지하기 위해서 테스트에서만 __Mocking을 통해 서버를 구현__
+보통 백엔드와 소통하는 부분을 Mocking 해서 테스트해야 하는데, 이 부분을 하나씩 가짜 구현으로 바꾸다 보면 어려울 때가 있다. 이럴 땐 MSW 등 다른 대안을 고려해야 한다.
+
+#### Think in React 예제를 통해 API 요청 코드 모킹
+
+```tsx
+// App.tsx
+import FilterableProductTable from './components/FilterableProductTable';
+import useFetchProducts from './hooks/useFetchProducts';
+
+export default function App() {
+  // useFetchProducts : Custom hook으로 API 응답받은 객체 products로 전달 
+  const products = useFetchProducts();
+
+  return (
+    <>
+      <h1>상품</h1>
+      <FilterableProductTable products={products} />
+    </>
+  );
+}
+```
+
+```tsx
+// App.test.tsx
+
+import {render, screen} from '@testing-library/react';
+
+import App from './App';
+
+// const products  ===  mocking을 통해 data 인식
+jest.mock('./hooks/useFetchProducts', () => () => [
+    {
+        category: 'Fruits', price: '$1', stocked: true, name: 'Apple',
+    },
+]);
+
+test('App', () => {
+    render(<App/>);
+    screen.getByText('Apple'); // 화면에서 Apple이라는 텍스트를 가지고 있는 테스트
+});
+```
 
 <br/>
 
@@ -159,7 +206,99 @@ __⇒ 단위 테스트를 작성할 때, 해당 코드가 의존하는 부분을
 
 #### ✍🏻 내가 생각하는 테스트 픽스처는
 
-- mocking으로 만들 객체들을 한곳에 모아두고 다르곳에서 재사용 하기 위한 용도
+- mocking한 내용들을 한곳에 모아두고 다른곳에서 재사용 하기 위한 용도로 만드는 폴더
+
+### 📁 폴더 구조
+
+#### 직접 사용하는 경우
+
+```
+├── src
+│   ├── App.test.tsx
+│   ├── App.tsx
+```
+
+```
+├── fixtures
+│   ├── index.ts
+│   └── products.ts
+```
+
+```js
+// App.test.ts
+
+import {render, screen} from '@testing-library/react';
+import App from './App';
+import fixtures from '../fixtures';
+
+jest.mock('./hooks/useFetchProducts', () => () => fixtures.products);
+
+test('App', () => {
+    render(<App/>);
+
+    screen.getByText('Apple');
+});
+```
+
+```js
+// fixtures/products.ts
+
+const products = [
+    {
+        category: 'Fruits', price: '$1', stocked: true, name: 'Apple',
+    },
+];
+
+export default products;
+```
+
+```js
+// fixtures/index.ts
+
+import products from './products';
+
+export default {
+    products,
+};
+```
+
+#### 복잡해지면 이 방법을 사용 → `mocks` 폴더를 분리
+
+```
+│   ├── hooks
+│   │   ├── __mocks__
+│   │   │   └── useFetchProducts.ts
+│   │   └── useFetchProducts.ts
+```
+
+```js
+// App.test.ts
+
+import {render, screen} from '@testing-library/react';
+import App from './App';
+
+// jest.mock('./hooks/useFetchProducts', () => () => fixtures.products);
+jest.mock('./hooks/useFetchProducts');
+
+test('App', () => {
+    render(<App/>);
+
+    screen.getByText('Apple');
+});
+```
+
+```js
+// hooks/__mocks__/useFetchProducts.ts
+
+import fixtures from '../../../fixtures';
+
+// const useFetchProducts = () => fixtures.products; // 이렇게 써도 되지만 
+const useFetchProducts = jest.fn(() => fixtures.products); // 모킹을 드러내기 위해 권장되는 방법  
+
+export default useFetchProducts;
+```
+
+<br/>
 
 ### 🔗 참고
 
@@ -169,3 +308,4 @@ __⇒ 단위 테스트를 작성할 때, 해당 코드가 의존하는 부분을
 - [Mocking으로 생산성까지 챙기는 FE 개발](https://tech.kakao.com/2021/09/29/mocking-fe/)
 - [Unit Test에 나오는 Fixture와 Mock은 무엇일까?](https://zorba91.tistory.com/304)
 - [메가테라 참고 GitBook - Test fixture](https://shinjungohs-dev-road.gitbook.io/megaptera-frontend/undefined/week5/reacttestinglibrary#id-4.-mocking)
+- [⭐️ Testing 03. Screen — getBy*](https://olaf-go.medium.com/testing-03-screen-getby-bb96787d2d4b)
