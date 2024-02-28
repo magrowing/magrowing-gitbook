@@ -294,5 +294,5 @@ describe('add', () => {
 
 - [BDD와 TDD의 차이](https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/)
 - [Jest의 test, it, describe](https://leehyungi0622.github.io/2021/02/17/202102/210217-JS_Jest_test_it/)
-- ⭐️ [Jest: 기본기 & Matchers](https://woonjangahn.gitbook.io/logs/typescript/testing/jest-and-matchers)
+- [⭐️ Jest: 기본기 & Matchers](https://woonjangahn.gitbook.io/logs/typescript/testing/jest-and-matchers)
 - [Jest 활용 경험: 테스팅에 대한 고민과 통찰](https://blog.imqa.io/testing-framework-jest/)

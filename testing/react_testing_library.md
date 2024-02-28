@@ -11,8 +11,6 @@
 
 ## React Testing Library
 
-### 📖 React Testing Library
-
 - Facebook에서 공식적으로 사용을 권장 (→ React로 서비스를 만든다면!)
 - Behavior Driven Test(행위 주도 테스트) 방법론이 대두 되면서 함께 주목 받기 시작한 __테스팅 라이브러리__
 - React 컴포넌트를 사용자 입장에 가깝게 테스트할 수 있는 도구
@@ -39,8 +37,6 @@ __⇒ 사용자 관점에서 브라우저(화면에) 일어나는 행위에 대�
 <br/>
 
 ## given - when - then 패턴
-
-### 📖 given - when - then 패턴
 
 - __[준비] - [실행] - [검증] 단계로 테스트 코드를 나눠서 작성한다.__
   - Given [준비] : 시나리오 진행에 필요한 값을 설정, 테스트의 상태를 설정
@@ -300,12 +296,11 @@ export default useFetchProducts;
 
 <br/>
 
-### 🔗 참고
+## 🔗 참고
 
 - [React Testing Library 사용법](https://www.daleseo.com/react-testing-library/)
 - [Web: React Testing Library의 개념과 간단한 예시](https://medium.com/hcleedev/web-react-testing-library의-개념과-간단한-예시-b94ea633bdaa)
 - [모킹 Mocking 정리](https://inpa.tistory.com/entry/JEST-%F0%9F%93%9A-%EB%AA%A8%ED%82%B9-mocking-jestfn-jestspyOn)
-- [Mocking으로 생산성까지 챙기는 FE 개발](https://tech.kakao.com/2021/09/29/mocking-fe/)
 - [Unit Test에 나오는 Fixture와 Mock은 무엇일까?](https://zorba91.tistory.com/304)
 - [메가테라 참고 GitBook - Test fixture](https://shinjungohs-dev-road.gitbook.io/megaptera-frontend/undefined/week5/reacttestinglibrary#id-4.-mocking)
 - [⭐️ Testing 03. Screen — getBy*](https://olaf-go.medium.com/testing-03-screen-getby-bb96787d2d4b)
