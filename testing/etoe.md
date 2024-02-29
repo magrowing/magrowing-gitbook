@@ -69,7 +69,7 @@ npx nodemon app.ts
 - Playwright 패키지 설치
 
 ```shell
-npm npm i -D @playwright/test eslint-plugin-playwright
+npm i -D @playwright/test eslint-plugin-playwright
 ```
 
 - `playwright.config.ts` 파일 생성
@@ -105,7 +105,7 @@ touch tests/.eslintrc.js
 ```js
 module.exports = {
     env: {
-        jest: false, // js 사용하지 않을거라서
+        jest: false,
     },
     extends: ['plugin:playwright/playwright-test'],
     rules: {
@@ -150,7 +150,7 @@ test('Click the “Increase” button', async ({ page }) => {
 });
 ```
 
-- `.gitignore`파일에 에러 상황의 스크린샷 등이 담기는 `test-results` 디렉터리 추가.
+- `.gitignore`파일에 에러 상황의 스크린샷 등이 담기는 `test-results` 디렉터리 추가
 
 ```
 /test-results/
@@ -184,5 +184,6 @@ CI=true npx playwright test
 - [카카오 기술 블로그 E2E 테스트 도입 경험기](https://fe-developers.kakaoent.com/2023/230209-e2e/)
 - [E2E 테스트 구축기 (used AWS Step Functions)](https://medium.com/delivus/e2e-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B5%AC%EC%B6%95%EA%B8%B0-used-aws-step-functions-2fccb930218c)
 - [프론트엔드 테스트 - TDD와 종류(Unit, Integration, E2E)](https://soojae.tistory.com/74)
+- [멈춰! 버그 멈춰! E2E 테스트로 버그 멈추기 Feat. Playwright](https://hyperconnect.github.io/2022/01/28/e2e-test-with-playwright.html)
 - [puppeteer 개념과 예제](https://velog.io/@nias0327/puppeteer-%EA%B0%9C%EB%85%90%EA%B3%BC-%EC%98%88%EC%A0%9C)
 - [Puppeteer 간단 정리하기](https://pks2974.medium.com/puppeteer-간단-정리하기-a252bffbb2a8)
