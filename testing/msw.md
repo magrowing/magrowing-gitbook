@@ -277,7 +277,7 @@ import 'whatwg-fetch'
 - [Web Worker](https://velog.io/@whow1101/Web-Worker)
 - [서비스 워커에 대해 알아보고 Mock Response 만들기](https://fe-developers.kakaoent.com/2022/221208-service-worker/)
 - [Github에서 만든 Fetch polyfill(폴리필)](https://github.com/JakeChampion/fetch)
-- [메가테라 참고 GitBook - Test fixture](https://shinjungohs-dev-road.gitbook.io/megaptera-frontend/undefined/week5/msw)
+- [메가테라 참고 GitBook - MSW](https://shinjungohs-dev-road.gitbook.io/megaptera-frontend/undefined/week5/msw)
 - [⭐️ Mocking으로 생산성까지 챙기는 FE 개발](https://tech.kakao.com/2021/09/29/mocking-fe/)
 - [⭐️ 똑똑하게 브라우저 Polyfill 관리하기](https://toss.tech/article/smart-polyfills)
 - [Javascript Polyfill](https://dkrnfls.tistory.com/280)
