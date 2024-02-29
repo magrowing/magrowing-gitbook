@@ -56,6 +56,7 @@ __⇒ 웹 앱이 어떤 상황에서 어떻게 동작해야 하는지 완벽하�
 ### ⚙️ MSW 설치 및 설정
 
 - [Set up Mock Service Worker in Node.js](https://mswjs.io/docs/integrations/node)
+- [Mocking REST API](https://v1.mswjs.io/docs/getting-started/mocks/rest-api)
 
 #### 1. MSW 패키지 설치
 
@@ -203,7 +204,7 @@ export default handlers;
 ```tsx
 // App.test.tsx
 
-import {render, screen} from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 import App from './App';
 
 // jest.mock 불필요
@@ -244,6 +245,7 @@ node.js 환경에서 테스트를 진행 중이었다. 최신버전의 node는 f
 #### 5. Github에서 만든 Fetch `Polyfill(폴리필)`을 사용해 해결
 
 - Polyfill 설치
+- [window.fetch polyfill](https://github.com/JakeChampion/fetch)
 
 ```shell
 npm i -D whatwg-fetch
@@ -276,7 +278,6 @@ import 'whatwg-fetch'
 
 - [Web Worker](https://velog.io/@whow1101/Web-Worker)
 - [서비스 워커에 대해 알아보고 Mock Response 만들기](https://fe-developers.kakaoent.com/2022/221208-service-worker/)
-- [Github에서 만든 Fetch polyfill(폴리필)](https://github.com/JakeChampion/fetch)
 - [메가테라 참고 GitBook - MSW](https://shinjungohs-dev-road.gitbook.io/megaptera-frontend/undefined/week5/msw)
 - [⭐️ Mocking으로 생산성까지 챙기는 FE 개발](https://tech.kakao.com/2021/09/29/mocking-fe/)
 - [⭐️ 똑똑하게 브라우저 Polyfill 관리하기](https://toss.tech/article/smart-polyfills)
