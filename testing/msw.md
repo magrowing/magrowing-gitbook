@@ -80,7 +80,7 @@ module.exports = {
 #### 3. `setupTests.ts` 파일 생성
 
 ```shell
-  touch src/setupTests.ts
+touch src/setupTests.ts
 ```
 
 ```ts
@@ -106,16 +106,17 @@ afterEach(() => server.resetHandlers());
 #### 4. 📁 src/mocks/ `server.ts` 파일 생성
 
 ```shell
-  mkdir src/mocks
+mkdir src/mocks
 
-  touch src/mocks/server.ts
+touch src/mocks/server.ts
 ```
 
 ```ts
 // src/mocks/server.ts
+
 import { setupServer } from 'msw/node';
 
-import { handlers } from './handlers'
+import handlers from './handlers'
 
 const server = setupServer(...handlers);
 
@@ -125,10 +126,12 @@ export default server;
 #### 5. 📁 src/mocks/ `handlers.ts` 파일 생성
 
 ```shell
-  touch src/mocks/handlers.ts
+touch src/mocks/handlers.ts
 ```
 
 ```ts
+// src/mocks/handlers.ts 
+
 import { rest } from 'msw';
 
 const BASE_URL = 'http://localhost:3000';
@@ -244,8 +247,7 @@ node.js 환경에서 테스트를 진행 중이었다. 최신버전의 node는 f
 
 #### 5. Github에서 만든 Fetch `Polyfill(폴리필)`을 사용해 해결
 
-- Polyfill 설치
-- [window.fetch polyfill](https://github.com/JakeChampion/fetch)
+- Polyfill 설치 [window.fetch polyfill](https://github.com/JakeChampion/fetch)
 
 ```shell
 npm i -D whatwg-fetch
@@ -259,7 +261,7 @@ import 'whatwg-fetch'
 
 <br/>
 
-## 🤔 [Polyfill(폴리필)](https://developer.mozilla.org/ko/docs/Glossary/Polyfill)은 무엇인가?
+## [Polyfill(폴리필)](https://developer.mozilla.org/ko/docs/Glossary/Polyfill)
 
 - 기본적으로 지원하지 않는 이전 브라우저에서 __최신 기능을 제공하는 데 필요한 코드__
 - 새로운 문법을 낮은 버전에서도 돌아갈 수 있게 하기 위하여 만든 코드
