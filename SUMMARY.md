@@ -38,3 +38,5 @@
   * [React Testing Library](./testing/react_testing_library.md)
   * [MSW](./testing/msw.md)
   * [E2E Test](./testing/etoe.md)
+* [상태관리](./state_management/README.md)
+  * [External Store](./state_management/external_store.md)
