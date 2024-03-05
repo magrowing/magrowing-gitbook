@@ -319,7 +319,42 @@ export default function Counter() {
 }
 ```
 
-이런 접근을 통해서 React가 UI를 담당하고, 순수한 TypeScript(또는 Javascript)가 비즈니스 로직을 담당하는 __관심사 분리__ 통해 자주 바뀌는 UI 요소에 대한 테스트 대신, 오래 유지되는 비즈니스 로직에 대한 테스트 코드를 작성해 유지보수에 도움이 되는 테스트 코드를 치밀하게 작성 할 수 있다.
+### External Store + 관심사 분리
+
+```jsx
+import useForceUpdate from '../hooks/useForceUpdate';
+
+// Business Logic 
+const state = {
+  count : 0,
+};
+
+function increase(){
+  state.count += 1;
+}
+
+// UI
+export default function Counter() {
+
+  const forceUpdate = useForceUpdate();
+
+  const handleClick = () => {
+    increase();
+    forceUpdate();
+  };
+
+  return (
+    <div>
+      <p>{state.count}</p>
+      <button type="button" onClick={handleClick}>
+        Increase
+      </button>
+    </div>
+  );
+}
+```
+
+이런 접근을 통해서 React가 UI를 담당하고, 순수한 TypeScript(또는 Javascript)가 비즈니스 로직을 담당하는 __관심사 분리__ 통해 자주 바뀌는 UI 요소에 대한 테스트 대신, __오래 유지되는 비즈니스 로직에 대한 테스트 코드를 작성해 유지보수에 도움이 되는 테스트 코드를__ 치밀하게 작성 할 수 있다.
 
 <br/>
 
