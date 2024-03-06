@@ -26,6 +26,7 @@
 * [React Hooks](./reacthooks/README.md)
   * [React의 Hook](./reacthooks/hook.md)
   * [useState](./reacthooks/usestate.md)
+  * [useReducer](./reacthooks/usereducer.md)
   * [useRef](./reacthooks/useref.md)
   * [useContext](./reacthooks/usecontext.md)
   * [useEffect](./reacthooks/useeffect.md)
