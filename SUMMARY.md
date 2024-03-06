@@ -41,3 +41,4 @@
   * [E2E Test](./testing/etoe.md)
 * [상태관리](./state_management/README.md)
   * [External Store](./state_management/external_store.md)
+  * [TSyringe](./state_management/tsyringe.md)
