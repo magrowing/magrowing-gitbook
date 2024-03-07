@@ -179,9 +179,24 @@ export default function Counter() {
 
 <br/>
 
+### singleton(싱글톤)
+
+- 단 하나의 유일한 객체를 만들기 위한 코드 패턴
+- __메모리 절약을__ 위해 인스턴스가 필요할 때 __똑같은 인스턴스를 새로 만들지 않고 기존의 인스턴스를 가져와 활용하는 기법__
+- 대표적인 예시 → 데이터베이스 연결 모듈
+
+> 우리가 전역 변수라는걸 만들어서 사용하는 이유는 똑같은 데이터를 메서드마다 지역 변수로 선언해서 사용하면 재사용성 측면에서 낭비, 전역에서 한번만 데이터를 선언하고 가져와 사용하면 효율적이기 때문이다.
+
+싱글톤 기법은 오직 한개의 인스턴스 생성을 보증하여 효율을 찾을 수 있지만, 문제점들이 수반되기 때문에 균형잡힌 선택을 하는 것이 중요하다.
+그래서 직접 유저가 만들어 사용하는 것보다는 프레임워크의 도움을 받아 사용해서 문제점들을 보안하면서 장점의 혜택을 누릴 수 있다.
+(내부적으로 클래스의 제어를 IoC(Inversion of Control)방식의 컨테이너에게 넘겨 관리하기 때문에)
+
+<br/>
+
 ## 🔗 참고
 
 - [React 에서 의존성 주입 활용하기](https://velog.io/@woohm402/dependency-injection-in-reactjs)
 - [TypeScript로 알아보는 의존성 주입](https://velog.io/@woohm402/dependency-injection-with-TypeScript)
 - [리엑트 의존성 주입](https://velog.io/@jay/react-dependency-injection)
 - [reflect-metadata](https://jeonghwan-kim.github.io/2023/06/20/reflect-metadata)
+- [싱글톤 패턴](https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%EC%8B%B1%EA%B8%80%ED%86%A4Singleton-%ED%8C%A8%ED%84%B4-%EA%BC%BC%EA%BC%BC%ED%95%98%EA%B2%8C-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90)
