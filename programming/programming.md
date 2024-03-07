@@ -79,9 +79,9 @@ console.log(evenNumber) // 출력 [2,4,6,8,10]
 
 ### 🔗 참고
 
-- [프로그래밍 패러다임]("https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84")
-- [명령형 프로그래밍]("https://ko.wikipedia.org/wiki/%EB%AA%85%EB%A0%B9%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D")
-- [선언형 프로그래밍]("https://ko.wikipedia.org/wiki/%EC%84%A0%EC%96%B8%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D")
+- [프로그래밍 패러다임](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84)
+- [명령형 프로그래밍](https://ko.wikipedia.org/wiki/%EB%AA%85%EB%A0%B9%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
+- [선언형 프로그래밍](https://ko.wikipedia.org/wiki/%EC%84%A0%EC%96%B8%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
 - [프로그래밍 패러다임에 대해(선언형vs명령형)](https://velog.io/@turtle601/프로그래밍-패러다임에-대해선언형-vs-명령형)
 - [선언형 프로그래밍으로 이해하기 쉬운 코드 작성하기](https://yozm.wishket.com/magazine/detail/2083/)
 - [선언형 프로그래밍 vs 명령형 프로그래밍](https://velog.io/@wndud0647/TIL-39-CS-선언형-프로그래밍-vs-명령형-프로그래밍)
