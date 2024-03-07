@@ -120,15 +120,6 @@ __unidirectional data flow(단방향 흐름)을__ 가지는 Architecture이다.<
   - Dispatcher를 통해 변화된 데이터가 Store 저장
 - View : Store의 상태를 반영, 또 다른 Action을 전달 해준다.
 
-```javascript
-const state = {
-  name : 'tester'
-}
-
-state.name = 'New Name' ❎
-const nextState = {...state, name:'New Name'}; ✅
-```
-
 <br/>
 
 ## External Store
