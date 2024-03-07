@@ -141,14 +141,14 @@ import 'reflect-metadata';
 ```jsx
 // scr/components/Counter.tsx
 
-import { container } from 'tsyringe'; // 👈🏻 의존성 주입
+import { container } from 'tsyringe'; 
 
 import useForceUpdate from '../hooks/useForceUpdate';
 
-import CounterStore from '../stores/CounterStore'; // 👈🏻 의존성 주입
+import CounterStore from '../stores/CounterStore'; 
 
 export default function Counter() {
-  const store = container.resolve(CounterStore); // 👈🏻 접근
+  const store = container.resolve(CounterStore);
   const forceUpdate = useForceUpdate();
 
   const handleClick = () => {
@@ -166,6 +166,16 @@ export default function Counter() {
   );
 }
 ```
+
+#### ✅ 실습을 통해 알게 된 점
+
+- Counter/ CounterControl 컴포넌트로 분리 ⇒ CounterStore의 count 공유
+  - Counter → 화면에 출력되는 갯수
+  - CounterControl → `Increase` 버튼
+- Counter 컴포넌트가 2개 경우 ⇒ count 값이 동일하게 적용 될 수 있도록 처리
+  - new Set
+  - useEffect (add, delete)
+- 관심사 분리 ⇒ External Store(CounterStore)을 활용해 hooks으로 분리해서 재사용성 ⬆
 
 <br/>
 
