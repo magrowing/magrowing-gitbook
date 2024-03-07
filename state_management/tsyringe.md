@@ -69,8 +69,7 @@ const Child = () => {
 
 ### 🧐 TSyringe 학습하는 이유는?
 
-TSyringe를 사용해서 External Store를 관리하는데 활용 해보고
-`Prop Drilling`문제를 Context를 사용하지 않고 TSyringe를 사용한 해결 방법을 학습
+TSyringe를 사용해서 `Prop Drilling`문제를 Context를 사용하지 않고 TSyringe를 사용한 해결 방법을 학습
 
 - [Prop Drilling 이란](https://magrowing.gitbook.io/magrowing-gitbook/category/react/props#prop-drilling)
 
@@ -169,13 +168,13 @@ export default function Counter() {
 
 #### ✅ 실습을 통해 알게 된 점
 
-- Counter/ CounterControl 컴포넌트로 분리 ⇒ CounterStore의 count 공유
+- Counter/ CounterControl 컴포넌트로 분리 ⇒ CounterStore의 count 공유 방법
   - Counter → 화면에 출력되는 갯수
   - CounterControl → `Increase` 버튼
-- Counter 컴포넌트가 2개 경우 ⇒ count 값이 동일하게 적용 될 수 있도록 처리
+- Counter 컴포넌트가 2개 경우 ⇒ count 값이 동일하게 적용 될 수 있도록 처리하는 방법
   - new Set
   - useEffect (add, delete)
-- 관심사 분리 ⇒ External Store(CounterStore)을 활용해 hooks으로 분리해서 재사용성 ⬆
+- 관심사 분리 ⇒ External Store(CounterStore)을 활용해 hooks으로 분리해서 재사용 하는 방법
 
 <br/>
 
