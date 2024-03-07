@@ -43,3 +43,4 @@
   * [External Store](./state_management/external_store.md)
   * [TSyringe](./state_management/tsyringe.md)
   * [Redux 따라하기](./state_management/follow_redux.md)
+  * [usestore-ts](./state_management/usestore_ts.md)
