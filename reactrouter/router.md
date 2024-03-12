@@ -56,7 +56,7 @@ npm i react-router-dom
 ### [BrowserRouter](https://reactrouter.com/en/main/router-components/browser-router)
 
 - HTML5의 History API를 사용하여 페이지를 새로 불러오지 않고도 주소를 변경하고 현재 주소의 경로에 관련된 정보를 리액트 컴포넌트에서 사용할 수 있도록 해 주는 역활을 수행한다.
-- 라우팅을 진행할 컴포넌트 상위에 BrowserRouter 컴포넌트를 생성하고 감싸주어야 한다.
+- 라우팅을 진행할 컴포넌트 상위에 `BrowserRouter` 컴포넌트를 생성하고 감싸주어야 한다.
 
 #### 📖 [History API](https://developer.mozilla.org/ko/docs/Web/API/History_API)
 
@@ -80,7 +80,7 @@ __⇒ "어떤 페이지를 탐색했는지에 대해서 history를 쌓는 것" �
 
 ### [Routes](https://reactrouter.com/en/main/components/routes)
 
-- 모든 Route의 상위 경로에 존재해야 하며, location 변경 시 하위에 있는 모든 Route를 조회해 현재 location과 맞는 Route를 찾아준다.
+- 모든 `Route의 상위 경로`에 존재해야 하며, location 변경 시 하위에 있는 모든 Route를 조회해 현재 location과 맞는 Route를 찾아준다.
 
 ### [Route](https://reactrouter.com/en/main/route/route)
 
@@ -97,7 +97,93 @@ __⇒ "어떤 페이지를 탐색했는지에 대해서 history를 쌓는 것" �
 - 브라우저 환경이 아닌 곳에서 ReactRouter가 포함된 컴포넌트를 테스트 할 때 사용한다.
 - `MemoryRouter`는 주소를 가지고 있지 않아, 주소를 따로 잡아주어야 한다.
 
-<br/>
+```jsx
+<MemoryRouter initialEntries={['/경로']} >
+```
+
+```jsx
+// main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+
+function main() {
+  const container = document.getElementById('root');
+  if (!container) {
+    return;
+  }
+
+  const root = ReactDOM.createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+}
+
+main();
+```
+
+```jsx
+// App.tsx
+import { Routes, Route } from 'react-router-dom';
+
+import Homepage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+export default function App() {
+  return (
+    <div>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+```
+
+```jsx
+// App.test.tsx
+
+describe('App', () => {
+
+ function renderApp(path: string) {
+  render((
+   <MemoryRouter initialEntries={[path]}> 
+    <App />
+   </MemoryRouter>
+  ));
+ }
+ 
+ context('when the current path is “/”', () => {
+  it('renders the home page', () => {
+   renderApp('/');
+
+   screen.getByText(/Hello/);
+  });
+ });
+ 
+ context('when the current path is “/about”', () => {
+  it('renders the about page', () => {
+   renderApp('/about');
+
+   screen.getByText(/About/);
+  });
+ });
+});
+```
 
 <br/>
 
