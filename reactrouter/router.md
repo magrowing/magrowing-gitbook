@@ -27,19 +27,16 @@
 - React에서 주소(URL)에 따른 컴포넌트 렌더링을 관리하기 위한 라이브러리
 - Context API를 기반으로 한 라이브러리
 
-### 🤔 왜 React Router을 사용해야 하는가?
+### 🤔 왜 React Router 을 사용해야 하는가?
 
 블로그를 만든다면, 홈, 포스트 목록, 포스트, 글쓰기 등의 다양한 페이지들이 있다. 또한 이 페이지들에 따라 주소(URL)도 만들어줘야 한다. 주소가 있어야, 유저들이 북마크도 할 수 있고 서비스에 구글을 통해 유입될 수 있기 때문이다.
-
-다른 주소에 따라 다른 뷰를 보여주는것을 Routing 이라고 하는데, 리액트 자체에는 이 기능이 내장 되어있지 않기 때문이다.
-
-따라서 우리가 직접 브라우저의 API 를 사용해서 상태를 설정하여 다른 뷰를 보여주어야 한다.
+다른 주소에 따라 다른 뷰를 보여주는것을 Routing 이라고 하는데, 리액트 자체에는 이 기능이 내장 되어있지 않기 때문이다. 따라서 우리가 직접 브라우저의 API 를 사용해서 상태를 설정하여 다른 뷰를 보여주어야 한다.
 
 <br/>
 
-### 🤖 React Router의 역활
+### 🤖 React Router 의 역활
 
-사용자의 브라우저 주소창의 경로에 따라 알맞는 페이지를 보여준다. 이후 링크를 눌러서 다른 페이지로 이동하게 될 때 서버에 다른 페이지의 html을 새로 요청하는 것이 아니라, `브라우저의 History API를` 사용하여 __브라우저의 주소창의 값만 변경하고__ 기존에 페이지에 띄웠던 웹 애플리케이션을 그대로 유지하면서 라우팅 설정에 따라 또 다른 페이지를 보여주게 된다.
+사용자의 브라우저 주소창의 경로에 따라 알맞는 페이지를 보여준다. 이후 링크를 눌러서 다른 페이지로 이동하게 될 때 서버에 다른 페이지의 html을 새로 요청하는 것이 아니라, __브라우저의 History API를 사용하여 브라우저의 주소창의 값만 변경하고__ 기존에 페이지에 띄웠던 웹 애플리케이션을 그대로 유지하면서 라우팅 설정에 따라 또 다른 페이지를 보여주게 된다.
 
 <br/>
 
@@ -101,13 +98,17 @@ __⇒ "어떤 페이지를 탐색했는지에 대해서 history를 쌓는 것" �
 <MemoryRouter initialEntries={['/경로']} >
 ```
 
+#### 👩🏻‍💻 React Router 간단한 예제
+
 ```jsx
 // main.jsx
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+
+import App from './App';
 
 function main() {
   const container = document.getElementById('root');
@@ -130,6 +131,7 @@ main();
 
 ```jsx
 // App.tsx
+
 import { Routes, Route } from 'react-router-dom';
 
 import Homepage from './pages/HomePage';
@@ -157,31 +159,38 @@ export default function App() {
 ```jsx
 // App.test.tsx
 
+import { render, screen } from '@testing-library/react';
+
+import { MemoryRouter } from 'react-router-dom';
+
+import App from './App';
+
+
 describe('App', () => {
 
- function renderApp(path: string) {
-  render((
-   <MemoryRouter initialEntries={[path]}> 
-    <App />
-   </MemoryRouter>
-  ));
- }
+  function renderApp(path: string) {
+    render((
+    <MemoryRouter initialEntries={[path]}> 
+      <App />
+    </MemoryRouter>
+    ));
+  }
  
- context('when the current path is “/”', () => {
-  it('renders the home page', () => {
-   renderApp('/');
+  context('when the current path is “/”', () => {
+    it('renders the home page', () => {
+    renderApp('/');
 
-   screen.getByText(/Hello/);
+    screen.getByText(/Hello/);
+    });
   });
- });
  
- context('when the current path is “/about”', () => {
-  it('renders the about page', () => {
-   renderApp('/about');
+  context('when the current path is “/about”', () => {
+    it('renders the about page', () => {
+    renderApp('/about');
 
-   screen.getByText(/About/);
+    screen.getByText(/About/);
+    });
   });
- });
 });
 ```
 
