@@ -108,7 +108,7 @@ decodeURI(location.hash)
 
 전통적인 Web 서비스들은 웹서버가 사용자들에 제공되어야 하는 모든 페이지들의 정보를 미리 가지고 있는 `MPA(Multi Page Application)` 방식이었다.
 
-![Multi Page Application](./image/MPA.png)
+![Multi Page Application](./image/mpa.png)
 
 > ✅ SSR(Server Side Rendering) 과 MPA(Multi Page Application)는 같다? <br/> 서버에 모든 페이지들의 정보를 가지고 있는 걸 MPA 방식이라고 하고, __MPA방식에서 브라우저가 페이지를 요청 했을 때 서버에서 모든 데이터가 담긴 HTML 파일을 브라우저에게 응답해주는 방식을__ SSR이라고 한다.
 
@@ -135,6 +135,9 @@ MPA 방식으로 특정 페이지를 요청하게 되면 기존의 페이지는 
 
 `SPA(Single Page Application)`방식은 접속 요청이 들어오게 되면 먼저 기본틀인 하나의 HTML 보내주고 자바스크립트의 파일들을 하나로 묶어서 번들링 해서
 브라우저에 후속으로 전달해준다. 브라우저는 후속으로 전달 받은 React App(번들링 된 자바스크립트 파일들)을 실행해서 화면을 보여주는 방식을 말한다.
+
+![SPA Step1](./image/spa.png)
+![SPA Step2](./image/spa2.png)
 
 SPA방식에서는 사용자가 링크나 버튼을 클릭해서 페이지 이동이 발생하게 된다면 새로운 페이지를 매번 서버에게 요청했었던 MPA 방식과는 달리 서버에게는 아무런 요청도 보내지 않는다.
 대신에 처음 접속할 때 서버로부터 받았던 React App을 이용해서 자체적으로 브라우저 내에서 새로운 페이지에 필요한 컴포넌트들로 화면을 교체한다.
