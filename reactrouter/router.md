@@ -9,7 +9,6 @@
   - Routes
   - Route
   - MemoryRouter
-  - RouterProvider
 
 <br/>
 
@@ -53,7 +52,7 @@ npm i react-router-dom
 
 <br/>
 
-### BrowserRouter
+### [BrowserRouter](https://reactrouter.com/en/main/router-components/browser-router)
 
 - HTML5의 History API를 사용하여 페이지를 새로 불러오지 않고도 주소를 변경하고 현재 주소의 경로에 관련된 정보를 리액트 컴포넌트에서 사용할 수 있도록 해 주는 역활을 수행한다.
 - 라우팅을 진행할 컴포넌트 상위에 BrowserRouter 컴포넌트를 생성하고 감싸주어야 한다.
@@ -65,7 +64,12 @@ npm i react-router-dom
 브라우저에서 페이지 로딩을 하면, 세션 히스토리를 갖는다. 브라우저는 이 히스토리를 stack으로 관리한다.
 세션 히스토리는 페이지를 이동할 때 마다 쌓이며, 이를 통해 `뒤로가기` 또는 `앞으로 가기` 같은 이동이 가능하다.
 
-#### ✍🏻 "어떤 페이지를 탐색했는지에 대해서 history를 쌓는 것" 이라고 생각하면 된다
+__⇒ "어떤 페이지를 탐색했는지에 대해서 history를 쌓는 것" 이라고 생각하면 된다.__
+
+#### 🤔 왜 History API를 사용하게 되는가?
+
+- React는 SPA의 기반이다. 페이지가 로딩이 되어 변경되는것 처럼 보이지만 컴포넌트를 통해 화면을 업데이트(리렌더링)해준다.
+그렇기 때문에 실제로는 화면 이동이 일어나지 않는다. 그렇기에 History API를 사용하게 되면 화면 이동 없이 URL을 업데이트 해줄 수 있다.
 
 <br/>
 
@@ -73,11 +77,11 @@ npm i react-router-dom
 
 - Routes와 Route는 React Router v6부터 도입된 개념이다.
 
-### Routes
+### [Routes](https://reactrouter.com/en/main/components/routes)
 
 - 모든 Route의 상위 경로에 존재해야 하며, location 변경 시 하위에 있는 모든 Route를 조회해 현재 location과 맞는 Route를 찾아준다.
 
-### Route
+### [Route](https://reactrouter.com/en/main/route/route)
 
 - 현재 브라우저의 location(window.href.location 정보를 가져온다)상태에 따라 다른 element를 렌더링한다.
 
@@ -87,7 +91,16 @@ npm i react-router-dom
 
 <br/>
 
+### [MemoryRouter](https://reactrouter.com/en/main/router-components/memory-router)
+
+- 브라우저 환경이 아닌 곳에서 ReactRouter가 포함된 컴포넌트를 테스트 할 때 사용한다.
+- `MemoryRouter`는 주소를 가지고 있지 않아, 주소를 따로 잡아주어야 한다.
+
+<br/>
+
 ## 🔗 참고
 
 - [React Router에 대해 알아보자](https://velog.io/@jeong_lululala/react-router-routes)
 - [React-Router-Dom 개념잡기](https://velog.io/@kandy1002/React-Router-Dom-개념잡기)
+- [React Router React Router v6 튜토리얼](https://velog.io/@velopert/react-router-v6-tutorial)
+- [History API](https://velog.io/@minw0_o/history-API란)
