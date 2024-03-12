@@ -98,6 +98,8 @@ __⇒ "어떤 페이지를 탐색했는지에 대해서 history를 쌓는 것" �
 <MemoryRouter initialEntries={['/경로']} >
 ```
 
+<br/>
+
 #### 👩🏻‍💻 React Router 간단한 예제
 
 ```jsx
