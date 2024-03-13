@@ -20,9 +20,9 @@
 > HTML 문서에서, history.pushState() 메서드는 브라우저의 세션 기록 스택에 항목을 추가합니다.
 
 ```js
-const state = {}; // 브라우저 이동 시 넘겨줄 데이터 (popstate 에서 받아서 원하는 처리를 해줄 수 있음)
-const title = ''; // 변경할 브라우저 제목 (변경 원치 않으면 null)
-const url = '/경로'; // 변경할 주소
+const state = {};  // 브라우저 이동 시 넘겨줄 데이터 (popstate 에서 받아서 원하는 처리를 해줄 수 있음)
+const title = '';  // 변경할 브라우저 제목 (변경 원치 않으면 null)
+const url = '/경로';  // 변경할 주소
 
 history.pushState(state, title, url);
 ```
@@ -36,11 +36,11 @@ __History.pushState 는 페이지 이동 없이 주소만 바꿔준다.__ (브�
 
 <br/>
 
-### 🤔 React에서는 `<a>` 태그를 사용하지 않는다?
+#### 🤔 React에서는 `<a>` 태그를 사용하지 않는다?
 
-> 왜냐면 `<a>`를 사용하여 페이지 이동하게 되며 페이지 __전체를__ 다시 렌더링 하기 때문이다.
+> 왜냐면 `<a>`를 사용하여 페이지 이동하게 되면 페이지 __전체를__ 다시 렌더링 하기 때문이다.
 
-그래서 React Router 는 `Link` __특정 주소로 이동해주는 기능을__ , `Navigation` 특정 행동을 했을 때 해당 주소로 이동 할 수 있는 기능을 제공해준다.
+그래서 React Router 는 `Link` __특정 주소로 이동해주는 기능을__ , `Navigation` __특정 행동을 했을 때 해당 주소로 이동 할 수 있는 기능을__ 제공해준다.
 
 <br/>
 
@@ -98,7 +98,7 @@ export default function Header() {
 
 <br/>
 
-### 🤔 NavLink는 `Link` 무엇이 다른가?
+#### 🤔 `Link` 와 `NavLink` 의 차이점
 
 > By default, an active class is added to a `<NavLink>` component when it is active so you can use CSS to style it.
 
@@ -115,7 +115,7 @@ export default function Header() {
 
 - 어떤 작업을 수행하고 리다이렉션을 발생시킬 때 사용 (Ex.Logout)
 
-> 📖 Redirect <br/> 사용자가 처음 요청한 URL이 아닌, 다른 URL로 보내는 것을 의미한다. 예를들어, 웺사이트 A의 주소로 접속한 사용자를 웹사이트 B로 이동시키는 것을 말한다.
+> 📖 Redirect <br/> 사용자가 처음 요청한 URL이 아닌, 다른 URL로 보내는 것을 의미한다. 예를들어, 웹사이트 A의 주소로 접속한 사용자를 웹사이트 B로 이동시키는 것을 말한다.
 
 ```jsx
 <Navigate to="/경로" />
@@ -154,6 +154,8 @@ context('when the current path is “/logout”', () => {
 - 어떤 작업을 수행하고 리다이렉션을 발생시킬 때 사용 (Ex.Logout)
 - Hook을 이용해 redirect을 편리하게 처리
 
+> Navigate 보다  `useNavigate` 더 많이 사용한다. by. 코딩의신 야살
+
 ```jsx
 const navigate = useNavigate();
 
@@ -176,8 +178,8 @@ const navigate = useNavigate();
 navigate('경로', {replace : true });
 ```
 
-- `true` : navigate에 적힌 주소로 이동한 후 `뒤로가기`를 방지하는 옵션
-- `false` :  navigate에 적힌 주소로 이동한 후 `뒤로가기`를 가능하게 하는 옵션 (Default)
+- `true` : navigate에 적힌 주소로 이동한 후 `뒤로가기` 를 방지하는 옵션
+- `false` :  navigate에 적힌 주소로 이동한 후 `뒤로가기` 를 가능하게 하는 옵션 (Default)
 
 #### 📌 state
 
