@@ -6,6 +6,7 @@
   - Location
   - pathname
   - hash
+  - search
 - Routing
   - MPA
   - SPA
@@ -42,13 +43,9 @@
 
 <br/>
 
-### [PathName](https://developer.mozilla.org/ko/docs/Web/API/URL/pathname)
+### [PathName](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname)
 
-> URL 인터페이스의 pathname 속성은 URL의 경로와 그 앞의 `/`로 이루어진 USVString을 반환한다.
-
-- URL의 구성요소 path를 의미
-
-![URL](../network/image/url.png)
+> `/` 문자 뒤 URL의 경로를 값으로 하는 DOMString
 
 ```javascript
 var url = new URL(
@@ -63,7 +60,7 @@ var result = url.pathname; // "/ko/docs/Web/API/URL/pathname"
 
 > The hash property of the Location interface returns a string containing a '#' followed by the fragment identifier of the URL — the ID on the page that the URL is trying to target.
 
-- URL 내의 `#` 뒤에 나오는 식별자를 value로 하는 DOMstring
+> `#` 문자 뒤 URL의 프래그먼트 식별자를 값으로 하는 DOMString
 
 #### hash의 쓰임새
 
@@ -80,6 +77,20 @@ encodeURI('예제')
 decodeURI(location.hash)
 
 '#예제'
+```
+
+<br/>
+
+### [search](https://developer.mozilla.org/en-US/docs/Web/API/Location/search)
+
+> `?` 문자 뒤 URL의 쿼리스트링을 값으로 하는 DOMString
+
+- `URLSearchParams` 를 통해 QueryString 가져 올 수 있다.
+
+```js
+// Further parsing:
+const params = new URLSearchParams(queryString);
+const q = parseInt(params.get("q")); // is the number 123
 ```
 
 <br/>
