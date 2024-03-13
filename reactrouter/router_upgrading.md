@@ -318,3 +318,4 @@ describe('App', () => {
 ## 🔗 참고
 
 - [React Router 버전 6.4부터 지원하는, 라우터 객체를 만들어서 쓰는 방법에 대해 알아보자](https://velog.io/@jeong_lululala/react-router-router)
+- [⭐️ 전자증명서 리액트 페이지 및 레이어 동적 라우팅](https://tech.kakao.com/2022/07/13/active-routing-for-e-certificate/)
