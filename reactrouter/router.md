@@ -9,7 +9,11 @@
   - Routes
   - Route
   - MemoryRouter
-  - URL 파라미터 & 쿼리스트링
+- 동적 라우팅
+  - URL Parameter
+  - useParams
+  - Query String
+  - useSearchParams
 
 <br/>
 
@@ -198,9 +202,95 @@ describe('App', () => {
 
 <br/>
 
+## 동적 라우팅
+
+- 동적 Routing은 __경로를 미리 정해두지 않고 동적으로 설정하는 방식이다.__
+- 라우트의 경로에 특정 값을 넣어 해당 페이지로 이동 할 수 있게 하는 것
+
+#### 🤔 동적 라우팅이 필요한 이유는?
+
+React Router 를 사용해서 미리 프로젝트에 사용할 경로들과 보여줄 컴포넌트를 정의해둔다.
+하지만 복잡하고 규모가 큰 애플리케이션에서는 경로를 미리 설정하는 방식만으로는 처리하기 힘든 작업이 존재한다.
+
+예를 들어 쇼핑몰에는 다양한 상품이 존재하고, 상품리스트가 있고, 또한 상품 상세페이지도 존재한다. 그렇다면 상품리스트에서 선택한 상품의 상세 페이지에 접근 하기 위해서는 어떻게 해야 할까?
+
+> 💡 특정 규칙을 만들고, 그 규칙과 부합하는 URL이 있을 경우에만 해당 element를 화면에 보여주는 방식으로 해결한다.
+
+<br/>
+
+### URL Parameter
+
+- `/:값` 형태로 동적인 데이터를 전달한다.
+- `:` 기호 뒤에 붙는 문자열이 Path Parameter 이다.
+- Path Parameter 는 URL에 있는 값을 마치 매개변수(Parameter)처럼 사용하는 것이다.
+- Path parameter를 이용하면 사용자가 같은 페이지로 접속하더라도, 큰 틀은 동일하되 다른 UI를 보여주도록 처리할 수 있다.
+
+```jsx
+function App() {
+
+  return (
+    <Layout>
+      <Routes>
+        <Route path={'/'} element={<Home/>}></Route>
+        <Route path={'/search'} element={<Search/>}></Route>
+        <Route path={'/country/:code'} element={<Country/>}></Route>
+        <Route path={'*'} element={<NotFound/>}></Route>
+      </Routes>
+    </Layout>
+  );
+}
+export default App
+```
+
+### ⚙️ [useParams](https://reactrouter.com/en/main/hooks/use-params)
+
+- URL Params의 값을 객체 형태로 반환한다.
+- `key` : Route 에서 설정한 Path Parameter의 이름
+- `value` : Route에서 설정한 Path Parameter에 실제로 전달된 값
+
+> /post/:id로 path를 설정했을 때, 유저가 /post/1로 접속할 경우 useParams가 반환하는 객체의 key는 id이고, value는 1이다.
+
+```jsx
+import { useParams } from 'react-router-dom';
+
+export default function Country(){
+   const params = useParams();
+   console.log(params); // {code : 'KOR'}
+   return(
+      <div>
+         Country! {params.code}
+      </div>
+   );
+}
+```
+
+<br/>
+
+### QueryString
+
+- URL에 쿼리 스트링을 포함시켜주면 된다. 특별한 설정을 할 필요는 없다.
+  - Link 컴포넌트 예시 : `<Link to="/list?sort=popular" />`
+  - navigate 함수 예시 : `navigate("/list?sort=popular")`
+
+### ⚙️ [useSearchParams](https://reactrouter.com/en/main/hooks/use-search-params)
+
+- QueryString (예 : ?sort=popular&sort=latest) 에서 원하는 값만 꺼내올 수 있도록 도와주는 Hook
+
+```jsx
+const [searchParams, setSearchParams] = useSearchParams();
+```
+
+- searchParams.get(key) : 쿼리 스트링에서 특정 key의 value 값 반환 (하나만)
+- searchParams.getAll(key) : 쿼리 스트링에서 특정 key의 모든 value 값을 배열로 반환
+- searchParams.toString() : 객체 형태의 쿼리 스트링을 문자열 형태로 반환
+
+<br/>
+
 ## 🔗 참고
 
 - [React Router에 대해 알아보자](https://velog.io/@jeong_lululala/react-router-routes)
 - [React-Router-Dom 개념잡기](https://velog.io/@kandy1002/React-Router-Dom-개념잡기)
 - [React Router React Router v6 튜토리얼](https://velog.io/@velopert/react-router-v6-tutorial)
 - [History API](https://velog.io/@minw0_o/history-API란)
+- [프로젝트로 배우는 React.js & Next.js 마스터리 클래스](https://www.udemy.com/share/109oZ43@XS9FkiC8txXm2etyCS6hUlW6ZOVqD2qk_sJ7LrK8tdykLM4e8LanybWgL0RA8r-GWA==/)
+- [Dynamic Routing & Query String](https://sylagape1231.tistory.com/112)
