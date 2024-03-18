@@ -200,7 +200,7 @@ export default function Glossary(props) {
 - `스타일 가이드` 어떤 서비스에 들어간 모든 디자인 요소들을 정의한 문서를 의미 (Theme)
 - `컴포넌트 라이브러리` 스타일 가이드에 있는 디자인을 재활용 가능한 코드로 만들어 놓은것 (Component)
 
-두가지를 개념을 활용하기 위해서 알아야 한다.
+  __⇒ 스타일 가이드를 기준으로 디자인 요소들을 정의해둔 컴포넌트를 활용하기 위해서__
 
 <br/>
 
@@ -236,6 +236,11 @@ export default function Glossary(props) {
 
 - [Atlassian Design System](https://atlassian.design/) : Jira, Trello, Bitbucket, Sourcetree를 운영하는 회사
 - [Material Design (Google)](https://m3.material.io/)
+- [Base Web (Uber)](https://baseweb.design/)
+- [Polaris (Shopify)](https://polaris.shopify.com/)
+- [Lightning Design System (Salesforce)](https://www.lightningdesignsystem.com/)
+- [Mailchimp Pattern Library](https://ux.mailchimp.com/patterns/color)
+- [Ant Design](https://ant.design/)
 - [LINE Design System](https://designsystem.line.me/)
 
 <br/>
