@@ -53,4 +53,4 @@
 * [CSS in JS](./cssinjs/README.md)
   * [Design System](./cssinjs/designsystem.md)
   * [CSS](./cssinjs/css.md)
-  * [CSS in JS](./cssinjs/cssinjs.md)
+  * [CSS in JS](./cssinjs/css_in_js.md)
