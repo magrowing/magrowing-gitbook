@@ -254,7 +254,7 @@ export default function Glossary(props) {
 
 ### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
 
-> Atomic design is methodology for creating design systems.
+> Atomic design is methodology for __creating design systems.__
 
 - 디자인 시스템을 만들기 위한 방법론
 
