@@ -34,7 +34,7 @@ CSS의 Global Scope와 Specificity 문제는 __CSS의 구조상 해결할 수 �
 
 <br/>
 
-### CSS in JS 동작 원리
+### CSS in JS 특징
 
 #### 📌 runtime
 
@@ -56,7 +56,7 @@ Javascript __runtime에서__ 필요한 CSS를 동적으로 만들어 적용한�
 
 <br/>
 
-#### 1. CSS in JS 라이브러리 :   💅🏻 Styled Components
+#### CSS in JS 라이브러리 :   💅🏻 Styled Components
 
 - JS 파일 안에 컴포넌트 이름을 쓰듯 스타일을 선언하는 방식
 
@@ -76,7 +76,7 @@ export default function Greeting() {
 }
 ```
 
-#### 2. CSS in JS 라이브러리 : 👩🏻‍🎤 Emotion
+#### CSS in JS 라이브러리 : 👩🏻‍🎤 Emotion
 
 - Styled-Components와 마찬가지로 CSS-In-JS 라이브러리 종류 중 하나
 - MUI(Material UI)가 스타일링 엔진을 Emotion으로 채택하면서 이목이 집중되고 있다.
@@ -90,7 +90,7 @@ export default function Greeting() {
 
 <br/>
 
-## 새로운 CSS 패러다임  : Atomic CSS
+## 새로운 CSS 패러다임, Atomic CSS
 
 #### `2017` TailwindCSS
 
@@ -117,12 +117,12 @@ JS가 아닌 CSS 생태계에서 이를 해결하고자 하는 새로운 패러�
 
 <br/>
 
-## CSS in JS 시대의 시작, Zero-Runtime CSS
+## CSS in JS 대유행, Zero-Runtime CSS
 
 2020년 ~ 2021년쯤부터, React의 압도적인 점유율로 인해 CSS-In-JS의 대유행이 시작되었디.
 그래서 Runtime CSS in JS의 문제점을 해결하고자 `Zero-Runtime CSS-In-JS` 등장하게 되었다.
 
-### Zero-Runtime CSS-In-JS 동작 방식
+### Zero-Runtime CSS-In-JS
 
 - JS Bundle에서 Style코드를 모두 실행되어야 페이지가 로드되는 방식으로 동작
 - Runtime에 스타일을 생성하지 않으면서 더 빨리 페이지를 로드 할 수 있다는 장점
