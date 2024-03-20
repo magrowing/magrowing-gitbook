@@ -76,6 +76,21 @@ export default function Greeting() {
 }
 ```
 
+#### [공식문서](https://styled-components.com/docs/basics#motivation)에 따르면, 아래와 같은 기능을 제공한다
+
+- `Automatic critical CSS`
+  - 페이지의 컴포넌트를 추적해 필요한 스타일만 삽입한다.
+- `No class name bugs`
+  - 스타일에 대해 __고유한 클래스 이름을 생성한다.__
+- `Easier deletion of CSS`
+  - 모든 스타일링이 특정 컴포넌트와 연결된다. 따라서 컴포넌트가 삭제 되면 해당 컴포넌트의 모든 스타일도 함께 삭제된다.
+- `Simple Dynamic Styling`
+  - props나 global theme에 기반하여 여러 컴포넌트의 스타일을 쉽고 직관적으로 적용할 수 있다.
+- `Painless Maintenance`
+  - 컴포넌트에 영향을주는 스타일을 찾기 위해 다른 파일을 찾지 않아도 되어 유지 관리가 쉽습니다.
+- `Automatic Vendor Prefixing`
+  - 자동으로 벤더 프리픽스를 붙여준다.
+
 #### CSS in JS 라이브러리 : 👩🏻‍🎤 Emotion
 
 - Styled-Components와 마찬가지로 CSS-In-JS 라이브러리 종류 중 하나
