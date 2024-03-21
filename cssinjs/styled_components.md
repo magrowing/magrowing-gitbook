@@ -13,7 +13,7 @@
 
 <br/>
 
-## [Styled Components](https://styled-components.com/)
+## 💅🏻 [styled-components](https://styled-components.com/)
 
 - CSS in JS 라이브러리
 - CSS의 문제점을 해결하고자 자바스크립트 코드로 CSS를 작성하는 방식으로 설계
@@ -85,7 +85,7 @@ export default App;
 
 <br/>
 
-### Props
+### props
 
 - [Passed props](https://styled-components.com/docs/basics#passed-props)
 - props를 이용해서 활성화 여부를 표현하거나 특정 스타일을 잡아 주고 싶을 때 유용
@@ -162,7 +162,7 @@ export default Button
 
 <br/>
 
-### Reset CSS 설정
+### Reset CSS
 
 - [styled-reset](https://github.com/zacanger/styled-reset) 패키지 설치
 
@@ -190,7 +190,7 @@ export default function App() {
 
 <br/>
 
-### Global Style 적용
+### Global Style
 
 - `styles` 폴더 , `GlobalStyle.ts` 파일 생성
 
