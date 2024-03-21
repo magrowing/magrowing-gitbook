@@ -52,7 +52,7 @@ Javascript __runtime에서__ 필요한 CSS를 동적으로 만들어 적용한�
 #### 단점
 
 - 스타일이 수시로 변경되는 스크롤,드래그 애 드롭 과 같은 복잡한 애니메이션 사용시 스타일 계산 비용이 커지기 때문에 런타임에 오버헤드가 발생 할 수 있다.
-- 별도의 라이브러리를 설치하기 때문에 번들 크기가 커진다
+- 별도의 라이브러리를 설치하기 때문에 번들 크기가 커진다.
 
 <br/>
 
@@ -91,6 +91,8 @@ export default function Greeting() {
 - `Automatic Vendor Prefixing`
   - 자동으로 벤더 프리픽스를 붙여준다.
 
+<br/>
+
 #### CSS in JS 라이브러리 : 👩🏻‍🎤 Emotion
 
 - Styled-Components와 마찬가지로 CSS-In-JS 라이브러리 종류 중 하나
@@ -109,7 +111,7 @@ export default function Greeting() {
 
 #### `2017` TailwindCSS
 
-JS가 아닌 CSS 생태계에서 이를 해결하고자 하는 새로운 패러다임을 CSS 프레임워크가 나타나게 되었고,
+JS가 아닌 CSS 생태계에서 이를 해결하고자 하는 새로운 패러다임으로 CSS 프레임워크
 `Utiliy-First`라고 불리는 방식의 TailwindCSS 등장하게 된다.
 
 ![출처 Les-enovateurs](./image/TailwindCSS.jpeg)
@@ -128,20 +130,20 @@ JS가 아닌 CSS 생태계에서 이를 해결하고자 하는 새로운 패러�
 
 - HTML과 CSS의 분리가 되지 않아 코드가 길어지고, 가독성이 떨어짐
 - rem 단위가 기본이기 때문에, px단위  서비스라면 기본값을 변경 해야 한다.
-- 빌드 타임에 모두 생성되므로 동적 변소를 사용할 수 없어 의존성 라이브러리 설치가 필요하다.
+- 빌드 타임에 모두 생성되므로 동적 변수를 사용할 수 없어 의존성 라이브러리 설치가 필요하다.
 
 <br/>
 
 ## CSS in JS 대유행, Zero-Runtime CSS
 
-2020년 ~ 2021년쯤부터, React의 압도적인 점유율로 인해 CSS-In-JS의 대유행이 시작되었디.
+2020년 ~ 2021년쯤부터, React의 압도적인 점유율로 인해 CSS-In-JS의 대유행이 시작되었다.
 그래서 Runtime CSS in JS의 문제점을 해결하고자 `Zero-Runtime CSS-In-JS` 등장하게 되었다.
 
 ### Zero-Runtime CSS-In-JS
 
 - JS Bundle에서 Style코드를 모두 실행되어야 페이지가 로드되는 방식으로 동작
 - Runtime에 스타일을 생성하지 않으면서 더 빨리 페이지를 로드 할 수 있다는 장점
-  - Build Time에 CSS를 생성해야 하기에 webpack 설정을 해야 한다.
+  - Build Time에 CSS를 생성해야 하기에 webpack 등 빌드 위한 설정을 따로 해야 한다.
 
 #### `2020` Vanilla Extract
 
