@@ -61,6 +61,6 @@
 
 * [쇼핑몰 기능 구현](./shopping_mall/README.md)
   * [개발 하기 전 준비](./shopping_mall/environment.md)
-  * [상품 목록 확인](./shopping_mall/product_list.md)
-  * [상품 상세 정보 확인](./shopping_mall/product_detail.md)
+  * [상품 목록 페이지](./shopping_mall/product_list.md)
+  * [상품 상세 페이지](./shopping_mall/product_detail.md)
   * [장바구니](./shopping_mall/cart.md)

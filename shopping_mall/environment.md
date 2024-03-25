@@ -19,7 +19,7 @@
 
 - `Order` : 주문
   - 동일한 LineItem 활용.
-- `User`: 사용자
+- `User` : 사용자
 
 <br/>
 
