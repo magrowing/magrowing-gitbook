@@ -8,8 +8,8 @@
   - `Image` : 상품 이미지
   - `Option` : 상품에 대한 상세 옵션 종류 (색상, 크기 등)
   - `OptionItem` : 옵션에 대한 상세 옵션 값 (옵션이 색상이라면 이건 Blue, Red 의미)
-- `Category`: 상품에 대한 분류
-- `Cart`: 장바구니
+- `Category` : 상품에 대한 분류
+- `Cart` : 장바구니
   - `LineItem` : 장바구니에 담긴 것
     - 상품, 옵션, 수량 등을 동시에 다룸
     - 여기서도 Option과 OptionItem을 사용한다.
@@ -70,11 +70,8 @@
 ### 세팅 목록
 
 - TypeScript
-
 - ESLint
-
 - React
-
 - Parcel
 
 #### Routing
@@ -86,13 +83,14 @@
 - [styled-components](https://github.com/styled-components/styled-components)
 - [styled-reset](https://github.com/zacanger/styled-reset)
 
-#### hook
+#### Hook
 
 - [usehooks-ts](https://github.com/juliencrn/usehooks-ts)
 
 #### API
 
-- [Axios](https://github.com/axios/axios) : REST API 사용을 위한 HTTP 클라이언트
+- [Axios](https://github.com/axios/axios)
+  - REST API 사용을 위한 HTTP 클라이언트
 
 #### External Store
 
@@ -102,9 +100,11 @@
 
 #### Test
 
-- [jest-dom](https://github.com/testing-library/jest-dom)
-  - React Testing Library에서 활용할 수 있는 DOM 확인용 Matcher 모음
-  - 테스트 코드의 의미를 더욱 명확히 하기 위해 사용
+- Jest
+- React Testing Library
+  - [jest-dom](https://github.com/testing-library/jest-dom)
+    - React Testing Library에서 활용할 수 있는 DOM 확인용 Matcher 모음
+    - 테스트 코드의 의미를 더욱 명확히 하기 위해 사용
 - [MSW](https://github.com/mswjs/msw)
 - [CodeceptJS](https://github.com/codeceptjs/CodeceptJS) : E2E 테스트시 사용
 
