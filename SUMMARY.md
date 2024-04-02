@@ -64,3 +64,4 @@
   * [상품 목록 페이지](./shopping_mall/product_list.md)
   * [상품 상세 페이지](./shopping_mall/product_detail.md)
   * [장바구니](./shopping_mall/cart.md)
+  * [로그인](./shopping_mall/login.md)
