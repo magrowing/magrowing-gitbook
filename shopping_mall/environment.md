@@ -30,11 +30,11 @@
 1. 상품 목록 확인
 2. 상품 상세 정보 확인
 3. 장바구니에 상품 담기
-4. 주문하기 → 배송지 입력, 결제
-5. 주문 목록 확인
-6. 주문 상세 확인
-7. 로그인
-8. 회원 가입
+4. 로그인
+5. 회원 가입
+6. 주문 목록 확인
+7. 주문 상세 확인
+8. 주문하기 → 배송지 입력, 결제
 
 <br/>
 
@@ -57,7 +57,9 @@
 ## 🌐 REST API
 
 - [📄 온라인 쇼핑몰 API](https://docs.google.com/document/d/1bGYl3IDoX53cNBbZHNlsRhPLZQ3Qiu-Jm3gpqyu_xI0/view)
+- [📄 인증/인가가 적용된 온라인 쇼핑몰 API](https://docs.google.com/document/d/1bGYl3IDoX53cNBbZHNlsRhPLZQ3Qiu-Jm3gpqyu_xI0/view)
 - `API Base URL` [https://shop-demo-api-01.fly.dev/](https://shop-demo-api-01.fly.dev/)
+- `인증/인가 적용된 API Base URL` [https://shop-demo-api-02.fly.dev/](https://shop-demo-api-02.fly.dev/)
 
 <br/>
 
