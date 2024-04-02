@@ -57,7 +57,7 @@
   * [CSS in JS](./cssinjs/css_in_js.md)
   * [styled-components](./cssinjs/styled_components.md)
 
-### Start Megaptera Shop Client
+## PROJECT
 
 * [쇼핑몰 기능 구현](./shopping_mall/README.md)
   * [개발 하기 전 준비](./shopping_mall/environment.md)
