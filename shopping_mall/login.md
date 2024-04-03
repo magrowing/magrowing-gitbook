@@ -2,7 +2,7 @@
 
 ## 학습 키워드
 
-- 로그인 구현 방식
+- 로그인 인증 방식
   - HTTP 통신
   - Cookie
   - Session
@@ -37,7 +37,7 @@ Stateless : 이전 상태를 유지/기억하지 않는다.
 3. 이후 다시 유저가 웹사이트에 접하게 되면 쿠키 저장소에서 이전에 서버에서 발급해준 쿠키정보를 `요청헤더`의 `Cookie`에 담아 보내게 된다.
 4. 서버에서 이 쿠키값을 확인하여 해당 요청의 클라이언트가 누군지 식별할 수 있다.
 
-![출처 gwjeon.log](./images/cookie.png)
+![출처 gwjeon.log Velog](./images/cookie.png)
 
 #### Cookie 단점
 
@@ -92,7 +92,7 @@ Stateless : 이전 상태를 유지/기억하지 않는다.
 2. 서버는 `비밀키`를 사용해 Json 객체를 암호화한 `JWT 발급`
 3. JWT을 헤더에 담아 클라이언트에 보낸다.
 
-여기까지가 JWT(Access Token)을 발급받기까지의 과정, 로그인 이후에는
+여기까지가 JWT을 발급받기까지의 과정, 로그인 이후에는
 
 1. 클라이언트는 JWT을 `브라우저 저장소` 저장해둔다.
 2. 로그인 정보가 필요한 API Call마다 header에 토큰을 실어서 보낸다.
@@ -113,7 +113,7 @@ Stateless : 이전 상태를 유지/기억하지 않는다.
 }
 ```
 
-- JWT를 어떻게 검증하는지에 대한 내용이 들어가 있다.
+- JWT를 __어떻게 검증하는지에__ 대한 내용이 들어가 있다.
 - 토큰타입, 암호화 알고리즘이 어떤 알고리즘인지에 대한 정보가 들어 있다.
 
 #### 📌 payload
@@ -165,18 +165,92 @@ exp : 토큰의 만료 시각 (expired)
 
 ## 로그인 기능 구현
 
-프론트엔드 입장에서 로그인은 사용자의 usename, password 등 유저의 특정 정보를 서버로 전송해서 서버로부터 유저에 대해 인증을 받는 과정
+프론트엔드 입장에서 로그인은 사용자의 usename, password 정보를 서버로 전송해서 서버로부터 유저에 대해 인증을 받는 과정
+(JTW를 얻는 과정)
 
-<br/>
+### LoginPage
 
-### 로그인 페이지
-
-- Access Token 얻어 usehooks-ts의 useLocalStorage를 사용해서 전역적으로 동기화한다.
+- 서버로부터 Access Token 얻어 usehooks-ts의 useLocalStorage를 사용해서 전역적으로 동기화
+- `useLoginFormStore` 사용해서 Access Token이 바뀌었을 때(로그인 시) 홈(/)으로 리다이렉션
 
 ```
 - LoginPage
- 
+  - useLoginFormStore
+    - LoginFormStore
+  - LoginForm
+    - TextBox
 ```
+
+<br/>
+
+### 로그인 관련 store
+
+- src/hooks/useLoginFormStore.ts
+- src/stores/LoginFormStore.ts
+
+<br/>
+
+### 로컬 스토리지 사용을 위한 `useAccessToken` hook 생성
+
+- Access Token 관리 기술을 감추기 위해 hook 사용
+- usehooks-ts의 useLocalStorage를 사용
+
+```ts
+// useAccessToken.ts
+import { useLocalStorage } from 'usehooks-ts';
+
+export default function useAccessToken() {
+  const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
+
+  useEffect(() => {  // 👈🏻 이부분 구현 부분 막힘
+    apiService.setAccessToken(accessToken);
+  }, [accessToken]);
+
+  return { accessToken, setAccessToken };
+}
+```
+
+> 👩🏻‍💻 시도 useLocalStorage를 사용하지 않고 직접 구현하려고 했으나, 생각대로 되지 않음.
+
+- 처음 로컬스토리지 생성하는 영역은 완성
+- API 구현되면서 로컬스토리지 갱신하는 부분에서 막힘. 갱신되지만 화면이 업데이트 되지 않음.  
+
+<br/>
+
+### 로그인 API 호출 메서드 추가
+
+- src/services/ApiService.ts
+
+<br/>
+
+### 로그인 여부에 따라 UI 변경
+
+- GNB 구성이 바뀌도록 Header 변경
+- `addToCartForm` 조건처리
+
+<br/>
+
+### API 호출할 때 AccessToken 사용
+
+- src/services/ApiService.ts
+- `setAccessToken` 메서드를 추가해서 API 호춯할 때 Access Token 전달하게 한다.
+  - Axios 인스턴스를 다시 만들어 주면 다른 메서드를 수정하지 않아도 된다.
+
+<br/>
+
+### AccessToken 확인
+
+- 사이트를 로그인해서 처음 진입 했을 경우, AccessToken 확인하고 `사용자 정보`를 얻는 작업을 수행한다.
+- 로그인한 회원정보 얻기
+
+#### API 호출 해서 현재 사용자 id, name 을 얻기
+
+- src/services/ApiService.ts
+- `fetchCurrentUser` 메서드 추가
+
+#### 확인을 위한 hook 생성
+
+- useCheckAccessToken
 
 <br/>
 
@@ -187,3 +261,4 @@ exp : 토큰의 만료 시각 (expired)
 - [로그인 구현 - 쿠키와 세션](https://velog.io/@won-developer/로그인-구현-쿠키와-세션-n3wwrtip)
 - [프론트에서 안전하게 로그인 처리하기](https://velog.io/@yaytomato/프론트에서-안전하게-로그인-처리하기)
 - [JWT의 Refresh Token과 Access Token은 어디에 저장해야 할까?](https://blogeon.tistory.com/entry/JWT%EC%9D%98-Refresh-Token%EA%B3%BC-Access-Token%EC%9D%80-%EC%96%B4%EB%94%94%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%B4%EC%95%BC-%ED%95%A0%EA%B9%8C)
+- [[네트워크] HTTP 쿠키와 세션이란 ?](https://noahlogs.tistory.com/38)
