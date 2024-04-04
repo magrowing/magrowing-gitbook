@@ -27,15 +27,15 @@ __하나의 관심사는 하나의 기능을(역활만) 가지도록 구성한�
 예를 들어, 아래와 같이 나타 낼 수 있다. 이는 `기능`을 위주로 분리했다.
 
 ```
-├── App
-│   ├── Header
-│   ├── Main
-│   │   ├── Greeting
-│   │   ├── Counter
-│   │   ├── Posts
-│   │   └── PostForm
-│   │         └── TextField 
-│   ├── Footer
+-  App
+  - Header
+  - Main
+    - Greeting
+    -  Counter
+    -  Posts
+        - PostForm
+            - TextField 
+  -  Footer
 ```
 
 이런 식으로 분리하는 이유는 무엇일까?
@@ -186,7 +186,7 @@ export default function Counter() {
 ### useReducer를 통해 (feat.forceUpdate)
 
 Class 컴포넌트를 쓰던 시절에는 forceUpdate 함수를 통해 강제로 리렌더링을 했다. 그러나
-Function 컴포넌트는 useReducer hook을 사용해서 상태를 만들어 강제로 리렌더링 함으로서 해결
+Function 컴포넌트는 useReducer hook을 사용해서 상태를 리렌더링 함으로서 해결
 
 - [forceUpdate와 같은 것이 있습니까?](https://ko.legacy.reactjs.org/docs/hooks-faq.html#is-there-something-like-forceupdate)
 
