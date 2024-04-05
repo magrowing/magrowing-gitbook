@@ -158,8 +158,9 @@ exp : 토큰의 만료 시각 (expired)
 #### 🗳️ 클라이언트가 토큰을 관리하는 방법
 
 - 토큰을 유지하는 방법에는 다양한 브라우저 저장소에 저장하는 방법이 있다.
-  - secure httpOnly 쿠키, 로컬스토리지, 쿠키 등이 있다.
+  - 비공개 변수, 로컬 스토리지, 세션 스토리지, 쿠키 등이 있다.
 - 브라우저 저장소에 저장하면 보안 이슈가 있다.
+  - React를 사용하면 XSS공격을 어느정도 막아준다고 한다. 완벽한 방법은 아니다.
 
 <br/>
 
@@ -195,6 +196,8 @@ exp : 토큰의 만료 시각 (expired)
 - Access Token 관리 기술을 감추기 위해 hook 사용
 - usehooks-ts의 useLocalStorage를 사용
 
+> 🤔 LocalStorage 토근을 저장하는 방식은 보안상 문제가 생길 수 있음.(XSS 공격) 그렇다면 어떻게 클라이언트 측에서 토큰을 가지고 있어야 할 때 어떤 방식으로 가지고 있어야 할까?
+
 ```ts
 // useAccessToken.ts
 import { useLocalStorage } from 'usehooks-ts';
@@ -202,7 +205,7 @@ import { useLocalStorage } from 'usehooks-ts';
 export default function useAccessToken() {
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
-  useEffect(() => {  // 👈🏻 이부분 구현 부분 막힘
+  useEffect(() => {  // 로컬스토리지의 토큰값을 얻어 API call 할때 header 넣어주는 역활
     apiService.setAccessToken(accessToken);
   }, [accessToken]);
 
@@ -210,10 +213,7 @@ export default function useAccessToken() {
 }
 ```
 
-> 👩🏻‍💻 시도 useLocalStorage를 사용하지 않고 직접 구현하려고 했으나, 생각대로 되지 않음.
-
-- 처음 로컬스토리지 생성하는 영역은 완성
-- API 구현되면서 로컬스토리지 갱신하는 부분에서 막힘. 갱신되지만 화면이 업데이트 되지 않음.  
+> 👩🏻‍💻 시도 useLocalStorage를 사용하지 않고 직접 구현하려고 했으나, 로컬스토리지 갱신한면서 화면이 업데이트 되지 않았음.
 
 <br/>
 
@@ -233,8 +233,9 @@ export default function useAccessToken() {
 ### API 호출할 때 AccessToken 사용
 
 - src/services/ApiService.ts
-- `setAccessToken` 메서드를 추가해서 API 호춯할 때 Access Token 전달하게 한다.
-  - Axios 인스턴스를 다시 만들어 주면 다른 메서드를 수정하지 않아도 된다.
+- `setAccessToken` 메서드를 추가해서 API 호출할 때 Access Token 전달하게 한다.
+  - Axios 인스턴스를 다시 만들어 주는 방식으로 처리
+  - 해당 메소드가 사용되는 파일은 `/src/hooks/useAccessToken.tsx` hooks
 
 <br/>
 
@@ -262,3 +263,5 @@ export default function useAccessToken() {
 - [프론트에서 안전하게 로그인 처리하기](https://velog.io/@yaytomato/프론트에서-안전하게-로그인-처리하기)
 - [JWT의 Refresh Token과 Access Token은 어디에 저장해야 할까?](https://blogeon.tistory.com/entry/JWT%EC%9D%98-Refresh-Token%EA%B3%BC-Access-Token%EC%9D%80-%EC%96%B4%EB%94%94%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%B4%EC%95%BC-%ED%95%A0%EA%B9%8C)
 - [[네트워크] HTTP 쿠키와 세션이란 ?](https://noahlogs.tistory.com/38)
+- [JWT 토큰 저장 방식?/위치? 정리 (보안)](https://dreamcode.tistory.com/444)
+- [Access Token과 Refresh Token을 어디에 저장해야 할까?](https://velog.io/@ohzzi/Access-Token%EA%B3%BC-Refresh-Token%EC%9D%84-%EC%96%B4%EB%94%94%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%B4%EC%95%BC-%ED%95%A0%EA%B9%8C)
