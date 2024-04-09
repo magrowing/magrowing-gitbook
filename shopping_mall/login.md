@@ -206,7 +206,7 @@ export default function useAccessToken() {
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
   useEffect(() => {  // 로컬스토리지의 토큰값을 얻어 API call 할때 header 넣어주는 역활
-    apiService.setAccessToken(accessToken);
+    apiService.setAccessToken(accessToken);ㅂ
   }, [accessToken]);
 
   return { accessToken, setAccessToken };
