@@ -1,8 +1,8 @@
 # 개발 환경
 
-## Vite 이용한 방식
+## Vite
 
-### 세팅
+### React + TypeScript + ESlint
 
 ```shell
 npm create vite@latest
@@ -12,7 +12,7 @@ npm create vite@latest
 - TypeScript
 - Eslint
 
-### jest & React-Testing-Library
+### jest & React Testing Library
 
 ```shell
 npm i -D jest @types/jest ts-jest(?)
@@ -54,14 +54,13 @@ module.exports = {
 
 #### `setupTests.ts` 설정 파일 생성
 
-- `jest.config.ts` 설정한대로 생성해줘야함.
-  - 📁 src 내에 생성했음
-
 ```ts  
 {
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
 };
 ```
+
+> `jest.config.ts` 설정한 root로 설정해야한다.
 
 ```ts
 // src/setupTests.ts
@@ -78,3 +77,9 @@ import '@testing-library/jest-dom'; // 👈🏻 작성해야함.
   "watch:test": "jest --watchAll"
 },
 ```
+
+<br/>
+
+### 🔗 참고
+
+- [Vite 프로젝트 Jest 추가하기](https://velog.io/@thdrldud369/Vite-프로젝트에-jest-추가하기)
