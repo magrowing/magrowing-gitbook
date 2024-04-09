@@ -67,3 +67,4 @@
   * [장바구니](./shopping_mall/cart.md)
   * [로그인](./shopping_mall/login.md)
   * [로그아웃](./shopping_mall/logout.md)
+  * [회원가입](./shopping_mall/signup.md)
