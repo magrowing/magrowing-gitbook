@@ -4,7 +4,8 @@
 
 ```
 - ProductListPage
-  - useFetchProducts.tsx(ts)  // 👈🏻 상품 목록 얻기
+  - useFetchProducts.tsx  // 👈🏻 상품 목록 얻기
+   - ProductsStore  // 👈🏻 store 생성 
   - Products.tsx  // 👈🏻 상품 목록 보여주기
     - Product.tsx // 👈🏻 개별 상품 보여주기
 ```
@@ -13,14 +14,14 @@
 
 - 상품 목록을 얻어 상품 리스트를 보여주는 페이지
 - 상품 목록을 서버로 부터 얻기 위해 `useFetchProducts` hook 생성
-- useFetchProducts hook으로 부터 얻은 상품목록을 `Products` 컴포넌트로 구현
+- useFetchProducts hook으로 부터 얻은 상품목록을 `Products` 컴포넌트로 UI 구현
 
 <br/>
 
 ### useFetchProducts
 
-- tsx : axios 사용, `GET /products` 요청으로 응답받은 상품 목록 리스트 반환
-- ts : Store로부터 상품목록을 받아 관리하는 hook으로 변경
+1. axios 사용, `GET /products` 요청으로 응답받은 상품 목록 리스트 반환
+2. `ProductsStore` 부터 상품목록에 대한 상태와 API 요청과 관련된 액션 생성자를 얻어 상품목록을 반환하는 hook으로 변경
 
 <br/>
 
