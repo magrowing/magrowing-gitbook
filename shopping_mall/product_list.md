@@ -3,39 +3,42 @@
 ## 상품 목록
 
 ```
-- ProductListPage
-  - useFetchProducts.tsx  // 👈🏻 상품 목록 얻기
-   - ProductsStore  // 👈🏻 store 생성 
-  - Products.tsx  // 👈🏻 상품 목록 보여주기
-    - Product.tsx // 👈🏻 개별 상품 보여주기
+- ProductListPage.tsx
+  - useFetchProducts.ts  // 👈🏻 store로 부터 상품 목록 얻어 반환 
+    - ProductsStore.ts  // 👈🏻 store 생성 
+      - ApiService.ts  // 👈🏻 API 호출 모아서 관리하는 파일
+  - Products.tsx  // 👈🏻 상품 목록 리스트 
+    - Product.tsx // 👈🏻 개별 상품 
+      - numberFormat.ts // 👈🏻 유틸리티 함수
 ```
 
-### ProductListPage.tsx
+### `ProductListPage.tsx`
 
 - 상품 목록을 얻어 상품 리스트를 보여주는 페이지
-- 상품 목록을 서버로 부터 얻기 위해 `useFetchProducts` hook 생성
-- useFetchProducts hook으로 부터 얻은 상품목록을 `Products` 컴포넌트로 UI 구현
 
-<br/>
+### `useFetchProducts.ts`
 
-### useFetchProducts
+- __ProductsStore.ts__ 부터 상품목록에 대한 상태와 API 요청 함수 호출 후 상품목록을 반환하는 hook
 
-1. axios 사용, `GET /products` 요청으로 응답받은 상품 목록 리스트 반환
-2. `ProductsStore` 부터 상품목록에 대한 상태와 API 요청과 관련된 액션 생성자를 얻어 상품목록을 반환하는 hook으로 변경
+### `ProductsStore.ts`
 
-<br/>
+- 상품 목록에 대한 상태, API 요청 액션 함수로 구성
 
-### Products.tsx
+### `ApiService.ts`
 
-- `JSON.stringify` 를 통해 데이터 확인
-- props 로 상품 목록 리스트 배열 전달 받는 역활
+- API 호출을 모아 모아서 관리하는 파일
 
-<br/>
+### `Products.tsx`
 
-### Product.tsx
+- props로 전달받은 상품 목록 리스트 (__products__) 정보로 UI 구현
 
-- 상품 1개의 정보를 담고 있는 역활
-- 가격의 숫자를 읽기 좋게 보여주기 위해 `numberFormat` 유틸 함수로 구현
+### `Product.tsx`
+
+- props로 개별 상품의 정보로 UI구현
+
+### `numberFormat.ts`
+
+- 가격의 숫자를 읽기 좋게 보여주기 위해 유틸리티 함수 작성
 
 ```ts
 export default function numberFormat(value: number) {
@@ -43,9 +46,9 @@ export default function numberFormat(value: number) {
 }
 ```
 
-### 📖 [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
+#### 📖 [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
 
-- 다국어 지원을 할 때 유용하게 쓸수 있는 Intl API
+> 다국어 지원을 할 때 유용하게 쓸수 있는 Intl API
 
 #### [Intl.NumberFormat](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)
 
@@ -53,119 +56,13 @@ export default function numberFormat(value: number) {
 
 <br/>
 
-### 상품 목록은 Store로 관리
-
-- `ProductsStore.ts` : 서버부터 응답받은 반환값 상품목록 가지고 있는 Store
-
-```ts
-@singleton()
-@Store()
-export default class ProductsStore {
-  products: ProductSummary[] = [];
-
-  async fetchProducts() { 
-    this.setProducts([]);
-
-    const { data } = await axios.get(`${apiBaseUrl}/products`); // 👈🏻 API요청 
-    const { products } = data;
-
-    this.setProducts(products);
-  }
-
-  @Action()
-  setProducts(products: ProductSummary[]) {
-    this.products = products;
-  }
-}
-```
-
-<br/>
-
 ## 카테고리 목록
 
 ```
 - Header
-  - useFetchCategories.tsx(ts)  // 👈🏻 카테고리 목록 얻기
+  - useFetchCategories.ts  // 👈🏻 카테고리 목록 얻기
   - category.tsx  // 👈🏻 카테고리 보여주기
 ```
-
-### 카테고리 목록을 Store로 관리
-
-- `CategoriesStore.ts` : 서버부터 응답받은 반환값 카테고리 목록을 가지고 있는 Store
-
-```ts
-@singleton()
-@Store()
-export default class CategoriesStore {
-  categories: Category[] = [];
-
-  async fetchCategories() {
-    this.setCategories([]);
-
-    const { data } = await axios.get(`${apiBaseUrl}/Categories`); // 👈🏻 API요청 
-    const { categories } = data;
-
-    this.setCategories(categories);
-  }
-
-  @Action()
-  setCategories(categories: Category[]) {
-    this.categories = categories;
-  }
-}
-```
-
-### useFetchCategories
-
-- tsx : axios 사용, `GET /categories` 요청으로 응답받은 카테고리 목록 리스트 반환
-- ts : Store로부터 상품목록을 받아 관리하는 hook으로 변경
-
-<br/>
-
-### ✅ Refactor
-
-- 상품목록을 관리 하는 Store 와 카테고리 목록을 관리하는 Store 의 중복코드 제거
-  - apiBaseUrl
-  - Store 와 Axios의 관계
-
-#### 1. `services` 폴더 및 `ApiService.ts` 생성
-
-- API 호출을 모아주는 역활
-- API의 base URL을 지정하기 위해 환경변수를 활용
-
-```ts
-import axios from 'axios';
-
-import { Category, ProductSummary } from '../types';
-
-const API_BASE_URL = process.env.API_BASE_URL
-                      || 'https://shop-demo-api-01.fly.dev';
-
-export default class ApiService {
-  private instance = axios.create({
-    baseURL: API_BASE_URL,
-  });
-
-  async fetchCategories(): Promise<Category[]> {
-    const { data } = await this.instance.get('/categories');
-    const { categories } = data;
-    return categories;
-  }
-
-  async fetchProducts({ categoryId } :{categoryId? : string} = {}): Promise<ProductSummary[]> {
-    const { data } = await this.instance.get('/products', { params: { categoryId } });
-    const { products } = data;
-    return products;
-  }
-}
-
-export const apiService = new ApiService();
-```
-
-#### 2.Store 파일에서 axios API 호출 → `apiService` 변경
-
-- useProducts.ts
-- useCategories.ts
 
 <br/>
 
