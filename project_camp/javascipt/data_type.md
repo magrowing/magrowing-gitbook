@@ -47,7 +47,6 @@
 ### 참조 자료형 (Reference DataType)
 
 - 객체(Object, Array, Function)
-- 메모리 공간의
 
 <br/>
 
@@ -67,7 +66,7 @@ console.log(typeof function Fun() {}); //function
 
 <br/>
 
-### 🤔 Data Type이 필요한 이유는 무엇일까?
+### 🤔 DataType이 필요한 이유는 무엇일까?
 
 - 메모리 공간 확보 및 값을 참조하기 위해서 필요
 
