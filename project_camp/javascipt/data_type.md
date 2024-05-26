@@ -3,10 +3,9 @@
 ## 학습 키워드
 
 - 자료형(DataType)
-  - 기본자료형 (Primitive DataType)
-  - 참조자료형 (Reference DataType)
+  - 원시 자료형 (Primitive DataType)
+  - 참조 자료형 (Reference DataType)
   - 데이터 자료형 확인 typeof
-- Primitive DataType vs Reference DataType
 
 <br/>
 
@@ -14,7 +13,7 @@
 
 - 자바스크립트에서의 값은 특정한 자료형에 속하게 된다.
 
-### 기본자료형 (Primitive DataType)
+### 원시 자료형 (Primitive DataType)
 
 #### Number
 
@@ -45,9 +44,10 @@
 
 <br/>
 
-### 참조자료형 (Reference DataType)
+### 참조 자료형 (Reference DataType)
 
-- Object, Array, Function 존재
+- 객체(Object, Array, Function)
+- 메모리 공간의
 
 <br/>
 
@@ -67,4 +67,15 @@ console.log(typeof function Fun() {}); //function
 
 <br/>
 
-## Primitive DataType vs Reference DataType
+### 🤔 Data Type이 필요한 이유는 무엇일까?
+
+- 메모리 공간 확보 및 값을 참조하기 위해서 필요
+
+컴퓨터의 메모리의 공간은 유한한다. 값을 저장하려면 메모리의 공간 크기를 결정 해야하고, 값을 읽기 위해서는 메모리의 공간의 크기를 알아야하기 때문에 데이터 타입을 통해 메모리 공간의 크기를 결정하고 확인한다.
+
+<br/>
+
+## 🔗 참고
+
+- [모던 자바스크립트 Deep Dive 6장 : 데이터 타입](https://devysi0827.tistory.com/54)
+- [코어자바스크립트 - 자바스크립트의 데이터 타입](https://emewjin.github.io/core-javascript/1/)
