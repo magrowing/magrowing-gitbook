@@ -172,7 +172,7 @@ console.log(name);
 // 🚨 해당 변수에 재힐당 할수 없다는 의미
 ```
 
-> ✅ Primitive DataType의 값만 재할당이 불가할 뿐 Reference DataType의 값은 재할당이 가능
+> ✅ 값만 재할당이 불가할 뿐 Reference DataType의 속성은 변경할 수는 있다.
 
 ```javascript
 const obj = {
