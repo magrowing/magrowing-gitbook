@@ -15,6 +15,8 @@
 
 ### 콜스택(Call stack)
 
+- 자바스크립트 코드가 실행되면 생성되는 실행컨텍스트(Execution Context)를 저장하는 자료구조
+
 #### 스택(stack)
 
 - 출입구가 하나인 데이터 구조
@@ -22,10 +24,6 @@
 - FILO (First in Last Out)
 
 ![Stack & Queue](https://blog.kakaocdn.net/dn/b7quqC/btrxQ4XPNJG/m19vlxw2z8pBUKf9shEeS1/img.png)
-
-### 콜스택(Call Stack)
-
-- 자바스크립트 코드가 실행되면 생성되는 실행컨텍스트(Execution Context)를 저장하는 자료구조
 
 #### 컨텍스트
 
@@ -59,7 +57,7 @@ console.log(a); // 1
 
 1. 자바스크립트 파일이 열리는 순간 `전역 컨텍스트`가 활성화 된다. → 콜스택에 전역컨텍스트가 쌓인다.
 
-2. `outer`함수가 호출되면 자바스크립트 엔진은 outer에 대한 환경정보를 수집해서 outer 실행 컨텍스트를 생성한 후 콜스택에 담는다.
+2. `outer` 함수가 호출되면 자바스크립트 엔진은 outer에 대한 환경정보를 수집해서 outer 실행 컨텍스트를 생성한 후 콜스택에 담는다.
 
 3. 전역 컨텍스트와 관련된 코드의 실행은 중단하고, outer 실행 컨텍스트와 관련된 코드들을 순차적으로 실행한다.
 
@@ -100,7 +98,7 @@ console.log(a); // 1
 
 #### 호이스팅
 
-> 📖 hoisting ? 코드가 최상단으로 끌어올려지는 것 같은 현상을 의미
+> 📖 hoisting : 코드가 최상단으로 끌어올려지는 것 같은 현상을 의미
 
 environment Record가 변수정보를 수집하는 과정을 이해하기 쉬운방법으로 추상화한 개념이다. 실제로 자바스크립트 엔진이 끌어올리지는 않는다.
 
@@ -130,6 +128,7 @@ function test() {
 
 ## 🔗 참고
 
+- [Execution Context](https://www.nextree.io/execution-context/)
 - [Javascript의 콜스택과 이벤트루프](https://frontj.com/entry/8-Javascript%EC%9D%98-%EC%BD%9C-%EC%8A%A4%ED%83%9D%EA%B3%BC-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%A3%A8%ED%94%84)
 - [코어자바스크립트 - 실행 컨텍스트](https://emewjin.github.io/core-javascript/2/#%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EB%9E%80)
 - [자바스크립트 실행 컨텍스트](https://medium.com/humanscape-tech/자바스크립트-실행-컨텍스트-1302cf139d25)
