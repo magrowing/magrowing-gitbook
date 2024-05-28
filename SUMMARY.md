@@ -71,8 +71,10 @@
   - [회원가입](./shopping_mall/signup.md)
 
 - [프로젝트 캠프 Next.js](./project_camp/README.md)
-  - [자바스크립트 기초](./project_camp/javascipt/README.md)
+
+  - [자바스크립트](./project_camp/javascipt/README.md)
     - [변수](./project_camp/javascipt/variable.md)
     - [자료형](./project_camp/javascipt/data_type.md)
     - [연산자](./project_camp/javascipt/operator.md)
     - [실행컨텍스트](./project_camp/javascipt/execution_context.md)
+    - [객체](./project_camp/javascipt/object.md)
