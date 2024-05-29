@@ -82,6 +82,13 @@ for (let key in obj) {
 - 상수로 키워드로 생성한 객체의 프로퍼티는 수정이 가능하다.
   - 실제로 객체의 값을 저장하는게 아니라 (메모리)주소를 저장하기 때문에
 
+```javascript
+const obj = { name: '철수', age: 20 };
+
+obj.year = 2005;
+console.log(obj); // { name: '철수', age: 20, year : 2005 }
+```
+
 ### 메서드
 
 - 객체의 value 값으로 사용되는 함수 → 다른 용어로 메서드(method)
@@ -222,6 +229,8 @@ class Rectangle extends Shape {
 }
 ```
 
+> 📖 메서드 오버라이딩 <br/> 상속한 상위 클래스의 메서드를 수정하고 싶거나 더 확장하기 위해 상속 받은 class 내에서 메서드를 재정의하는 행위
+
 ### get & set
 
 - `set` : 값을 설정하는 키워드
@@ -275,7 +284,7 @@ console.log(car1.getSpeed());
 
 ### static
 
-- `static`으로 정의된 것들은 인스턴스화 되지 않은다.
+- `static`으로 정의된 것들은 인스턴스화 되지 않는다.
 
 ```javascript
 class MathUtils {
@@ -305,3 +314,4 @@ console.log(MathUtils.add(2, 4));
 - [wrapper object](https://velog.io/@kim-jaemin420/Wrapper-Object래퍼-객체-jyt19oms)
 - [래퍼 객체 (wrapper object)](https://hwb0218.tistory.com/46)
 - [클래스와 기본 문법](https://ko.javascript.info/class)
+- [클래스 상속](https://ko.javascript.info/class-inheritance#ref-32)
