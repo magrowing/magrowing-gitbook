@@ -5,6 +5,7 @@
 - 타입스크립트
   - 타입스크립트 개발 환경
 - 기본 타입
+- 타입 추론
 
 <br/>
 
@@ -211,6 +212,93 @@ function func4(): never {
 }
 
 let a: never; // 변수의 타입을 never로 지정해두면 값을 할당할 수 없음. ( undefined, null 까지도 할당 할 수 없음)
+```
+
+<br/>
+
+## 타입 추론
+
+- 타입이 정의되어 있지 않은 변수의 타입을 자동으로 추론
+
+> 타입스크립트는 모든 변수에 일일이 타입을 정의하지 않아도 되는 편리함을 제공한다.
+> **그러나 모든 상황에 타입을 잘 추론하는 것은 아니다.** 예를 들어 다음과 같이 함수의 매개변수 타입은 자동으로 추론할 수 없다.
+
+```typescript
+function func(param: string) {
+  // 🚨 타입을 지정하지 않으면 오류로 판단
+}
+```
+
+### 타입 추론이 가능한 상황
+
+#### 1. 변수 선언
+
+```typescript
+let a = 10;
+// number 타입으로 추론
+
+let b = 'hello';
+// string 타입으로 추론
+
+let c = {
+  id: 1,
+  name: '이정환',
+  profile: {
+    nickname: 'winterlood',
+  },
+  urls: ['https://winterlood.com'],
+};
+// id, name, profile, urls 프로퍼티가 있는 객체 타입으로 추론
+```
+
+#### 2. 구조분해할당
+
+```typescript
+let [one, two, three] = [1, 'hello', true];
+```
+
+#### 3. 함수의 반환값
+
+- 함수 반환값의 타입은 return 문을 기준으로 추론
+
+```typescript
+function func() {
+  return 'hello'; // 반환값이 string 타입으로 추론된다
+}
+```
+
+#### 4. 기본값이 설정된 매개변수
+
+- 기본값이 설정된 매개변수의 타입은 기본값을 기준으로 추론
+
+```typescript
+function func(message = 'hello') {
+  return 'hello';
+}
+```
+
+### 타입 추론의 주의 사항
+
+#### 1. const 상수의 추론
+
+- const로 선언된 상수도 타입 추론이 되지만, 그러나 let으로 선언한 변수와는 다른 방식으로 추론된다.
+
+> 📖 리터럴(literal): 소스 코드의 고정된 값을 나타내는 표기법
+
+```typescript
+const num = 10;
+// 10 Number Literal 타입으로 추론 (즉, 값으로 타입이 지정됨, num은 10이 아니면 에러 발생)
+
+const str = 'hello';
+// "hello" String Literal 타입으로 추론
+```
+
+#### 2. 암시적으로 any 타입으로 추론
+
+- 변수를 선언할때 초기값을 생략하면 암시적인 any 타입으로 추론
+
+```typescript
+let d; // 암시적인 any 타입으로 추론
 ```
 
 <br/>
