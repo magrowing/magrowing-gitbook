@@ -83,3 +83,4 @@
     - [Callback,Promise,async/await](./project_camp/javascipt/asynchronous.md)
   - [타입스크립트](./project_camp/typescript/README.md)
     - [타입스크립트](./project_camp/typescript/typescript.md)
+    - [Type별칭 vs interface](./project_camp/typescript/type_interface.md)
