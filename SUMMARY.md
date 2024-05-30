@@ -81,3 +81,5 @@
     - [표준 내장 객체](./project_camp/javascipt/global_object.md)
     - [DOM](./project_camp/javascipt/dom.md)
     - [Callback,Promise,async/await](./project_camp/javascipt/asynchronous.md)
+  - [타입스크립트](./project_camp/typescript/README.md)
+    - [타입스크립트](./project_camp/typescript/typescript.md)
