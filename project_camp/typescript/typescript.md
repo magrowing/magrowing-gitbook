@@ -6,6 +6,10 @@
   - 타입스크립트 개발 환경
 - 기본 타입
 - 타입 추론
+- 연산자를 이용한 타입 정의
+  - Union Type
+  - Intersection Type
+  - Optional Parameter
 
 <br/>
 
@@ -299,6 +303,76 @@ const str = 'hello';
 
 ```typescript
 let d; // 암시적인 any 타입으로 추론
+```
+
+<br/>
+
+## 연산자를 이용한 타입 정의
+
+### Union Type
+
+- `|`
+- 자바스크립트의 OR연산자 (`||`) 와 같이 `A이거나 B이다` 라는 의미의 타입
+
+```typescript
+let arr5: (string | number)[] = [10, 'world'];
+
+function logText(text: string | number) {
+  // ...
+}
+```
+
+### Intersection Type
+
+- `&`
+- 여러타입을 **모두 만족하는 하나의 타입을 의미**
+- 타입을 확장하기 위해 사용
+
+```typescript
+type TBox = {
+  width: string;
+  height: number;
+};
+
+type TShape = {
+  shape: string;
+};
+
+type TBoxModel = TShape & TBox;
+
+const box1: TBoxModel = {
+  width: 200,
+  height: 200,
+  shape: 'square',
+};
+```
+
+### Optional Parameter
+
+- `?` 선택적으로 타입을 적용
+
+```typescript
+type TBox = {
+  width: number;
+  height: number;
+  border?: number;
+};
+
+interface IBox {
+  width: number;
+  height: number;
+  border?: number;
+}
+
+const box1: TBox = {
+  width: 20,
+  height: 20,
+};
+
+const box2: IBox = {
+  width: 200,
+  height: 200,
+};
 ```
 
 <br/>
