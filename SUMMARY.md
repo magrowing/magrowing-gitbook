@@ -84,5 +84,5 @@
   - [타입스크립트](./project_camp/typescript/README.md)
     - [타입스크립트](./project_camp/typescript/typescript.md)
     - [Type별칭 vs interface](./project_camp/typescript/type_interface.md)
-    - [함수와제네릭](./project_camp/typescript/function_generic.md)
+    - [function & Generic](./project_camp/typescript/function_generic.md)
     - [유틸리티](./project_camp/typescript/utility.md)

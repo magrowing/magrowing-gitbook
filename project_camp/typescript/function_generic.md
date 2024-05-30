@@ -28,7 +28,7 @@ function multiply(x: number, y: number): number {
 }
 ```
 
-### 함수 표현식
+### 함수표현식
 
 - 함수 선언식과 동일하게 매개변수의 타입을 지정해주어야 한다.
 
@@ -104,7 +104,7 @@ let num = func(10); // number 타입
 ```
 
 함수 이름 뒤에 `<>` 와 `T` 를 선언한다. 그리고 매개변수와 반환값의 타입을 `T` 로 설정한다.
-`T`에 어떤 타입이 할당될 지는 함수가 호출될 때 결정된다.
+`T` 에 어떤 타입이 할당될 지는 함수가 호출될 때 결정된다.
 
 func(10) 처럼 `Number` 타입의 값을 인수로 전달하면 매개변수 value에 `Number` 타입의 값이 저장되면서 T가 Number 타입으로 추론된다. 이때 T는 Number 타입으로 추론되고, func 함수의 반환값 타입 또한 Number 타입이 된다.
 
@@ -128,7 +128,7 @@ getSize([1, 2, 3]);
 getSize(['1', '2', '3', 1, 3, 4]);
 ```
 
-### 제네릭의 활용 (feat.Type & interface)
+### 🤹🏻‍♀️ 제네릭의 활용
 
 ```typescript
 type TUserBase<T> = {
