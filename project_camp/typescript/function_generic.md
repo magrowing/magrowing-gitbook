@@ -1,4 +1,4 @@
-# function & Generic
+# Function & Generic
 
 ## 학습 키워드
 
@@ -7,7 +7,7 @@
 
 <br/>
 
-## function
+## Function
 
 ### 함수선언식
 
@@ -140,7 +140,7 @@ type TUserBase<T> = {
 interface IUserBase<T> {
   name: string;
   age: number;
-  likeFoods: T; // 명확한 타입을 넣기 어려울때도 제네릭을 이용해서 정의 할 수 있다.
+  likeFoods: T;
 }
 
 const personHong: TUserBase<string[]> = {
