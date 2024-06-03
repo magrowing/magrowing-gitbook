@@ -89,4 +89,4 @@
   - [React](./project_camp/react/README.md)
     - [Component](./project_camp/react/componetnt.md)
     - [CSS 스타일링](./project_camp/react/css_style.md)
-    - [memoization](./project_camp/react/css_style.md)
+    - [memoization](./project_camp/react/memoiztion.md)
