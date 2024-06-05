@@ -10,21 +10,20 @@
 
 ## Express 이용한 간단한 Server 구축
 
+### 필요한 패키지 설치
+
 - cors
 - express
 - nodemon
 - uuid
 
 ```shell
-npm i cors express nodemon uuid
+npm init -y
+
+npm i express nodemon uuid
 ```
 
-### Express의 Hello world 예제 사용
-
-- server.js
-- port : 4000
-
-### server 구동 방법
+### Server 구동 방법
 
 - 해당 방식은 수정사항을 반영해주지 않아, server off 하고 재구동
 
@@ -56,6 +55,88 @@ npx nodemon server.js
 > 🤔 RESTful, REST 호출한다라는 의미는? HTTP Method를 규칙에 맞는 API 설계 전략
 
 <br/>
+
+### 👩🏻‍💻 TodoList의 API 생성
+
+#### GET : Todos 조회
+
+```javascript
+let todos = [];
+
+app.get('/todos', (req, res) => {
+  res.status(200).json(todos);
+});
+```
+
+#### POST : Todo 생성
+
+```javascript
+const bodyParser = require('body-parser');
+const { v4: uuidv4 } = require('uuid');
+
+app.post('/todos', (req, res) => {
+  const { task } = req.body;
+  const newTodo = {
+    id: uuidv4(),
+    task,
+    completed: false,
+  };
+  res.status(200).json(newTodo);
+});
+```
+
+#### PATCH : Todo Completed Update
+
+```javascript
+app.patch('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const findTodo = todos.find((todo) => todo.id === id);
+
+  if (!findTodo) {
+    res.status(400).send('Not found Todo');
+  }
+
+  todos = todos.map((todo) =>
+    todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  );
+
+  res.status(200).send(findTodo);
+});
+```
+
+#### PUT : Todo Task Update
+
+```javascript
+app.put('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const { task } = req.body;
+  const findTodo = todos.find((todo) => todo.id === id);
+
+  if (!findTodo) {
+    res.status(400).send('Not found Todo');
+  }
+
+  todos = todos.map((todo) => (todo.id === id ? { ...todo, task } : todo));
+
+  res.status(200).send(todos.find((todo) => todo.id === id));
+});
+```
+
+#### DELETE : 할일 삭제
+
+```javascript
+app.delete('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const findTodo = todos.find((todo) => todo.id === id);
+
+  if (!findTodo) {
+    res.status(400).send('Not found Todo');
+  }
+
+  todos = todos.filter((todo) => todo.id !== id);
+  res.status(200).send('Todo Delete Success');
+});
+```
 
 ## Fetch API
 
