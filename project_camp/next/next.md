@@ -398,7 +398,7 @@ export default function Header() {
 const router = useRouter();
 
 const useRouterHandler = () => {
-  router.replace('/blog'); // /blog 페이지에서 뒤로가기 기능이 되지 않는다.(이전의 페이지 기록 없음)
+  router.replace('/blog'); // 현재페이지에서 설정해둔 페이지로 이동 후에는 현재페이지로 돌아올수없음. (현재페이지기록지워짐)
 };
 ```
 
