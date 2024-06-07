@@ -2,7 +2,7 @@
 
 ## 학습키워드
 
-- 설치방법
+- 설치 방법
 - Component
 - App Router
   - 파라미터
@@ -37,12 +37,12 @@ npx create-next-app@latest
 
 ```shell
 npx create-next-app@latest <프로젝트이름>
-    ✔ Would you like to use TypeScript? … Yes  # 타입스크립트 사용 여부
-    ✔ Would you like to use ESLint? … Yes  # ESLint 사용 여부
-    ✔ Would you like to use Tailwind CSS? … Yes  # Tailwind CSS 사용 여부
-    ✔ Would you like to use `src/` directory? … No  # src/ 디렉토리 사용 여부
-    ✔ Would you like to use App Router? (recommended) … Yes  # App Router 사용 여부
-    ✔ Would you like to customize the default import alias (@/*)? … No  # `@/*` 외 경로 별칭 사용 여부
+  ✔ Would you like to use TypeScript? … Yes  # 타입스크립트 사용 여부
+  ✔ Would you like to use ESLint? … Yes  # ESLint 사용 여부
+  ✔ Would you like to use Tailwind CSS? … Yes  # Tailwind CSS 사용 여부
+  ✔ Would you like to use `src/` directory? … No  # src/ 디렉토리 사용 여부
+  ✔ Would you like to use App Router? (recommended) … Yes  # App Router 사용 여부
+  ✔ Would you like to customize the default import alias (@/*)? … No  # `@/*`외 경로 별칭 사용 여부
 ```
 
 <br/>
@@ -54,8 +54,7 @@ npx create-next-app@latest <프로젝트이름>
 - 기본적으로 서버 컴포넌트이다.
 - 클라언트 컴포넌트로 변경 하고자 한다면 최상단에 `use client` 기재
 
-> ✅ 클라이언트 컴포넌트 또한 일부 정적요소는 서버에서 렌더링한다.
-> ‘server + client’ 의 하이브리드(hydration)컴포넌트로 이해해야한다. <br/> (hydration이란? 다시 화면을 그리는게 아닌, 자바스크립트의 기능 더하는것으로 이해해야한다.)
+> ✅ 클라이언트 컴포넌트 또한 일부 정적요소는 서버에서 렌더링한다. ‘server + client’ 의 하이브리드(hydration)컴포넌트로 이해해야한다. (hydration이란? 다시 화면을 그리는게 아닌, 자바스크립트의 기능 더하는것)
 
 <br/>
 
