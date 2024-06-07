@@ -127,6 +127,14 @@ export default function Headline() {
 
 #### CSS 변수를 사용해서 폰트 적용
 
+```css
+/* globals.css */
+
+body {
+  font-family: var(--font-roboto);
+}
+```
+
 ```jsx
 import { roboto } from '@/styles/fonts';
 import '@/styles/global.scss';
