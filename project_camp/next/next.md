@@ -7,8 +7,6 @@
 - App Router
   - 파라미터
   - 경로 탐색
-- 메타데이터
-- 폰트 최적화
 
 <br/>
 
@@ -49,7 +47,7 @@ npx create-next-app@latest <프로젝트이름>
 
 <br/>
 
-### Component
+## Component
 
 - Next.js SSR 기반으로 동작한다. (Severe Side Rendering)
 - 서버컴포넌트와 클라이언트 컴포넌트가 존재
@@ -61,7 +59,7 @@ npx create-next-app@latest <프로젝트이름>
 
 <br/>
 
-### App Route
+## App Route
 
 - Next.JS 14에서 새롭게 도입된 라우팅 시스템
 - Routing 하기 위한 파일 규칙(File Conventions)이 존재한다.
@@ -74,12 +72,12 @@ npx create-next-app@latest <프로젝트이름>
 - **Router** : Routing을 관리하고 처리하는 기능을 제공
 - **Route** : URL과 특정 컴포넌트 간의 매핑
 
-#### 📄 Layout
+### 📄 Layout
 
 - 여러 하위 경로에서 공통으로 사용하는 UI는 각 라우팅 폴더의 `layout.tsx` 컴포넌트 작성
   - 슬로(slot)방식으로 **Children Prop**를 사용하며, {children} 부분에는 같은 레벨에 있는 `page.tsx` 컴포넌트 출력
 
-#### 📄 Page
+### 📄 Page
 
 - 파일 시스템 기반의 라우터 방식을 사용
 - **`/app` 폴더 내에 생성하는 각 폴더는 기본적으로 URL 경로를 의미**
@@ -91,7 +89,7 @@ npx create-next-app@latest <프로젝트이름>
 
 ![출처 : Next.js](https://nextjs.org/_next/image?url=%2Fdocs%2Fdark%2Fdefining-routes.png&w=3840&q=75)
 
-#### 📄 not-found
+### 📄 not-found
 
 - 페이지를 찾을 수 없을 때 보이는 not-found 페이지는 Next.js 프레임워크에서 ‘not-found.tsx’ 파일로 제어할 수 있다. 가장 최상위에 있는 경로에 생성
 
@@ -186,9 +184,11 @@ app
     form-date.ts
 ```
 
-### 파라미터
+<br/>
 
-#### Param props
+## 파라미터
+
+### Param props
 
 - 서버 컴포넌트에서 path 정보를 props을 통해 확인 할 수 있다.
 
@@ -216,7 +216,7 @@ export default function page({ params, searchParams }: TPageProps) {
 }
 ```
 
-#### usePathname
+### usePathname
 
 - 클라이언트 컴포넌트에서 라우팅의 경로 반환하는 hook
 
@@ -239,7 +239,7 @@ export default function Page() {
 }
 ```
 
-#### useSearchParams
+### useSearchParams
 
 - 클라이언트 컴포넌트에서 queryString 문자열을 가져올 때 사용하는 Hook
 - `get`메소드를 사용해서 사용
@@ -262,4 +262,172 @@ export default function Page() {
       <p>해당 페이지의 경로 : {queryString.get('page')} </p>
     </>
   );
+```
+
+<br/>
+
+## 경로탐색
+
+### Link 컴포넌트
+
+- 페이지 이동을 위해 `<a>` 태그가 아닌 `<Link>` 컴포넌트 사용
+- `prefetch` 옵션을 통해 뷰포트에 보여질 때(IntersectionObserver), 연결된 경로(href)의 데이터를 미리 가져와 탐색 성능을 크게 향상시킬 수 있다.
+  - `null`(기본값) : 정적인 경로인 경우 모든 하위 경로, 동적 경로인 경우 `loading.tsx`가 있는 가장 가까운 세그먼트까지 미리 가져온다.
+  - `true` : 정적 경로와 동적경오 모두 미리 가져온다.
+  - `false` : 미리 가져오지 않는다.
+
+> ⚠️ Prefetch 기능은 제품(Production)모드에서만 활성화 된다.
+
+```jsx
+import Link from 'next/link';
+
+export default function Links() {
+  return (
+    <>
+      <Link href={someLink}>이동~</Link>
+      <Link prefetch={true} href={someLink}>
+        이동~
+      </Link>
+      <Link prefetch={false} href={someLink}>
+        이동~
+      </Link>
+    </>
+  );
+}
+```
+
+### useRouter
+
+- 이벤트처리 내에서 페이지 이동시 사용하는 hook
+- 클라이언트 컴포넌트에서만 사용할 수 있어 `use client` 선언 필요
+
+```jsx
+'use client';
+
+import { useRouter } from 'next/navigation';
+
+export default function Home() {
+  const router = useRouter();
+  console.log(router);
+  return <>...</>;
+}
+```
+
+#### back
+
+- 현재페이지 기준으로 이전 히스토리(history)로 이동 (브라우저의 뒤로가기 동일)
+
+```jsx
+'use client';
+
+import { useRouter } from 'next/navigation';
+
+const useRouterHandler = () => {
+  router.back(); // 이전 페이지 히스토리로 이동
+};
+```
+
+#### forward
+
+- 현재페이지 기준으로 다음 히스토리 이동(브라우저의 앞으로 가기 동일)
+
+```jsx
+'use client';
+
+import { useRouter } from 'next/navigation';
+
+const useRouterHandler = () => {
+  router.forward();
+};
+```
+
+#### prefetch
+
+- 페이지를 미리로드하여 빠른 탐색을 가능하게 한다.
+
+> ⚠️ Prefetch 기능은 제품(Production)모드에서만 활성화 된다.
+
+```jsx
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function Header() {
+  const router = useRouter();
+  useEffect(() => {
+    router.prefetch('/movies');
+  }, [router]);
+  return (
+    <header>
+      {/* 생략 */}
+      <button onClick={() => router.push('/movies')}>MOVIES</button>
+    </header>
+  );
+}
+```
+
+#### push
+
+- 새로운 URL로 이동하며, 브라우저 기록에 새로운 항목을 추가
+
+```jsx
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function Header() {
+  const router = useRouter();
+  useEffect(() => {
+    router.prefetch('/movies');
+  }, [router]);
+  return (
+    <header>
+      {/* 생략 */}
+      <button onClick={() => router.push('/movies')}>MOVIES</button>
+    </header>
+  );
+}
+```
+
+#### replace
+
+- 새로운 URL로 이동하지만, 브라우저 기록을 덮어쓴다.(기록에 남지 않는다.)
+
+```jsx
+const router = useRouter();
+
+const useRouterHandler = () => {
+  router.replace('/blog'); // /blog 페이지에서 뒤로가기 기능이 되지 않는다.(이전의 페이지 기록 없음)
+};
+```
+
+#### refresh
+
+- 현재 페이지를 다시 로드한다.
+
+```jsx
+const router = useRouter();
+
+const useRouterHandler = () => {
+  router.refresh();
+};
+```
+
+### redirect
+
+- redirect() 함수를 사용해서 라우팅 가능하다.
+
+```jsx
+import { redirect } from 'next/navigation';
+
+export default function Product() {
+  redirect('/');
+  return (
+    <>
+      <h1>Product Component</h1>
+    </>
+  );
+}
 ```
