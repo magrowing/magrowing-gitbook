@@ -430,3 +430,9 @@ export default function Product() {
   );
 }
 ```
+
+<br/>
+
+## 🔗 참고
+
+- [Next.js 핵심 정리](https://www.heropy.dev/p/n7JHmI)
