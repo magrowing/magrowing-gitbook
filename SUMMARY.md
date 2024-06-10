@@ -94,3 +94,4 @@
   - [Next.js](./project_camp/next/README.md)
     - [Next.js](./project_camp/next/next.md)
     - [최적화](./project_camp/next/optimization.md)
+    - [DataFetching](./project_camp/next/data_fetching.md)
