@@ -98,12 +98,12 @@ npx create-next-app@latest <프로젝트이름>
 app
 ├── not-found.tsx
 └── category
-    ├── [...slug]
-    │   └── page.tsx → Not found layout
+    ├── [..slug]
+    │   └── page.tsx → Not found Layout
     ├── movie
     │   └── page.tsx
     └── genre
-        └── page.tsx
+        └── pate.tsx
 ```
 
 #### 📂 중첩(Nested Route)
@@ -417,6 +417,7 @@ const useRouterHandler = () => {
 ### redirect
 
 - redirect() 함수를 사용해서 라우팅 가능하다.
+- server component 사용가능
 
 ```jsx
 import { redirect } from 'next/navigation';
