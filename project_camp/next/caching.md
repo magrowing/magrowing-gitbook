@@ -33,7 +33,7 @@ Next.js에는 사용자 세션 동안 개별 경로 세그먼트로 분할된 `R
 
 <br/>
 
-### Router Cache 지속시간
+#### ⏰ Router Cache 지속시간
 
 캐시는 브라우저의 임시 메모리에 저장된다. 라우터 캐시의 지속시간을 결정하는 두가지 요소는 다음과 같다.
 
@@ -133,6 +133,122 @@ export default function page() {
 - 전체 경로 캐시 : 여러 사용자 요청에 걸쳐 서버에서 React 서버 구성요소 페이로드와 HTML을 지속적으로 저장한다. `빌드 또는 재검증 중에 정적으로 렌더링된 경로만 캐시한다.`
 
 > ⭐️ 전체라우트캐시(Full Route Cache)는 서버측에서 페이지의 HTML렌더링 결과를 캐시하고, 라우터 캐시(Router Cache)는 클라이언트측에서 사용자가 방문한 경로 세그먼트를 캐시하여 사용자의 경로 이동을 더 빠르게 만든다.
+
+<br/>
+
+### Request Memoization
+
+React는 `fetch`API를 확장하여 **동일한 URL과 옵션을 가진 요청을 자동으로 메모한다.** 이는 React 컴포넌트 트리의 려러 위치에 동일한 데이터에 대한 가조이기 함수를 한번만 실행하면서 호출할 수 있음을 의미한다.
+React 컴포넌트가 `렌더링되는 동안`에만 캐시된 데이터를 사용하여 성능을 향상시키고, 중복된 요청을 방지하기 위해 사용된다.
+
+> 일반적으로 페이지를 렌더링할 때 서버에서 데이터를 가져와야 하는데, 이를 여러 컴포넌트에서 중복해서 요청하는 것은 비효율적일 수 있다. 따라서 한번 요청된 데이터를 캐시하여 여러 컴포넌트에서 재사용할 수 있게 한다.
+
+![How Request Memoization Works](https://nextjs.org/_next/image?url=%2Fdocs%2Fdark%2Frequest-memoization.png&w=3840&q=75)
+
+- route을 렌더링하는 동안, 처음 특정한 요청이 호출되면 그것의 결과는 메모리에 저장되지 않고 cache된다. `MISS`
+- 함수가 실행되고 외부 소스에서 데이터를 가져와 결과가 메모리에 저장된다.`SET`
+- 동일한 랜더 경로에서 요청의 후속 함수 호출은 캐시가 되며 `HIT`(데이터는 함수르 실행하지 않고) 메모리에서 반환된다.
+- route가 렌더링 되고, 렌더링 패스가 완료되면 메모리가 '재설정'되고, 모든 요청 메모 항목이 지워진다.
+  - 이전 요청에 대한 캐시를 유지하는 것은 메모리를 낭비하고, 불필요한 데이터를 유지하는 것 일 수 있다. 특히 React 에서는 렌더링과 관련된 상태와 데이터를 최신 상태로 유지하는 것이 중요하다. 따라서 다음 요청에 대한 메모이제이션을 위해 새로운 공간을 확보한다.
+
+> 🗑️ Request Memoization은 페이지 렌더링을 위한 것이므로 페이지가 렌더링 된 후에는 비워준다
+
+#### 📌 참고사항
+
+- Request Memoization은 `fetch 요청의 GET 메서드`에만 적용된다.
+- Request Memoization은 React 구성 요소 트리(React Component tree)에만 적용된다.
+  - 메타데이터 생성, 정적 매개변수, 레이아웃, 페이지 및 기타 서버 구성요소 생성에서 요청을 가져오는 데 적용
+  - Route Handler의 가져오기 요청은 React 구성 요소 트리의 일부가 아니므로 적용되지 않는다.
+
+#### 👩🏻‍💻 예제를 통해 Request Memoization 작동 방식을 이해보자
+
+![](../images/request_memoization.gif)
+
+```jsx
+// 📂 /about
+export default async function page() {
+  const posts = await (await fetch('http://localhost:4000/posts')).json();
+  const blogs = await (await fetch('http://localhost:4000/blogs')).json();
+  return (
+    <section className="bg-gray-200 p-10">
+      <h1 className="text-2xl font-bold">About page Component</h1>
+      <p className="mt-4 text-lg font-bold">
+        {new Date().toLocaleTimeString()}
+      </p>
+      <p className="mt-4 text-lg font-bold">Posts</p>
+      <pre>{JSON.stringify(posts, null, 2)}</pre>
+      <p className="mt-4 text-lg font-bold">Blogs</p>
+      <pre>{JSON.stringify(blogs, null, 2)}</pre>
+    </section>
+  );
+}
+```
+
+> `/about` 페이지는 fetch API를 두번 요청한다. 페이지가 렌더링 되면서 `http://localhost:4000/posts` 요청 Call은 `/`페이지에서 렌더링시 메모이제이션 되어 서버로 부터 요청하지 않고, `http://localhost:4000/blogs` API Call을 요청해서 렌더링한 화면을 보여준다.
+
+<br/>
+
+### Data Cache
+
+Next.js에서는 들어오는 서버 요청 및 배포 전반에 걸쳐 데이터 가져오기 결과를 유지하는 내장 데이터 캐시가 있다. Next.js가 기본 `fetch`API를 확장하여 서버의 각 요청이 자체 **영구 캐싱 의미를** 설정할 수 있도록 하기 때문에 가능하다.
+
+> fetch 요청을 받은 결과(Data)값을 캐시 처리하는데, 재검증하거나 선택해제 하지 않는 한 들어오는 요청 및 배포 전반에 걸쳐 지속된다.
+
+![How the Data Cache Works](https://nextjs.org/_next/image?url=%2Fdocs%2Fdark%2Frequest-memoization.png&w=3840&q=75)
+
+- 처음 렌더링 중에 fetch 요청이 호출되면, Next.js는 캐시된 응답을 확인하기 데이터 캐시를 확인한다.
+- 캐시된 응답이 발견되면 즉시 반환되고, 메모이제이션된다. 캐시된 응답이 발견되지 않으면 데이터 소스로 요청이 이루어지고, 결과가 데이터 캐시에 저장되고 메모이제이션 된다.
+- 캐시되지 않은 데이터의 경우(예: { cache: 'no-store' }), 항상 데이터 소스에서 결과를 가져와 메모이제이션된다.
+- 데이터가 캐시되든,캐시되지 않든 관계없이 요청은 React 렌더 패스 중에 동일한 데이터에 대한 중복을 피하기 위해 항상 메모이제이션 한다.
+
+#### ✅ Request Memoization vs Data Cache 차이점
+
+- 지속성
+  - Request Memoization : 요청의 수명 동안만 지속된다. 한번의 요청에서 다음요청으로의 메모이제이션 데이터는 유지 되지 않는다.
+  - Data Cache : 수신 요청 및 배포를 거쳐도 지속된다. 즉, 이전에 캐시된 데이터는 여려 요청 및 서버 배포간에 유지된다.
+
+> 🧐 하나의 요청 동안 유효한 `Request Memoization` 다르게 `Data Cache`는 일정시간 동안 웹 서버로 들어오는 모든 요청에 대해 동작한다. 만약 **next.revalidate** 를 1초로 설정했다면, 1초에 1000명의 사용자가 접속해도 실제 API 요청은 1회 전송된다.
+
+- 네트워크 교차점
+
+  - Request Memoization : 동일한 렌더일 패스(렌더링하는 중)내의 `중복 요청 수`를 줄일 수 있다.
+  - Data Cache : `원본 데이터 소스에 대한 요청수`를 줄일 수 있다.
+
+> 🤔 이해보자면, Request Memoization는 하나의 API Call에 대한 중복 요청수를 줄일 수 있고, Data Cache는 여러 API Call을 관리하는데, 각각의 API Call에 대한 요청수를 줄일 수 있다는 말로 우선 이해했다.
+
+<br/>
+
+#### ⚖️ 재검증
+
+- `시간 기반 재검증` : 일정시간이 지난 후 새로운 요청이 발생한 후 데이터를 재검증
+
+```jsx
+fetch('https://...', { next: { revalidate: 3600 } });
+```
+
+![How Time-based Revalidation Works](https://nextjs.org/_next/image?url=%2Fdocs%2Fdark%2Ftime-based-revalidation.png&w=3840&q=75)
+
+> 🚨 revalidate 시간이 지나더라도 첫 요청은 캐싱된 값을 (STALE 상태여도) 반환한다는 것이다. 반환 후 백그라운드에서 API를 호출해서 값을 업데이트하는데, 개발자 의도와 다르게 동작할 수 있기 때문에 캐시를 적용할 때 주의가 필요하다.
+
+- `주문형 재검증` : 이벤트를 기반으로 데이터를 재검증
+  - 필요에 따라 경로( revalidatePath) 또는 캐시 태그( revalidateTag)를 통해 데이터의 유효성을 재검증
+
+```jsx
+fetch('https://...', { next: { tags: ['a'] } });
+```
+
+![How On-Demand Revalidation Works](https://nextjs.org/_next/image?url=%2Fdocs%2Fdark%2Fon-demand-revalidation.png&w=3840&q=75)
+
+<br/>
+
+#### Optiong Out
+
+개별 데이터 fetch의 경우, 캐시 옵션을 no-store로 설정하여 캐싱에서 제외할 수 있다.
+
+```jsx
+// Opt out of caching for an individual `fetch` request
+fetch(`https://...`, { cache: 'no-store' });
+```
 
 <br/>
 
