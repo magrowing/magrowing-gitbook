@@ -97,3 +97,4 @@
     - [Data Fetching](./project_camp/next/data_fetching.md)
     - [Caching](./project_camp/next/caching.md)
     - [MongoDB](./project_camp/next/mongodb.md)
+    - [NextAuth](./project_camp/next/auth.md)
